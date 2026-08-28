@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const verificarToken = require('../middlewares/authMiddleware');
 const {
     listarProdutos,
     buscarProdutoPorId,
@@ -8,10 +9,10 @@ const {
     excluirProduto
 } = require('../controllers/produtosController');
 
-router.get('/', listarProdutos);
-router.get('/:id', buscarProdutoPorId);
-router.post('/', cadastrarProduto);
-router.put('/:id', atualizarProduto);
-router.delete('/:id', excluirProduto);
+router.get('/', verificarToken, listarProdutos);
+router.get('/:id', verificarToken, buscarProdutoPorId);
+router.post('/', verificarToken, cadastrarProduto);
+router.put('/:id', verificarToken, atualizarProduto);
+router.delete('/:id', verificarToken, excluirProduto);
 
 module.exports = router;

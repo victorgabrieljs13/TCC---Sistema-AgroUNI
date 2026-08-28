@@ -17,6 +17,12 @@ app.get('/', (req, res) => {
 const produtosRoutes = require('./routes/produtosRoutes');
 app.use('/produtos', produtosRoutes);
 
+const movimentacoesRoutes = require('./routes/movimentacoesRoutes');
+app.use('/movimentacoes', movimentacoesRoutes);
+
+const authRoutes = require('./routes/authRoutes');
+app.use('/auth', authRoutes);
+
 const pool = require('./config/db');
 
 app.get('/teste-db', async (req, res) => {
