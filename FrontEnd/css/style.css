@@ -1,0 +1,190 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+body {
+    background-color: #f4f7f2;
+    color: #2b2b2b;
+}
+
+.container {
+    max-width: 420px;
+    margin: 80px auto;
+    background: #ffffff;
+    padding: 32px;
+    border-radius: 10px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+.logo {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.logo h1 {
+    color: #2e7d32;
+    font-size: 24px;
+}
+
+.logo p {
+    color: #666;
+    font-size: 14px;
+    margin-top: 4px;
+}
+
+form label {
+    display: block;
+    margin-top: 16px;
+    margin-bottom: 6px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+form input, form select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+form button {
+    width: 100%;
+    margin-top: 24px;
+    padding: 12px;
+    background-color: #2e7d32;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+form button:hover {
+    background-color: #256428;
+}
+
+.mensagem-erro {
+    background-color: #fdecea;
+    color: #c62828;
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 13px;
+    margin-top: 16px;
+    display: none;
+}
+
+.mensagem-sucesso {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 13px;
+    margin-top: 16px;
+    display: none;
+}
+
+.topo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #2e7d32;
+    color: #fff;
+    padding: 16px 32px;
+}
+
+.topo h1 {
+    font-size: 20px;
+}
+
+.topo-usuario {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.topo-usuario button {
+    background-color: transparent;
+    border: 1px solid #fff;
+    color: #fff;
+    padding: 6px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.conteudo {
+    max-width: 1000px;
+    margin: 32px auto;
+    padding: 0 24px;
+}
+
+.acoes-topo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.botao {
+    display: inline-block;
+    padding: 10px 18px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 14px;
+    cursor: pointer;
+    border: none;
+}
+
+.botao-primario {
+    background-color: #2e7d32;
+    color: #fff;
+}
+
+.botao-secundario {
+    background-color: #fff;
+    color: #2e7d32;
+    border: 1px solid #2e7d32;
+    margin-right: 8px;
+}
+
+.tabela-produtos {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+}
+
+.tabela-produtos th, .tabela-produtos td {
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+}
+
+.tabela-produtos th {
+    background-color: #f4f7f2;
+    font-weight: 600;
+}
+
+.estoque-baixo {
+    color: #c62828;
+    font-weight: 600;
+}
+
+.acao-link {
+    color: #2e7d32;
+    margin-right: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+.acao-link.excluir {
+    color: #c62828;
+}
