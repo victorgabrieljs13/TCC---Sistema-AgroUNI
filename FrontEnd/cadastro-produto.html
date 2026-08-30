@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgroUNI - Cadastro de Produto</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <header class="topo">
+        <h1>AgroUNI</h1>
+        <div class="topo-usuario">
+            <span id="nome-feirante"></span>
+            <button id="btn-logout">Sair</button>
+        </div>
+    </header>
+
+    <main class="conteudo">
+        <a href="produtos.html" class="acao-link">&larr; Voltar para produtos</a>
+
+        <div class="container" style="margin-top: 20px;">
+            <h2 id="titulo-formulario">Novo Produto</h2>
+
+            <form id="form-produto">
+                <label for="nome">Nome do produto</label>
+                <input type="text" id="nome" required>
+
+                <label for="categoria">Categoria</label>
+                <input type="text" id="categoria" placeholder="Ex: Legume, Fruta, Verdura">
+
+                <label for="unidade_medida">Unidade de medida</label>
+                <select id="unidade_medida" required>
+                    <option value="">Selecione</option>
+                    <option value="kg">Quilo (kg)</option>
+                    <option value="unidade">Unidade</option>
+                    <option value="caixa">Caixa</option>
+                    <option value="duzia">Dúzia</option>
+                </select>
+
+                <label for="preco_atual">Preço (R$)</label>
+                <input type="number" id="preco_atual" step="0.01" min="0" required>
+
+                <label for="quantidade_estoque">Quantidade em estoque</label>
+                <input type="number" id="quantidade_estoque" step="0.01" min="0" required>
+
+                <label for="estoque_minimo">Estoque mínimo (para alerta)</label>
+                <input type="number" id="estoque_minimo" step="0.01" min="0" required>
+
+                <label for="status">Status</label>
+                <select id="status">
+                    <option value="ativo">Ativo</option>
+                    <option value="inativo">Inativo</option>
+                </select>
+
+                <button type="submit" id="btn-salvar">Salvar Produto</button>
+
+                <div class="mensagem-erro" id="mensagem-erro"></div>
+                <div class="mensagem-sucesso" id="mensagem-sucesso"></div>
+            </form>
+        </div>
+    </main>
+
+    <script src="js/config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/cadastroProduto.js"></script>
+</body>
+</html>
