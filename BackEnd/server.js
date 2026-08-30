@@ -16,9 +16,6 @@ app.use(express.static(path.join(__dirname, '..', 'frontend')));
 const feirantesRoutes = require('./routes/feirantesRoutes');
 app.use('/feirantes', feirantesRoutes);
 
-app.get('/', (req, res) => {
-    res.json({ mensagem: 'API do sistema de feirantes rodando!' });
-});
 
 const produtosRoutes = require('./routes/produtosRoutes');
 app.use('/produtos', produtosRoutes);
