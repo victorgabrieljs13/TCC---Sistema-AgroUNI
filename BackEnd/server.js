@@ -1,11 +1,17 @@
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
 require('dotenv').config();
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
+
+// Serve os arquivos do frontend (HTML, CSS, JS)
+app.use(express.static(path.join(__dirname, '..', 'frontend')));
+
+// ... suas rotas continuam aqui embaixo (feirantes, produtos, movimentacoes, auth) ...
 
 const feirantesRoutes = require('./routes/feirantesRoutes');
 app.use('/feirantes', feirantesRoutes);
