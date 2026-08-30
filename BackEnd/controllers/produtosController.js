@@ -131,10 +131,43 @@ async function excluirProduto(req, res) {
     }
 }
 
+// Buscar histórico de preços de um produto específico
+async function historicoPrecoProduto(req, res) {
+    try {
+        const { id } = req.params;
+        const feirante_id = req.feiranteLogado.id;
+
+        // Confirma que o produto pertence ao feirante logado
+        const [produto] = await pool.query(
+            'SELECT feirante_id, nome FROM produtos WHERE id = ?',
+            [id]
+        );
+
+        if (produto.length === 0) {
+            return res.status(404).json({ mensagem: 'Produto não encontrado.' });
+        }
+
+        if (produto[0].feirante_id !== feirante_id) {
+            return res.status(403).json({ mensagem: 'Você não tem permissão para ver esse histórico.' });
+        }
+
+        const [historico] = await pool.query(
+            'SELECT preco_anterior, preco_novo, data_alteracao FROM historico_precos WHERE produto_id = ? ORDER BY data_alteracao ASC',
+            [id]
+        );
+
+        res.json({ produto: produto[0].nome, historico });
+    } catch (erro) {
+        console.error(erro);
+        res.status(500).json({ mensagem: 'Erro ao buscar histórico de preços.' });
+    }
+}
+
 module.exports = {
     listarProdutos,
     buscarProdutoPorId,
     cadastrarProduto,
     atualizarProduto,
-    excluirProduto
+    excluirProduto,
+    historicoPrecoProduto
 };

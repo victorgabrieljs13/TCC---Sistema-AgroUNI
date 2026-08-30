@@ -6,10 +6,12 @@ const {
     buscarProdutoPorId,
     cadastrarProduto,
     atualizarProduto,
-    excluirProduto
+    excluirProduto,
+    historicoPrecoProduto
 } = require('../controllers/produtosController');
 
 router.get('/', verificarToken, listarProdutos);
+router.get('/:id/historico', verificarToken, historicoPrecoProduto);
 router.get('/:id', verificarToken, buscarProdutoPorId);
 router.post('/', verificarToken, cadastrarProduto);
 router.put('/:id', verificarToken, atualizarProduto);

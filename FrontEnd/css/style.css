@@ -188,3 +188,34 @@ form button:hover {
 .acao-link.excluir {
     color: #c62828;
 }
+
+.cards-resumo {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.card-resumo {
+    flex: 1;
+    background: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+}
+
+.card-resumo.card-alerta .card-numero {
+    color: #c62828;
+}
+
+.card-numero {
+    display: block;
+    font-size: 28px;
+    font-weight: 700;
+    color: #2e7d32;
+}
+
+.card-label {
+    font-size: 13px;
+    color: #666;
+}

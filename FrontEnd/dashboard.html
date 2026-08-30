@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgroUNI - Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+</head>
+<body>
+
+    <header class="topo">
+        <h1>AgroUNI</h1>
+        <div class="topo-usuario">
+            <span id="nome-feirante"></span>
+            <button id="btn-logout">Sair</button>
+        </div>
+    </header>
+
+    <main class="conteudo">
+        <a href="produtos.html" class="acao-link">&larr; Voltar para produtos</a>
+
+        <h2 style="margin: 20px 0;">Dashboard</h2>
+
+        <div class="cards-resumo">
+            <div class="card-resumo">
+                <span class="card-numero" id="card-total-produtos">-</span>
+                <span class="card-label">Produtos cadastrados</span>
+            </div>
+            <div class="card-resumo card-alerta">
+                <span class="card-numero" id="card-estoque-baixo">-</span>
+                <span class="card-label">Com estoque baixo</span>
+            </div>
+            <div class="card-resumo">
+                <span class="card-numero" id="card-valor-total">-</span>
+                <span class="card-label">Valor total em estoque</span>
+            </div>
+        </div>
+
+        <div class="container" style="max-width: 100%; margin-top: 24px;">
+            <h3>Estoque atual por produto</h3>
+            <canvas id="grafico-estoque" height="90"></canvas>
+        </div>
+
+        <div class="container" style="max-width: 100%; margin-top: 24px;">
+            <h3>Variação de preço</h3>
+            <label for="select-produto-historico">Selecione o produto</label>
+            <select id="select-produto-historico"></select>
+            <p id="sem-historico" style="display: none; margin-top: 12px; color: #666;">
+                Esse produto ainda não teve alteração de preço registrada.
+            </p>
+            <canvas id="grafico-precos" height="90"></canvas>
+        </div>
+    </main>
+
+    <script src="js/config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>
