@@ -1,42 +1,34 @@
 protegerPagina();
 
 const feirante = getFeiranteLogado();
-document.getElementById('nome-feirante').textContent = `Olá, ${feirante.nome}`;
+document.getElementById('nome-feirante').textContent = feirante.nome;
 document.getElementById('btn-logout').addEventListener('click', fazerLogout);
 
 const selectProduto = document.getElementById('produto_id');
 const formMovimentacao = document.getElementById('form-movimentacao');
-const mensagemErro = document.getElementById('mensagem-erro');
-const mensagemSucesso = document.getElementById('mensagem-sucesso');
+const btnRegistrar = document.getElementById('btn-registrar');
 
-// Carrega a lista de produtos do feirante pra preencher o <select>
 async function carregarProdutosNoSelect() {
     try {
         const resposta = await fetch(`${API_URL}/produtos`, {
             headers: { 'Authorization': `Bearer ${getToken()}` }
         });
-
         const produtos = await resposta.json();
 
         produtos.forEach(produto => {
             const opcao = document.createElement('option');
             opcao.value = produto.id;
-            opcao.textContent = `${produto.nome} (estoque atual: ${produto.quantidade_estoque} ${produto.unidade_medida})`;
+            opcao.textContent = `${produto.nome} (estoque: ${produto.quantidade_estoque} ${produto.unidade_medida})`;
             selectProduto.appendChild(opcao);
         });
-
     } catch (erro) {
         console.error(erro);
-        mensagemErro.textContent = 'Erro ao carregar produtos.';
-        mensagemErro.style.display = 'block';
+        toast('Não foi possível carregar os produtos.', 'erro');
     }
 }
 
 formMovimentacao.addEventListener('submit', async function (evento) {
     evento.preventDefault();
-
-    mensagemErro.style.display = 'none';
-    mensagemSucesso.style.display = 'none';
 
     const dadosMovimentacao = {
         produto_id: selectProduto.value,
@@ -45,42 +37,35 @@ formMovimentacao.addEventListener('submit', async function (evento) {
         motivo: document.getElementById('motivo').value
     };
 
+    definirCarregando(btnRegistrar, true, 'Registrando...');
+
     try {
         const resposta = await fetch(`${API_URL}/movimentacoes`, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${getToken()}`
-            },
+            headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${getToken()}` },
             body: JSON.stringify(dadosMovimentacao)
         });
 
         const dados = await resposta.json();
 
         if (!resposta.ok) {
-            mensagemErro.textContent = dados.mensagem;
-            mensagemErro.style.display = 'block';
+            toast(dados.mensagem, 'erro');
+            definirCarregando(btnRegistrar, false);
             return;
         }
 
-        let textoSucesso = dados.mensagem;
-        if (dados.alerta_estoque_baixo) {
-            textoSucesso += ' ⚠️ Atenção: estoque abaixo do mínimo!';
-        }
-
-        mensagemSucesso.textContent = textoSucesso;
-        mensagemSucesso.style.display = 'block';
+        toast(
+            dados.alerta_estoque_baixo ? `${dados.mensagem} O estoque ficou abaixo do mínimo.` : dados.mensagem,
+            dados.alerta_estoque_baixo ? 'aviso' : 'sucesso'
+        );
 
         formMovimentacao.reset();
-
-        setTimeout(() => {
-            window.location.href = 'produtos.html';
-        }, 1500);
+        setTimeout(() => { window.location.href = 'produtos.html'; }, 900);
 
     } catch (erro) {
         console.error(erro);
-        mensagemErro.textContent = 'Erro ao registrar movimentação. Verifique se o back-end está rodando.';
-        mensagemErro.style.display = 'block';
+        toast('Erro ao registrar movimentação.', 'erro');
+        definirCarregando(btnRegistrar, false);
     }
 });
 

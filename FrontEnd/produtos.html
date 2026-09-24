@@ -3,52 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AgroUNI - Meus Produtos</title>
+    <title>AgroUNI — Produtos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-    <header class="topo">
-        <h1>AgroUNI</h1>
-        <div class="topo-usuario">
-            <span id="nome-feirante"></span>
-            <button id="btn-logout">Sair</button>
+<div class="app">
+    <aside class="sidebar">
+        <div class="sidebar-brand"><div class="marca">A</div><span>AgroUNI</span></div>
+        <nav class="sidebar-nav">
+            <a href="produtos.html" class="nav-item active">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8l-9-5-9 5 9 5 9-5z"/><path d="M3 8v8l9 5 9-5V8"/><path d="M12 13v8"/></svg>
+                <span>Produtos</span>
+            </a>
+            <a href="movimentacao.html" class="nav-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3v14"/><path d="M3 13l4 4 4-4"/><path d="M17 21V7"/><path d="M21 11l-4-4-4 4"/></svg>
+                <span>Movimentar</span>
+            </a>
+            <a href="dashboard.html" class="nav-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10"/><path d="M12 20V4"/><path d="M20 20v-7"/></svg>
+                <span>Dashboard</span>
+            </a>
+        </nav>
+        <div class="sidebar-footer">
+            <label class="theme-switch">Modo escuro
+                <span class="switch"><input type="checkbox" class="theme-toggle"><span class="track"></span></span>
+            </label>
+            <div class="sidebar-user">
+                <span id="nome-feirante"></span>
+                <button id="btn-logout" title="Sair" aria-label="Sair">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg>
+                </button>
+            </div>
         </div>
-    </header>
+    </aside>
 
-    <main class="conteudo">
-        <div class="acoes-topo">
-            <h2>Meus Produtos</h2>
+    <main class="app-main">
+        <div class="page-head">
             <div>
-                <a href="dashboard.html" class="botao botao-secundario">Dashboard</a>
-                <a href="movimentacao.html" class="botao botao-secundario">Movimentar Estoque</a>
-                <a href="cadastro-produto.html" class="botao botao-primario">+ Novo Produto</a>
-</div>
+                <h1>Produtos</h1>
+                <p class="page-sub">O que você tem à venda agora, com o estoque de cada item.</p>
+            </div>
+            <a href="cadastro-produto.html" class="btn btn-primary">+ Novo produto</a>
         </div>
 
-        <div class="mensagem-erro" id="mensagem-erro"></div>
+        <div class="table-wrap">
+            <table class="table">
+                <thead><tr><th>Produto</th><th>Categoria</th><th>Preço</th><th>Estoque</th><th>Status</th><th></th></tr></thead>
+                <tbody id="corpo-tabela">
+                    <tr class="skeleton-row"><td colspan="6"><span class="skeleton skeleton-line"></span></td></tr>
+                    <tr class="skeleton-row"><td colspan="6"><span class="skeleton skeleton-line"></span></td></tr>
+                    <tr class="skeleton-row"><td colspan="6"><span class="skeleton skeleton-line"></span></td></tr>
+                </tbody>
+            </table>
+        </div>
 
-        <table class="tabela-produtos" id="tabela-produtos">
-            <thead>
-                <tr>
-                    <th>Produto</th>
-                    <th>Categoria</th>
-                    <th>Preço</th>
-                    <th>Estoque</th>
-                    <th>Status</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-            <tbody id="corpo-tabela">
-                <!-- Preenchido via JavaScript -->
-            </tbody>
-        </table>
-
-        <p id="lista-vazia" style="display: none;">Você ainda não cadastrou nenhum produto.</p>
+        <div class="empty-state" id="estado-vazio" style="display:none;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 8l-9-5-9 5 9 5 9-5z"/><path d="M3 8v8l9 5 9-5V8"/></svg>
+            <p>Você ainda não cadastrou nenhum produto.</p>
+            <a href="cadastro-produto.html" class="btn btn-primary">Cadastrar o primeiro</a>
+        </div>
     </main>
+</div>
 
-    <script src="js/config.js"></script>
-    <script src="js/auth.js"></script>
-    <script src="js/produtos.js"></script>
+<script src="js/config.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/produtos.js"></script>
 </body>
 </html>

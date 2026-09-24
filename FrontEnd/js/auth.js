@@ -1,8 +1,4 @@
-// Funções compartilhadas de autenticação, usadas em todas as páginas
-
-function getToken() {
-    return localStorage.getItem('token');
-}
+function getToken() { return localStorage.getItem('token'); }
 
 function getFeiranteLogado() {
     const dados = localStorage.getItem('feirante');
@@ -15,16 +11,13 @@ function fazerLogout() {
     window.location.href = 'index.html';
 }
 
-// Chama isso no topo de toda página protegida: se não tiver logado, manda pro login
 function protegerPagina() {
-    if (!getToken()) {
-        window.location.href = 'index.html';
-    }
+    if (!getToken()) window.location.href = 'index.html';
 }
 
-// --- Lógica específica da tela de login (só roda se o formulário existir na página) ---
 const formLogin = document.getElementById('form-login');
 const mensagemErroLogin = document.getElementById('mensagem-erro');
+const btnEntrar = document.getElementById('btn-entrar');
 
 if (formLogin) {
     formLogin.addEventListener('submit', async function (evento) {
@@ -34,6 +27,7 @@ if (formLogin) {
         const senha = document.getElementById('senha').value;
 
         mensagemErroLogin.style.display = 'none';
+        definirCarregando(btnEntrar, true, 'Entrando...');
 
         try {
             const resposta = await fetch(`${API_URL}/auth/login`, {
@@ -47,6 +41,7 @@ if (formLogin) {
             if (!resposta.ok) {
                 mensagemErroLogin.textContent = dados.mensagem;
                 mensagemErroLogin.style.display = 'block';
+                definirCarregando(btnEntrar, false);
                 return;
             }
 
@@ -56,8 +51,8 @@ if (formLogin) {
 
         } catch (erro) {
             console.error(erro);
-            mensagemErroLogin.textContent = 'Erro ao conectar com o servidor. Verifique se o back-end está rodando.';
-            mensagemErroLogin.style.display = 'block';
+            toast('Não foi possível conectar ao servidor. Tente novamente.', 'erro');
+            definirCarregando(btnEntrar, false);
         }
     });
 }

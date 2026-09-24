@@ -1,90 +1,81 @@
-protegerPagina(); // se não estiver logado, redireciona pro login antes de mais nada
+protegerPagina();
+
+const feirante = getFeiranteLogado();
+document.getElementById('nome-feirante').textContent = feirante.nome;
+document.getElementById('btn-logout').addEventListener('click', fazerLogout);
 
 const corpoTabela = document.getElementById('corpo-tabela');
-const listaVazia = document.getElementById('lista-vazia');
-const mensagemErro = document.getElementById('mensagem-erro');
-const nomeFeiranteSpan = document.getElementById('nome-feirante');
-
-// Mostra o nome do feirante logado no topo
-const feirante = getFeiranteLogado();
-if (feirante) {
-    nomeFeiranteSpan.textContent = `Olá, ${feirante.nome}`;
-}
-
-document.getElementById('btn-logout').addEventListener('click', fazerLogout);
+const estadoVazio = document.getElementById('estado-vazio');
+const tabelaWrap = document.querySelector('.table-wrap');
 
 async function carregarProdutos() {
     try {
         const resposta = await fetch(`${API_URL}/produtos`, {
-            headers: {
-                'Authorization': `Bearer ${getToken()}`
-            }
+            headers: { 'Authorization': `Bearer ${getToken()}` }
         });
 
-        if (resposta.status === 401) {
-            // Token expirado ou inválido: manda de volta pro login
-            fazerLogout();
-            return;
-        }
+        if (resposta.status === 401) { fazerLogout(); return; }
 
         const produtos = await resposta.json();
 
         if (produtos.length === 0) {
-            listaVazia.style.display = 'block';
+            tabelaWrap.style.display = 'none';
+            estadoVazio.style.display = 'block';
             return;
         }
 
-        corpoTabela.innerHTML = ''; // limpa antes de preencher
+        corpoTabela.innerHTML = '';
 
         produtos.forEach(produto => {
             const estoqueBaixo = parseFloat(produto.quantidade_estoque) <= parseFloat(produto.estoque_minimo);
 
             const linha = document.createElement('tr');
             linha.innerHTML = `
-                <td>${produto.nome}</td>
-                <td>${produto.categoria || '-'}</td>
-                <td>R$ ${parseFloat(produto.preco_atual).toFixed(2)}</td>
-                <td class="${estoqueBaixo ? 'estoque-baixo' : ''}">
-                    ${produto.quantidade_estoque} ${produto.unidade_medida} ${estoqueBaixo ? '⚠️' : ''}
+                <td data-label="Produto">${produto.nome}</td>
+                <td data-label="Categoria">${produto.categoria || '—'}</td>
+                <td data-label="Preço">R$ ${parseFloat(produto.preco_atual).toFixed(2)}</td>
+                <td data-label="Estoque">
+                    <span class="pill ${estoqueBaixo ? 'pill-baixo' : ''}">${produto.quantidade_estoque} ${produto.unidade_medida}${estoqueBaixo ? ' · baixo' : ''}</span>
                 </td>
-                <td>${produto.status}</td>
-                <td>
-                    <a class="acao-link" href="cadastro-produto.html?id=${produto.id}">Editar</a>
-                    <a class="acao-link excluir" onclick="excluirProduto(${produto.id})">Excluir</a>
-                </td>
-            `;
+                <td data-label="Status">${produto.status}</td>
+                <td data-label="">
+                    <div class="row-actions">
+                        <a href="cadastro-produto.html?id=${produto.id}">Editar</a>
+                        <button class="excluir" data-id="${produto.id}">Excluir</button>
+                    </div>
+                </td>`;
             corpoTabela.appendChild(linha);
+        });
+
+        corpoTabela.querySelectorAll('.excluir').forEach(botao => {
+            botao.addEventListener('click', () => excluirProduto(botao.dataset.id));
         });
 
     } catch (erro) {
         console.error(erro);
-        mensagemErro.textContent = 'Erro ao carregar produtos. Verifique se o back-end está rodando.';
-        mensagemErro.style.display = 'block';
+        toast('Não foi possível carregar os produtos.', 'erro');
     }
 }
 
 async function excluirProduto(id) {
-    const confirmar = confirm('Tem certeza que deseja excluir esse produto?');
-    if (!confirmar) return;
+    const ok = await confirmar('Excluir produto', 'Essa ação não pode ser desfeita.', 'Excluir');
+    if (!ok) return;
 
     try {
         const resposta = await fetch(`${API_URL}/produtos/${id}`, {
             method: 'DELETE',
-            headers: {
-                'Authorization': `Bearer ${getToken()}`
-            }
+            headers: { 'Authorization': `Bearer ${getToken()}` }
         });
 
-        if (!resposta.ok) {
-            const dados = await resposta.json();
-            alert(dados.mensagem);
-            return;
-        }
+        const dados = await resposta.json();
 
-        carregarProdutos(); // recarrega a lista depois de excluir
+        if (!resposta.ok) { toast(dados.mensagem, 'erro'); return; }
+
+        toast('Produto excluído.', 'sucesso');
+        carregarProdutos();
     } catch (erro) {
         console.error(erro);
-        alert('Erro ao excluir produto.');
+        toast('Erro ao excluir produto.', 'erro');
     }
 }
 
