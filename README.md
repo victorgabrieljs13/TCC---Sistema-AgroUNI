@@ -92,10 +92,11 @@ Projeto/
 
 ## Integrantes
 
-- [Nome completo do integrante 1]
-- [Nome completo do integrante 2]
-- [Nome completo do integrante 3]
-- [Nome completo do integrante 4]
+- Eslle dos Santos Souza;
+- Trícia de Brito Matos;
+- Victor Gabriel de Jesus dos Santos;
+- Jhenyfer da Silva Sá Romão de Oliveira;
+- Anna Beatriz Anunciação Dias.
 
 ## Instituição
 
