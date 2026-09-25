@@ -3,42 +3,215 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AgroUNI — Entrar</title>
+    <title>AgroUNI — Direto da central de abastecimento</title>
+    <meta name="description" content="AgroUNI conecta feirantes da central de abastecimento a quem quer comprar direto da roça, sem intermediário.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/home.css">
 </head>
 <body>
 
-<div class="login-shell">
-    <div class="login-card">
-        <div class="login-marca">
-            <div class="marca">A</div>
-            <div>
-                <strong>AgroUNI</strong>
-                <span>Gestão de estoque para feirantes</span>
+<header class="home-topo">
+    <div class="home-marca"><span class="selo">A</span> AgroUNI</div>
+    <a href="login.html" class="entrar">Já sou feirante — Entrar</a>
+</header>
+
+<section class="hero">
+    <div class="container">
+        <span class="hero__selo">Central de Abastecimento · Seasa</span>
+        <h1>Direto da <span>roça</span> pra sua mesa,<br>sem intermediário</h1>
+        <p>O AgroUNI conecta os feirantes da central de abastecimento a quem quer comprar direto na fonte. Escolha como você quer entrar:</p>
+
+        <div class="hero__escolha">
+            <a href="vitrine.html" class="escolha-card escolha-card--consumidor">
+                <span class="escolha-card__eyebrow">Quero comprar</span>
+                <h2>Sou consumidor</h2>
+                <p>Navegue pelas bancas, monte sua reserva e combine a retirada com o feirante.</p>
+                <span class="escolha-card__cta">Ver a vitrine
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
+                </span>
+            </a>
+            <a href="login.html" class="escolha-card escolha-card--feirante">
+                <span class="escolha-card__eyebrow">Tenho uma banca</span>
+                <h2>Sou feirante</h2>
+                <p>Gerencie seus produtos, estoque e pedidos em um painel só seu.</p>
+                <span class="escolha-card__cta">Entrar no painel
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
+                </span>
+            </a>
+        </div>
+    </div>
+</section>
+
+<section class="como-funciona">
+    <div class="container">
+        <div class="secao-titulo">
+            <span class="eyebrow">Como funciona</span>
+            <h2>Simples pros dois lados</h2>
+            <p>Veja o caminho de quem compra e de quem vende.</p>
+        </div>
+
+        <div class="abas" role="tablist">
+            <button class="aba-btn" role="tab" aria-selected="true" data-aba="consumidor">Sou consumidor</button>
+            <button class="aba-btn" role="tab" aria-selected="false" data-aba="feirante">Sou feirante</button>
+        </div>
+
+        <div class="passos ativo" id="passos-consumidor">
+            <div class="passo">
+                <div class="passo__numero">1</div>
+                <h3>Escolha os produtos</h3>
+                <p>Navegue pela vitrine e monte sua reserva com os produtos da banca que quiser.</p>
+            </div>
+            <div class="passo">
+                <div class="passo__numero">2</div>
+                <h3>Informe seus dados</h3>
+                <p>Só nome e telefone — sem precisar criar conta nem senha.</p>
+            </div>
+            <div class="passo">
+                <div class="passo__numero">3</div>
+                <h3>Aguarde a confirmação</h3>
+                <p>O feirante analisa seu pedido e aceita ou recusa.</p>
+            </div>
+            <div class="passo">
+                <div class="passo__numero">4</div>
+                <h3>Retire na banca</h3>
+                <p>Combine com o feirante e busque seus produtos fresquinhos.</p>
             </div>
         </div>
 
-        <form id="form-login">
-            <div class="field">
-                <label for="email">Email</label>
-                <input class="input" type="email" id="email" required>
+        <div class="passos" id="passos-feirante">
+            <div class="passo">
+                <div class="passo__numero">1</div>
+                <h3>Faça login</h3>
+                <p>Acesso seguro — só você vê e edita os seus próprios produtos.</p>
             </div>
-            <div class="field">
-                <label for="senha">Senha</label>
-                <input class="input" type="password" id="senha" required>
+            <div class="passo">
+                <div class="passo__numero">2</div>
+                <h3>Cadastre seus produtos</h3>
+                <p>Preço, estoque, categoria — tudo sob seu controle, com histórico automático.</p>
             </div>
-
-            <button type="submit" class="btn btn-primary" id="btn-entrar" style="width:100%; justify-content:center;">Entrar</button>
-
-            <div class="mensagem-erro" id="mensagem-erro"></div>
-        </form>
+            <div class="passo">
+                <div class="passo__numero">3</div>
+                <h3>Receba pedidos</h3>
+                <p>Veja em tempo real as reservas feitas na vitrine pública.</p>
+            </div>
+            <div class="passo">
+                <div class="passo__numero">4</div>
+                <h3>Aceite ou recuse</h3>
+                <p>Um clique já debita o estoque automaticamente — sem lançar duas vezes.</p>
+            </div>
+            <div class="passo">
+                <div class="passo__numero">5</div>
+                <h3>Acompanhe no dashboard</h3>
+                <p>Gráficos de estoque e variação de preço, sempre à mão.</p>
+            </div>
+        </div>
     </div>
-</div>
+</section>
 
-<script src="js/config.js"></script>
-<script src="js/ui.js"></script>
-<script src="js/auth.js"></script>
+<section class="video">
+    <div class="container">
+        <div class="secao-titulo">
+            <span class="eyebrow">Veja funcionando</span>
+            <h2>Um vídeo rápido explica melhor</h2>
+            <p>A equipe gravou um tutorial mostrando o sistema na prática.</p>
+        </div>
+
+        <!--
+          Quando o vídeo estiver pronto, troca este bloco pelo embed do YouTube, por exemplo:
+          <div style="max-width:720px;margin:0 auto;aspect-ratio:16/9;border-radius:14px;overflow:hidden;">
+            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/SEU_ID_AQUI"
+              title="Como usar o AgroUNI" frameborder="0" allowfullscreen></iframe>
+          </div>
+        -->
+        <div class="video-placeholder">
+            <div class="video-placeholder__play">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+            <strong>Vídeo em breve</strong>
+            <span>A equipe está gravando o tutorial completo de como usar o AgroUNI.</span>
+        </div>
+    </div>
+</section>
+
+<section class="sobre">
+    <div class="container">
+        <div class="secao-titulo">
+            <span class="eyebrow">A trajetória</span>
+            <h2>Como o AgroUNI nasceu</h2>
+            <p>Um projeto de TCC que virou uma plataforma de verdade.</p>
+        </div>
+
+        <div class="linha-tempo">
+            <div class="marco">
+                <h3>O problema</h3>
+                <p>Feirantes da central de abastecimento controlavam estoque no caderno ou de memória — sem saber quando repor, nem histórico de preço.</p>
+            </div>
+            <div class="marco">
+                <h3>Primeira versão</h3>
+                <p>Sistema de gestão de estoque com login seguro (JWT), cadastro de produtos e alerta de estoque baixo.</p>
+            </div>
+            <div class="marco">
+                <h3>Painel profissional</h3>
+                <p>Dashboard com gráficos, redesenho completo da interface e experiência pensada pro feirante usar no celular, no box.</p>
+            </div>
+            <div class="marco">
+                <h3>Vitrine e pedidos</h3>
+                <p>O maior salto: uma vitrine pública onde qualquer pessoa reserva produtos direto com o feirante, sem precisar de conta.</p>
+            </div>
+            <div class="marco">
+                <h3>Hoje</h3>
+                <p>Uma plataforma completa de dois lados — o consumidor compra, o feirante vende — pronta pra apresentar.</p>
+            </div>
+        </div>
+
+        <div class="recursos">
+            <span class="recurso-tag">Node.js</span>
+            <span class="recurso-tag">Express</span>
+            <span class="recurso-tag">MySQL</span>
+            <span class="recurso-tag">JWT</span>
+            <span class="recurso-tag">bcrypt</span>
+            <span class="recurso-tag">Chart.js</span>
+            <span class="recurso-tag">Render</span>
+            <span class="recurso-tag">Git / GitHub</span>
+        </div>
+
+        <div class="secao-titulo">
+            <span class="eyebrow">Quem construiu</span>
+            <h2>A equipe</h2>
+            <p>Alunos do Técnico em Informática para Internet — SENAI Candeias.</p>
+        </div>
+
+        <div class="equipe-grid">
+            <div class="integrante-card">
+                <div class="integrante-card__avatar">·</div>
+                <strong>[Nome do integrante]</strong>
+                <span>[Função no projeto]</span>
+            </div>
+            <div class="integrante-card">
+                <div class="integrante-card__avatar">·</div>
+                <strong>[Nome do integrante]</strong>
+                <span>[Função no projeto]</span>
+            </div>
+            <div class="integrante-card">
+                <div class="integrante-card__avatar">·</div>
+                <strong>[Nome do integrante]</strong>
+                <span>[Função no projeto]</span>
+            </div>
+            <div class="integrante-card">
+                <div class="integrante-card__avatar">·</div>
+                <strong>[Nome do integrante]</strong>
+                <span>[Função no projeto]</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="home-rodape">
+    AgroUNI — TCC do curso Técnico em Informática para Internet, SENAI Candeias.
+    <a href="https://github.com/victorgabrieljs13/TCC---Sistema-AgroUNI" target="_blank" rel="noopener">Ver no GitHub</a>
+</footer>
+
+<script src="js/home.js"></script>
 </body>
 </html>

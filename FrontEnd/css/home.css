@@ -1,0 +1,171 @@
+/* ============================================================
+   AgroUNI — Tela inicial (home)
+   Ponte entre as duas identidades do sistema: o calor da vitrine
+   (papel kraft, tipografia de cartaz) e a seriedade do painel
+   (IBM Plex, moldura escura) — o cartão "Sou feirante" já usa o
+   mesmo tom escuro da sidebar, prevendo pra onde a pessoa vai.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Staatliches&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600;700&display=swap');
+
+:root {
+    --bg: #faf7f0;
+    --surface: #ffffff;
+    --border: #e7e0d0;
+    --text: #211c14;
+    --text-muted: #6f6a5a;
+
+    --verde: #2e7d32;
+    --verde-escuro: #1f5723;
+    --tomate: #c0402a;
+    --tomate-escuro: #9c3520;
+
+    --kraft: #e4d3ac;
+    --kraft-deep: #d6c090;
+
+    /* mesmo tom exato da sidebar do painel — continuidade visual */
+    --escuro: #171714;
+    --escuro-hover: #232320;
+    --escuro-border: #2b2b27;
+
+    --font-display: 'Staatliches', sans-serif;
+    --font-body: 'IBM Plex Sans', 'Segoe UI', Arial, sans-serif;
+    --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
+
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 14px;
+
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-5: 24px;
+    --space-6: 32px;
+    --space-7: 48px;
+    --space-8: 72px;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--font-body); line-height: 1.55; }
+a { color: inherit; }
+img, svg { max-width: 100%; }
+
+.container { max-width: 1080px; margin: 0 auto; padding: 0 var(--space-5); }
+
+/* ---------- Topo ---------- */
+
+.home-topo { display: flex; align-items: center; justify-content: space-between; padding: var(--space-5); max-width: 1080px; margin: 0 auto; }
+.home-marca { display: flex; align-items: center; gap: var(--space-3); font-weight: 700; font-size: 16px; }
+.home-marca .selo { width: 32px; height: 32px; border-radius: var(--radius-sm); background: var(--verde); color: #fff; display: grid; place-items: center; font-family: var(--font-mono); font-weight: 700; }
+.home-topo a.entrar { font-size: 13.5px; font-weight: 600; color: var(--text-muted); text-decoration: none; padding: 8px 14px; border: 1px solid var(--border); border-radius: var(--radius-sm); }
+.home-topo a.entrar:hover { color: var(--text); border-color: var(--text-muted); }
+
+/* ---------- Hero ---------- */
+
+.hero { padding: var(--space-6) var(--space-5) var(--space-7); text-align: center; }
+.hero__selo { display: inline-block; font-size: 12.5px; font-weight: 600; letter-spacing: 0.04em; color: var(--verde-escuro); background: #fff; border: 1px dashed var(--kraft-deep); padding: 5px 14px; border-radius: 999px; margin-bottom: var(--space-4); }
+.hero h1 { font-family: var(--font-display); font-size: clamp(34px, 6vw, 56px); font-weight: 400; letter-spacing: 0.01em; margin: 0 0 var(--space-4); color: var(--text); }
+.hero h1 span { color: var(--verde-escuro); }
+.hero p { max-width: 560px; margin: 0 auto var(--space-7); font-size: 16.5px; color: var(--text-muted); }
+
+.hero__escolha { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); max-width: 720px; margin: 0 auto; }
+
+.escolha-card {
+    text-align: left; padding: var(--space-6) var(--space-5); border-radius: var(--radius-lg);
+    text-decoration: none; display: flex; flex-direction: column; gap: var(--space-3);
+    transition: transform .15s ease;
+}
+.escolha-card:hover { transform: translateY(-3px); }
+
+.escolha-card--consumidor { background: var(--kraft); border: 1px solid var(--kraft-deep); }
+.escolha-card--consumidor .escolha-card__eyebrow { color: var(--verde-escuro); }
+.escolha-card--consumidor h2 { font-family: var(--font-display); font-size: 26px; font-weight: 400; color: #2b2013; margin: 0; }
+.escolha-card--consumidor p { color: #4a3f2c; font-size: 14px; margin: 0; }
+.escolha-card--consumidor .escolha-card__cta { color: var(--tomate); }
+
+.escolha-card--feirante { background: var(--escuro); border: 1px solid var(--escuro-border); }
+.escolha-card--feirante .escolha-card__eyebrow { color: #8fbf92; }
+.escolha-card--feirante h2 { font-family: var(--font-mono); font-size: 22px; font-weight: 700; color: #fff; margin: 0; }
+.escolha-card--feirante p { color: #b6b6af; font-size: 14px; margin: 0; }
+.escolha-card--feirante .escolha-card__cta { color: #6fcf73; }
+
+.escolha-card__eyebrow { font-size: 11.5px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+.escolha-card__cta { font-size: 13.5px; font-weight: 700; margin-top: auto; display: flex; align-items: center; gap: 6px; }
+.escolha-card__cta svg { width: 15px; height: 15px; transition: transform .15s ease; }
+.escolha-card:hover .escolha-card__cta svg { transform: translateX(3px); }
+
+/* ---------- Seções gerais ---------- */
+
+section { padding: var(--space-8) 0; }
+.secao-titulo { text-align: center; max-width: 560px; margin: 0 auto var(--space-6); }
+.secao-titulo .eyebrow { display: block; font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--verde-escuro); margin-bottom: var(--space-2); }
+.secao-titulo h2 { font-size: 28px; font-weight: 700; margin: 0 0 var(--space-2); letter-spacing: -0.01em; }
+.secao-titulo p { color: var(--text-muted); font-size: 15px; margin: 0; }
+
+/* ---------- Como funciona (abas) ---------- */
+
+.como-funciona { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+
+.abas { display: flex; justify-content: center; gap: var(--space-2); margin-bottom: var(--space-6); }
+.aba-btn {
+    font-family: var(--font-body); font-size: 14px; font-weight: 600; padding: 9px 20px;
+    border: 1px solid var(--border); background: var(--bg); color: var(--text-muted);
+    border-radius: 999px; cursor: pointer;
+}
+.aba-btn[aria-selected="true"] { background: var(--verde); border-color: var(--verde); color: #fff; }
+
+.passos { display: none; max-width: 780px; margin: 0 auto; }
+.passos.ativo { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: var(--space-5); }
+
+.passo { text-align: center; }
+.passo__numero { width: 34px; height: 34px; border-radius: 50%; background: var(--verde-tint, #e7f3e8); color: var(--verde-escuro); font-family: var(--font-mono); font-weight: 700; display: grid; place-items: center; margin: 0 auto var(--space-3); font-size: 14px; }
+.passo h3 { font-size: 14.5px; margin: 0 0 6px; }
+.passo p { font-size: 13px; color: var(--text-muted); margin: 0; }
+
+/* ---------- Vídeo ---------- */
+
+.video-placeholder {
+    max-width: 720px; margin: 0 auto; aspect-ratio: 16/9; border-radius: var(--radius-lg);
+    background: linear-gradient(160deg, var(--escuro), #232320);
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--space-3);
+    color: #b6b6af; text-align: center; padding: var(--space-5);
+}
+.video-placeholder__play { width: 56px; height: 56px; border-radius: 50%; background: rgba(255,255,255,0.1); display: grid; place-items: center; }
+.video-placeholder__play svg { width: 22px; height: 22px; color: #fff; margin-left: 3px; }
+.video-placeholder strong { color: #fff; font-size: 15px; }
+.video-placeholder span { font-size: 13px; max-width: 320px; }
+
+/* ---------- Trajetória / sobre ---------- */
+
+.sobre { background: var(--surface); border-top: 1px solid var(--border); }
+
+.linha-tempo { max-width: 640px; margin: 0 auto var(--space-8); position: relative; padding-left: var(--space-6); }
+.linha-tempo::before { content: ''; position: absolute; left: 5px; top: 6px; bottom: 6px; width: 2px; background: var(--border); }
+.marco { position: relative; padding-bottom: var(--space-5); }
+.marco:last-child { padding-bottom: 0; }
+.marco::before { content: ''; position: absolute; left: calc(-1 * var(--space-6) + 1px); top: 4px; width: 11px; height: 11px; border-radius: 50%; background: var(--verde); border: 2px solid var(--surface); box-shadow: 0 0 0 1px var(--verde); }
+.marco h3 { font-size: 14.5px; margin: 0 0 4px; }
+.marco p { font-size: 13.5px; color: var(--text-muted); margin: 0; }
+
+.recursos { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-2); max-width: 640px; margin: 0 auto var(--space-8); }
+.recurso-tag { font-family: var(--font-mono); font-size: 12.5px; font-weight: 600; padding: 6px 12px; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-sm); color: var(--text); }
+
+.equipe-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: var(--space-4); max-width: 780px; margin: 0 auto; }
+.integrante-card { text-align: center; padding: var(--space-5) var(--space-3); border: 1px solid var(--border); border-radius: var(--radius-md); }
+.integrante-card__avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--kraft); color: var(--verde-escuro); display: grid; place-items: center; margin: 0 auto var(--space-3); font-family: var(--font-display); font-size: 20px; }
+.integrante-card strong { display: block; font-size: 13.5px; margin-bottom: 2px; }
+.integrante-card span { font-size: 12px; color: var(--text-muted); }
+
+/* ---------- Rodapé ---------- */
+
+.home-rodape { text-align: center; padding: var(--space-6) var(--space-5); color: var(--text-muted); font-size: 12.5px; border-top: 1px solid var(--border); }
+.home-rodape a { color: var(--verde-escuro); font-weight: 600; text-decoration: none; }
+
+/* ---------- Responsivo ---------- */
+
+@media (max-width: 640px) {
+    .hero__escolha { grid-template-columns: 1fr; }
+    .abas { flex-wrap: wrap; }
+    section { padding: var(--space-7) 0; }
+}

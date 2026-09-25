@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgroUNI — Entrar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="login-shell">
+    <div class="login-card">
+        <div class="login-marca">
+            <div class="marca">A</div>
+            <div>
+                <strong>AgroUNI</strong>
+                <span>Gestão de estoque para feirantes</span>
+            </div>
+        </div>
+
+        <form id="form-login">
+            <div class="field">
+                <label for="email">Email</label>
+                <input class="input" type="email" id="email" required>
+            </div>
+            <div class="field">
+                <label for="senha">Senha</label>
+                <input class="input" type="password" id="senha" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary" id="btn-entrar" style="width:100%; justify-content:center;">Entrar</button>
+
+            <div class="mensagem-erro" id="mensagem-erro"></div>
+        </form>
+
+        <p style="text-align:center; margin-top: 20px; font-size: 13px;">
+            <a href="index.html" style="color: var(--text-muted);">&larr; Voltar pra tela inicial</a>
+        </p>
+    </div>
+</div>
+
+<script src="js/config.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/auth.js"></script>
+</body>
+</html>
