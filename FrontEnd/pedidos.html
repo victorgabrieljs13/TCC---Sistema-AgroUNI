@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AgroUNI — Cadastro de Produto</title>
+    <title>AgroUNI — Pedidos</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="css/style.css">
@@ -14,11 +14,11 @@
     <aside class="sidebar">
         <div class="sidebar-brand"><div class="marca">A</div><span>AgroUNI</span></div>
         <nav class="sidebar-nav">
-            <a href="produtos.html" class="nav-item active">
+            <a href="produtos.html" class="nav-item">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8l-9-5-9 5 9 5 9-5z"/><path d="M3 8v8l9 5 9-5V8"/><path d="M12 13v8"/></svg>
                 <span>Produtos</span>
             </a>
-            <a href="pedidos.html" class="nav-item">
+            <a href="pedidos.html" class="nav-item active">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="M9 12h6"/><path d="M9 16h6"/></svg>
                 <span>Pedidos</span>
             </a>
@@ -46,33 +46,31 @@
 
     <main class="app-main">
         <div class="page-head">
-            <div><h1 id="titulo-formulario">Novo produto</h1><p class="page-sub">Preencha os dados do produto.</p></div>
-            <a href="produtos.html" class="btn btn-secondary">Voltar</a>
+            <div>
+                <h1>Pedidos</h1>
+                <p class="page-sub">Reservas feitas pelos clientes na vitrine pública.</p>
+            </div>
         </div>
 
-        <div class="card card-form">
-            <form id="form-produto">
-                <div class="field"><label for="nome">Nome do produto</label><input class="input" type="text" id="nome" required></div>
-                <div class="field"><label for="categoria">Categoria</label><input class="input" type="text" id="categoria" placeholder="Ex: Legume, Fruta, Verdura"></div>
-                <div class="field">
-                    <label for="unidade_medida">Unidade de medida</label>
-                    <select class="input" id="unidade_medida" required>
-                        <option value="">Selecione</option>
-                        <option value="kg">Quilo (kg)</option>
-                        <option value="unidade">Unidade</option>
-                        <option value="caixa">Caixa</option>
-                        <option value="duzia">Dúzia</option>
-                    </select>
-                </div>
-                <div class="field"><label for="preco_atual">Preço (R$)</label><input class="input" type="number" id="preco_atual" step="0.01" min="0" required></div>
-                <div class="field"><label for="quantidade_estoque">Quantidade em estoque</label><input class="input" type="number" id="quantidade_estoque" step="0.01" min="0" required></div>
-                <div class="field"><label for="estoque_minimo">Estoque mínimo (para alerta)</label><input class="input" type="number" id="estoque_minimo" step="0.01" min="0" required></div>
-                <div class="field">
-                    <label for="status">Status</label>
-                    <select class="input" id="status"><option value="ativo">Ativo</option><option value="inativo">Inativo</option></select>
-                </div>
-                <button type="submit" class="btn btn-primary" id="btn-salvar">Salvar produto</button>
-            </form>
+        <div class="filtro-tabs" id="filtro-tabs">
+            <button type="button" class="btn btn-secondary active" data-filtro="pendente">Pendentes</button>
+            <button type="button" class="btn btn-secondary" data-filtro="aceito">Aceitos</button>
+            <button type="button" class="btn btn-secondary" data-filtro="recusado">Recusados</button>
+            <button type="button" class="btn btn-secondary" data-filtro="todos">Todos</button>
+        </div>
+
+        <div id="lista-pedidos">
+            <div class="card pedido-card skeleton-row">
+                <span class="skeleton skeleton-line"></span>
+            </div>
+            <div class="card pedido-card skeleton-row">
+                <span class="skeleton skeleton-line"></span>
+            </div>
+        </div>
+
+        <div class="empty-state" id="estado-vazio" style="display:none;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/></svg>
+            <p>Nenhum pedido por aqui ainda.</p>
         </div>
     </main>
 </div>
@@ -80,6 +78,6 @@
 <script src="js/config.js"></script>
 <script src="js/ui.js"></script>
 <script src="js/auth.js"></script>
-<script src="js/cadastroProduto.js"></script>
+<script src="js/pedidos.js"></script>
 </body>
 </html>

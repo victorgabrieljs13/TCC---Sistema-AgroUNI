@@ -33,9 +33,9 @@ async function carregarProdutos() {
             linha.innerHTML = `
                 <td data-label="Produto">${produto.nome}</td>
                 <td data-label="Categoria">${produto.categoria || '—'}</td>
-                <td data-label="Preço">R$ ${parseFloat(produto.preco_atual).toFixed(2)}</td>
+                <td data-label="Preço"><span class="num">R$ ${parseFloat(produto.preco_atual).toFixed(2)}</span></td>
                 <td data-label="Estoque">
-                    <span class="pill ${estoqueBaixo ? 'pill-baixo' : ''}">${produto.quantidade_estoque} ${produto.unidade_medida}${estoqueBaixo ? ' · baixo' : ''}</span>
+                    <span class="pill ${estoqueBaixo ? 'pill-baixo' : ''}"><span class="num">${produto.quantidade_estoque}</span> ${produto.unidade_medida}${estoqueBaixo ? ' · baixo' : ''}</span>
                 </td>
                 <td data-label="Status">${produto.status}</td>
                 <td data-label="">

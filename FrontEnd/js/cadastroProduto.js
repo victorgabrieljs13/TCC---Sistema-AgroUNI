@@ -24,9 +24,13 @@ async function carregarDadosProduto() {
             headers: { 'Authorization': `Bearer ${getToken()}` }
         });
 
-        if (!resposta.ok) { toast('Produto não encontrado.', 'erro'); return; }
+        if (!resposta.ok) {
+            toast('Produto não encontrado.', 'erro');
+            return;
+        }
 
         const produto = await resposta.json();
+
         document.getElementById('nome').value = produto.nome;
         document.getElementById('categoria').value = produto.categoria || '';
         document.getElementById('unidade_medida').value = produto.unidade_medida;
@@ -62,7 +66,10 @@ formProduto.addEventListener('submit', async function (evento) {
 
         const resposta = await fetch(url, {
             method: metodo,
-            headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${getToken()}` },
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${getToken()}`
+            },
             body: JSON.stringify(dadosProduto)
         });
 
@@ -75,11 +82,13 @@ formProduto.addEventListener('submit', async function (evento) {
         }
 
         toast(dados.mensagem, 'sucesso');
-        setTimeout(() => { window.location.href = 'produtos.html'; }, 700);
+        setTimeout(() => {
+            window.location.href = 'produtos.html';
+        }, 700);
 
     } catch (erro) {
         console.error(erro);
-        toast('Erro ao salvar produto.', 'erro');
+        toast('Erro ao salvar produto. Verifique se o back-end está rodando.', 'erro');
         definirCarregando(btnSalvar, false);
     }
 });

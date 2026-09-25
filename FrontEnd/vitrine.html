@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vitrine AgroUNI — Direto da Central de Abastecimento</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="css/vitrine.css">
+</head>
+<body>
+
+  <header class="vt-header">
+    <p class="vt-header__selo">Central de Abastecimento</p>
+    <h1 class="vt-header__titulo">Vitrine AgroUNI</h1>
+    <p class="vt-header__sub">Direto da roça pra sua mesa. Escolhe os produtos, reserva com o feirante e combina a retirada.</p>
+  </header>
+
+  <div class="vt-busca">
+    <input
+      type="search"
+      id="campoBusca"
+      class="vt-busca__input"
+      placeholder="Procurar produto…"
+      autocomplete="off"
+      aria-label="Procurar produto"
+    >
+    <div id="filtrosCategoria" class="vt-filtros" role="group" aria-label="Filtrar por categoria"></div>
+  </div>
+
+  <main id="conteudoVitrine" class="vt-conteudo" aria-live="polite">
+    <div id="estadoCarregando" class="vt-estado">
+      <p class="vt-estado__selo">Abrindo a feira…</p>
+      <p>Isso pode levar alguns segundos na primeira visita do dia.</p>
+    </div>
+  </main>
+
+  <button id="botaoCesta" class="vt-cesta-flutuante" hidden aria-haspopup="dialog">
+    <span class="vt-cesta-flutuante__icone" aria-hidden="true">🧺</span>
+    <span class="vt-cesta-flutuante__texto">
+      <strong id="cestaQtd">0</strong> item(ns) · <span id="cestaTotal">R$ 0,00</span>
+    </span>
+  </button>
+
+  <div id="painelCesta" class="vt-cesta-painel" hidden role="dialog" aria-modal="true" aria-labelledby="tituloCesta">
+    <div class="vt-cesta-painel__cartao">
+      <button id="fecharCesta" class="vt-cesta-painel__fechar" aria-label="Fechar reserva">×</button>
+      <h2 id="tituloCesta">Sua reserva</h2>
+      <p class="vt-cesta-painel__banca" id="cestaBancaNome"></p>
+
+      <ul id="cestaItens" class="vt-cesta-itens"></ul>
+
+      <div class="vt-cesta-painel__total">
+        <span>Total</span>
+        <strong id="cestaPainelTotal">R$ 0,00</strong>
+      </div>
+
+      <form id="formReserva" class="vt-form-reserva">
+        <label for="inputNome">Seu nome</label>
+        <input type="text" id="inputNome" name="nome" required placeholder="Como o feirante vai te chamar">
+
+        <label for="inputTelefone">Seu telefone (WhatsApp)</label>
+        <input type="tel" id="inputTelefone" name="telefone" required placeholder="(71) 9 9999-9999">
+
+        <button type="submit" class="vt-botao-enviar" id="botaoEnviarPedido">Enviar reserva</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="painelSucesso" class="vt-sucesso" hidden role="dialog" aria-modal="true" aria-labelledby="tituloSucesso">
+    <div class="vt-sucesso__cartao">
+      <p class="vt-sucesso__selo">Reservado ✓</p>
+      <h2 id="tituloSucesso">Pedido enviado!</h2>
+      <p id="mensagemSucesso"></p>
+      <button id="fecharSucesso" class="vt-botao-enviar">Voltar pra vitrine</button>
+    </div>
+  </div>
+
+  <script src="js/config.js"></script>
+  <script src="js/vitrine.js"></script>
+</body>
+</html>

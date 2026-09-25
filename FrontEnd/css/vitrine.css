@@ -1,0 +1,664 @@
+/* ==========================================================================
+   VITRINE PÚBLICA — AgroUNI
+   Identidade visual própria: linguagem de feira (kraft, madeira, etiqueta
+   de caixote), separada de propósito do painel interno do feirante
+   (style.css). Prefixo "vt-" em todas as classes pra não colidir se um dia
+   as duas folhas de estilo forem carregadas na mesma página.
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Staatliches&family=Karla:wght@400;500;700&display=swap');
+
+:root {
+  /* ---- cor ---- */
+  --vt-kraft: #e4d3ac;
+  --vt-kraft-deep: #d6c090;
+  --vt-madeira: #6b4226;
+  --vt-madeira-escura: #4a2e19;
+  --vt-tinta: #2b2013;
+  --vt-papel: #fbf3e0;
+  --vt-verde: #3f6b35;
+  --vt-verde-escuro: #2e4f27;
+  --vt-tomate: #c1432b;
+  --vt-tomate-escuro: #9c3520;
+  --vt-barbante: #b8a47e;
+  --vt-sombra: rgba(43, 32, 19, 0.28);
+
+  /* ---- tipografia ---- */
+  --vt-fonte-cartaz: 'Staatliches', sans-serif;
+  --vt-fonte-corpo: 'Karla', sans-serif;
+
+  --vt-fs-xs: 0.75rem;
+  --vt-fs-sm: 0.875rem;
+  --vt-fs-base: 1rem;
+  --vt-fs-md: 1.15rem;
+  --vt-fs-lg: 1.5rem;
+  --vt-fs-xl: 2rem;
+  --vt-fs-2xl: 2.75rem;
+
+  /* ---- espaçamento ---- */
+  --vt-sp-1: 4px;
+  --vt-sp-2: 8px;
+  --vt-sp-3: 12px;
+  --vt-sp-4: 16px;
+  --vt-sp-5: 24px;
+  --vt-sp-6: 32px;
+  --vt-sp-7: 48px;
+  --vt-sp-8: 64px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* garante que o atributo hidden sempre vença: sem isso, classes que
+   definem display: flex/grid (cesta, painel, modal) sobrescrevem o
+   display: none padrão do navegador e o elemento fica "escondido" só
+   no atributo, mas visível na tela */
+[hidden] {
+  display: none !important;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--vt-fonte-corpo);
+  color: var(--vt-tinta);
+  background-color: var(--vt-kraft);
+  /* textura de papel kraft: ruído sutil via SVG, sem depender de imagem externa */
+  background-image:
+    radial-gradient(ellipse at top, var(--vt-kraft-deep) 0%, transparent 60%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.045'/%3E%3C/svg%3E");
+  min-height: 100vh;
+  line-height: 1.5;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ==========================================================================
+   CABEÇALHO
+   ========================================================================== */
+
+.vt-header {
+  padding: var(--vt-sp-7) var(--vt-sp-5) var(--vt-sp-6);
+  text-align: center;
+  animation: vt-entrada 0.5s ease-out;
+}
+
+@keyframes vt-entrada {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.vt-header__selo {
+  display: inline-block;
+  font-size: var(--vt-fs-xs);
+  letter-spacing: 0.08em;
+  color: var(--vt-madeira-escura);
+  background: var(--vt-papel);
+  border: 1px dashed var(--vt-barbante);
+  padding: var(--vt-sp-1) var(--vt-sp-3);
+  margin-bottom: var(--vt-sp-3);
+}
+
+.vt-header__titulo {
+  font-family: var(--vt-fonte-cartaz);
+  font-size: var(--vt-fs-2xl);
+  letter-spacing: 0.03em;
+  color: var(--vt-madeira-escura);
+  margin: 0 0 var(--vt-sp-2);
+  text-shadow: 2px 2px 0 rgba(255, 255, 255, 0.35);
+}
+
+.vt-header__sub {
+  max-width: 480px;
+  margin: 0 auto;
+  font-size: var(--vt-fs-md);
+  color: var(--vt-tinta);
+  opacity: 0.85;
+}
+
+/* ==========================================================================
+   BUSCA E FILTROS
+   ========================================================================== */
+
+.vt-busca {
+  max-width: 720px;
+  margin: 0 auto var(--vt-sp-6);
+  padding: 0 var(--vt-sp-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--vt-sp-3);
+}
+
+.vt-busca__input {
+  width: 100%;
+  font-family: var(--vt-fonte-corpo);
+  font-size: var(--vt-fs-base);
+  padding: var(--vt-sp-3) var(--vt-sp-4);
+  border: 2px solid var(--vt-madeira);
+  border-radius: 2px;
+  background: var(--vt-papel);
+  color: var(--vt-tinta);
+}
+
+.vt-busca__input:focus-visible {
+  outline: 3px solid var(--vt-tomate);
+  outline-offset: 1px;
+}
+
+.vt-filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--vt-sp-2);
+}
+
+.vt-filtro-chip {
+  font-family: var(--vt-fonte-corpo);
+  font-weight: 700;
+  font-size: var(--vt-fs-sm);
+  padding: var(--vt-sp-1) var(--vt-sp-4);
+  border: 2px solid var(--vt-madeira);
+  background: transparent;
+  color: var(--vt-madeira-escura);
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.vt-filtro-chip:focus-visible {
+  outline: 3px solid var(--vt-tomate);
+  outline-offset: 1px;
+}
+
+.vt-filtro-chip[aria-pressed="true"] {
+  background: var(--vt-madeira);
+  color: var(--vt-papel);
+}
+
+/* ==========================================================================
+   CONTEÚDO / ESTADOS
+   ========================================================================== */
+
+.vt-conteudo {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 var(--vt-sp-5) var(--vt-sp-8);
+}
+
+.vt-estado {
+  text-align: center;
+  padding: var(--vt-sp-8) var(--vt-sp-4);
+  color: var(--vt-madeira-escura);
+}
+
+.vt-estado__selo {
+  font-family: var(--vt-fonte-cartaz);
+  font-size: var(--vt-fs-lg);
+  margin-bottom: var(--vt-sp-2);
+}
+
+.vt-estado__acao {
+  margin-top: var(--vt-sp-4);
+  font-family: var(--vt-fonte-corpo);
+  font-weight: 700;
+  padding: var(--vt-sp-2) var(--vt-sp-5);
+  background: var(--vt-tomate);
+  color: var(--vt-papel);
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+/* esqueleto de carregamento */
+.vt-skeleton-banca {
+  height: 220px;
+  border-radius: 2px;
+  margin-bottom: var(--vt-sp-6);
+  background: linear-gradient(90deg, var(--vt-kraft-deep) 25%, var(--vt-papel) 50%, var(--vt-kraft-deep) 75%);
+  background-size: 200% 100%;
+  animation: vt-brilho 1.4s ease-in-out infinite;
+}
+
+@keyframes vt-brilho {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ==========================================================================
+   BANCA (SEÇÃO POR FEIRANTE)
+   ========================================================================== */
+
+.vt-banca {
+  margin-bottom: var(--vt-sp-7);
+}
+
+.vt-banca__tarjeta {
+  position: relative;
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--vt-sp-3);
+  padding: var(--vt-sp-3) var(--vt-sp-5);
+  margin-bottom: var(--vt-sp-4);
+  background: repeating-linear-gradient(
+    180deg,
+    var(--vt-madeira) 0px,
+    var(--vt-madeira) 2px,
+    var(--vt-madeira-escura) 2px,
+    var(--vt-madeira-escura) 38px
+  );
+  box-shadow: 0 4px 0 rgba(0, 0, 0, 0.15), 0 6px 10px var(--vt-sombra);
+}
+
+.vt-banca__tarjeta::before,
+.vt-banca__tarjeta::after {
+  content: '';
+  position: absolute;
+  top: 8px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #d8c9a8, #8a7550 70%);
+}
+
+.vt-banca__tarjeta::before { left: 8px; }
+.vt-banca__tarjeta::after { right: 8px; }
+
+.vt-banca__nome {
+  font-family: var(--vt-fonte-cartaz);
+  font-size: var(--vt-fs-lg);
+  color: var(--vt-papel);
+  letter-spacing: 0.02em;
+}
+
+.vt-banca__box {
+  font-size: var(--vt-fs-xs);
+  color: var(--vt-kraft-deep);
+}
+
+.vt-banca__grade {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: var(--vt-sp-5) var(--vt-sp-4);
+}
+
+/* ==========================================================================
+   ETIQUETA DE PRODUTO
+   ========================================================================== */
+
+.vt-produto {
+  position: relative;
+  background: var(--vt-papel);
+  clip-path: polygon(22px 0, 100% 0, 100% 100%, 0 100%, 0 22px);
+  padding: var(--vt-sp-5) var(--vt-sp-4) var(--vt-sp-4);
+  box-shadow: 3px 4px 0 var(--vt-sombra);
+}
+
+.vt-produto::before {
+  content: '';
+  position: absolute;
+  top: 9px;
+  left: 9px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--vt-kraft);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.35);
+}
+
+.vt-produto__categoria {
+  font-size: var(--vt-fs-xs);
+  color: var(--vt-verde-escuro);
+  font-weight: 700;
+}
+
+.vt-produto__nome {
+  font-family: var(--vt-fonte-cartaz);
+  font-size: var(--vt-fs-md);
+  color: var(--vt-tinta);
+  margin: var(--vt-sp-1) 0 var(--vt-sp-3);
+  letter-spacing: 0.01em;
+}
+
+.vt-produto__preco {
+  font-size: var(--vt-fs-lg);
+  font-weight: 700;
+  color: var(--vt-tomate);
+}
+
+.vt-produto__unidade {
+  font-size: var(--vt-fs-sm);
+  color: var(--vt-tinta);
+  opacity: 0.7;
+}
+
+.vt-produto__estoque {
+  font-size: var(--vt-fs-xs);
+  color: var(--vt-verde-escuro);
+  margin-top: var(--vt-sp-1);
+}
+
+.vt-produto__estoque--baixo {
+  color: var(--vt-tomate-escuro);
+}
+
+.vt-produto__rodape {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: var(--vt-sp-4);
+}
+
+.vt-produto__stepper {
+  display: flex;
+  align-items: center;
+  gap: var(--vt-sp-2);
+}
+
+.vt-produto__stepper button {
+  width: 28px;
+  height: 28px;
+  border: 2px solid var(--vt-verde);
+  background: var(--vt-papel);
+  color: var(--vt-verde-escuro);
+  font-weight: 700;
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+.vt-produto__stepper button:focus-visible,
+.vt-produto__botao-add:focus-visible {
+  outline: 3px solid var(--vt-tomate);
+  outline-offset: 1px;
+}
+
+.vt-produto__stepper span {
+  min-width: 18px;
+  text-align: center;
+  font-weight: 700;
+}
+
+.vt-produto__botao-add {
+  border: none;
+  background: var(--vt-verde);
+  color: var(--vt-papel);
+  font-weight: 700;
+  font-size: var(--vt-fs-sm);
+  padding: var(--vt-sp-2) var(--vt-sp-4);
+  cursor: pointer;
+  border-radius: 2px;
+  transition: transform 0.12s ease;
+}
+
+.vt-produto__botao-add:active {
+  transform: scale(0.94) rotate(-1deg);
+}
+
+.vt-produto__botao-add:disabled {
+  background: var(--vt-barbante);
+  cursor: not-allowed;
+}
+
+/* ==========================================================================
+   CESTA FLUTUANTE
+   ========================================================================== */
+
+.vt-cesta-flutuante {
+  position: fixed;
+  bottom: var(--vt-sp-5);
+  right: var(--vt-sp-5);
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  gap: var(--vt-sp-3);
+  background: var(--vt-madeira-escura);
+  color: var(--vt-papel);
+  border: none;
+  padding: var(--vt-sp-3) var(--vt-sp-5);
+  border-radius: 999px;
+  box-shadow: 0 6px 16px var(--vt-sombra);
+  cursor: pointer;
+  font-family: var(--vt-fonte-corpo);
+}
+
+.vt-cesta-flutuante__icone {
+  font-size: var(--vt-fs-lg);
+}
+
+.vt-cesta-flutuante__texto strong {
+  font-size: var(--vt-fs-md);
+}
+
+/* ==========================================================================
+   PAINEL DA CESTA (DRAWER)
+   ========================================================================== */
+
+.vt-cesta-painel {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background: rgba(43, 32, 19, 0.55);
+  display: flex;
+  justify-content: flex-end;
+}
+
+.vt-cesta-painel__cartao {
+  width: min(420px, 100%);
+  height: 100%;
+  background: var(--vt-kraft);
+  padding: var(--vt-sp-6) var(--vt-sp-5);
+  overflow-y: auto;
+  position: relative;
+}
+
+.vt-cesta-painel__fechar {
+  position: absolute;
+  top: var(--vt-sp-4);
+  right: var(--vt-sp-4);
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: var(--vt-papel);
+  font-size: var(--vt-fs-md);
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+.vt-cesta-painel__cartao h2 {
+  font-family: var(--vt-fonte-cartaz);
+  font-size: var(--vt-fs-xl);
+  color: var(--vt-madeira-escura);
+  margin: 0 0 var(--vt-sp-1);
+}
+
+.vt-cesta-painel__banca {
+  font-size: var(--vt-fs-sm);
+  color: var(--vt-tinta);
+  opacity: 0.8;
+  margin-bottom: var(--vt-sp-5);
+}
+
+.vt-cesta-itens {
+  list-style: none;
+  margin: 0 0 var(--vt-sp-5);
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--vt-sp-3);
+}
+
+.vt-cesta-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--vt-papel);
+  padding: var(--vt-sp-3);
+  border-radius: 2px;
+}
+
+.vt-cesta-item__info {
+  display: flex;
+  flex-direction: column;
+}
+
+.vt-cesta-item__nome {
+  font-weight: 700;
+}
+
+.vt-cesta-item__preco {
+  font-size: var(--vt-fs-xs);
+  opacity: 0.75;
+}
+
+.vt-cesta-item__remover {
+  border: none;
+  background: transparent;
+  color: var(--vt-tomate-escuro);
+  cursor: pointer;
+  font-size: var(--vt-fs-sm);
+  text-decoration: underline;
+}
+
+.vt-cesta-painel__total {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: var(--vt-sp-3) 0;
+  border-top: 2px dashed var(--vt-barbante);
+  margin-bottom: var(--vt-sp-5);
+  font-family: var(--vt-fonte-corpo);
+}
+
+.vt-cesta-painel__total strong {
+  font-size: var(--vt-fs-lg);
+  color: var(--vt-tomate);
+}
+
+.vt-form-reserva {
+  display: flex;
+  flex-direction: column;
+  gap: var(--vt-sp-2);
+}
+
+.vt-form-reserva label {
+  font-size: var(--vt-fs-sm);
+  font-weight: 700;
+  margin-top: var(--vt-sp-2);
+}
+
+.vt-form-reserva input {
+  font-family: var(--vt-fonte-corpo);
+  font-size: var(--vt-fs-base);
+  padding: var(--vt-sp-3);
+  border: 2px solid var(--vt-madeira);
+  border-radius: 2px;
+  background: var(--vt-papel);
+}
+
+.vt-form-reserva input:focus-visible {
+  outline: 3px solid var(--vt-tomate);
+  outline-offset: 1px;
+}
+
+.vt-botao-enviar {
+  margin-top: var(--vt-sp-4);
+  border: none;
+  background: var(--vt-tomate);
+  color: var(--vt-papel);
+  font-weight: 700;
+  font-size: var(--vt-fs-md);
+  padding: var(--vt-sp-3);
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.vt-botao-enviar:hover {
+  background: var(--vt-tomate-escuro);
+}
+
+.vt-botao-enviar:disabled {
+  background: var(--vt-barbante);
+  cursor: not-allowed;
+}
+
+/* ==========================================================================
+   CONFIRMAÇÃO DE SUCESSO
+   ========================================================================== */
+
+.vt-sucesso {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  background: rgba(43, 32, 19, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--vt-sp-5);
+}
+
+.vt-sucesso__cartao {
+  max-width: 380px;
+  width: 100%;
+  background: var(--vt-papel);
+  padding: var(--vt-sp-6) var(--vt-sp-5);
+  text-align: center;
+  border-radius: 2px;
+  box-shadow: 0 10px 24px var(--vt-sombra);
+}
+
+.vt-sucesso__selo {
+  display: inline-block;
+  font-size: var(--vt-fs-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--vt-verde-escuro);
+  border: 1px dashed var(--vt-verde);
+  padding: var(--vt-sp-1) var(--vt-sp-3);
+  margin-bottom: var(--vt-sp-3);
+}
+
+.vt-sucesso__cartao h2 {
+  font-family: var(--vt-fonte-cartaz);
+  font-size: var(--vt-fs-xl);
+  color: var(--vt-madeira-escura);
+  margin: 0 0 var(--vt-sp-3);
+}
+
+.vt-sucesso__cartao p {
+  margin-bottom: var(--vt-sp-5);
+}
+
+/* ==========================================================================
+   TOAST SIMPLES
+   ========================================================================== */
+
+.vt-toast {
+  position: fixed;
+  top: var(--vt-sp-4);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 70;
+  background: var(--vt-madeira-escura);
+  color: var(--vt-papel);
+  padding: var(--vt-sp-3) var(--vt-sp-5);
+  border-radius: 2px;
+  font-size: var(--vt-fs-sm);
+  box-shadow: 0 4px 12px var(--vt-sombra);
+}
+
+/* ==========================================================================
+   RESPONSIVO
+   ========================================================================== */
+
+@media (max-width: 600px) {
+  .vt-header__titulo { font-size: var(--vt-fs-xl); }
+  .vt-banca__grade { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+  .vt-cesta-painel__cartao { width: 100%; }
+  .vt-cesta-flutuante__texto { font-size: var(--vt-fs-sm); }
+}
