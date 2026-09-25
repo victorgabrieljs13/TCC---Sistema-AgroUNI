@@ -1,3 +1,6 @@
+create database agrouni_db;
+use agrouni_db;
+
 CREATE TABLE feirantes (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
@@ -41,4 +44,24 @@ CREATE TABLE movimentacoes_estoque (
     motivo VARCHAR(100),
     data_movimentacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (produto_id) REFERENCES produtos(id) ON DELETE CASCADE
+);
+
+CREATE TABLE pedidos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    feirante_id INT NOT NULL,
+    nome_cliente VARCHAR(100) NOT NULL,
+    telefone_cliente VARCHAR(20) NOT NULL,
+    status ENUM('pendente', 'aceito', 'recusado') NOT NULL DEFAULT 'pendente',
+    data_pedido TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (feirante_id) REFERENCES feirantes(id) ON DELETE CASCADE
+);
+
+CREATE TABLE itens_pedido (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    pedido_id INT NOT NULL,
+    produto_id INT NOT NULL,
+    quantidade DECIMAL(10,2) NOT NULL,
+    preco_unitario DECIMAL(10,2) NOT NULL,
+    FOREIGN KEY (pedido_id) REFERENCES pedidos(id) ON DELETE CASCADE,
+    FOREIGN KEY (produto_id) REFERENCES produtos(id)
 );
