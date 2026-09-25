@@ -25,6 +25,12 @@ app.use('/movimentacoes', movimentacoesRoutes);
 const authRoutes = require('./routes/authRoutes');
 app.use('/auth', authRoutes);
 
+const vitrineRoutes = require('./routes/vitrineRoutes');
+app.use('/vitrine', vitrineRoutes);
+
+const pedidosRoutes = require('./routes/pedidosRoutes');
+app.use('/pedidos', pedidosRoutes);
+
 const pool = require('./config/db');
 
 app.get('/teste-db', async (req, res) => {

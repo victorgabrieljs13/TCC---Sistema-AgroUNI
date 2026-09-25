@@ -127,6 +127,9 @@ async function excluirProduto(req, res) {
         res.json({ mensagem: 'Produto excluído com sucesso!' });
     } catch (erro) {
         console.error(erro);
+        if (erro.code === 'ER_ROW_IS_REFERENCED_2') {
+            return res.status(409).json({ mensagem: 'Esse produto tem pedidos associados e não pode ser excluído.' });
+        }
         res.status(500).json({ mensagem: 'Erro ao excluir produto.' });
     }
 }
