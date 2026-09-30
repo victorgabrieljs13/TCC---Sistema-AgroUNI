@@ -32,9 +32,9 @@ async function login(req, res) {
         }
 
         const token = jwt.sign(
-            { id: feirante.id, nome: feirante.nome },
-            process.env.JWT_SECRET,
-            { expiresIn: '8h' }
+        { id: feirante.id, nome: feirante.nome, tipo: 'feirante' },
+        process.env.JWT_SECRET,
+        { expiresIn: '8h' }
         );
 
         res.json({

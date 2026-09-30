@@ -18,6 +18,9 @@ function verificarToken(req, res, next) {
 
     try {
         const dadosToken = jwt.verify(token, process.env.JWT_SECRET);
+        if (dadosToken.tipo !== 'feirante') {
+        return res.status(403).json({ mensagem: 'Esse token não é de um feirante.' });
+    }   
         // Guarda os dados do feirante logado pra usar depois, nas próximas funções
         req.feiranteLogado = dadosToken;
         next(); // libera a requisição pra seguir pro controller

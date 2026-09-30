@@ -8,11 +8,11 @@ function getFeiranteLogado() {
 function fazerLogout() {
     localStorage.removeItem('token');
     localStorage.removeItem('feirante');
-    window.location.href = 'index.html';
+    window.location.href = 'login.html';
 }
 
 function protegerPagina() {
-    if (!getToken()) window.location.href = 'index.html';
+    if (!getToken()) window.location.href = 'login.html';
 }
 
 const formLogin = document.getElementById('form-login');

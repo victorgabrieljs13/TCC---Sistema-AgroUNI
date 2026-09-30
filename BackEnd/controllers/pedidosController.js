@@ -4,7 +4,7 @@ const pool = require('../config/db');
 async function criarPedido(req, res) {
     const conexao = await pool.getConnection();
     try {
-        const { feirante_id, nome_cliente, telefone_cliente, itens } = req.body;
+        const { feirante_id, nome_cliente, telefone_cliente, itens, consumidor_id, forma_pagamento } = req.body;
 
         if (!feirante_id || !nome_cliente || !telefone_cliente || !Array.isArray(itens) || itens.length === 0) {
             return res.status(400).json({ mensagem: 'Feirante, nome, telefone e ao menos um item são obrigatórios.' });
@@ -19,8 +19,8 @@ async function criarPedido(req, res) {
         }
 
         const [resultadoPedido] = await conexao.query(
-            'INSERT INTO pedidos (feirante_id, nome_cliente, telefone_cliente) VALUES (?, ?, ?)',
-            [feirante_id, nome_cliente, telefone_cliente]
+            'INSERT INTO pedidos (feirante_id, nome_cliente, telefone_cliente, consumidor_id, forma_pagamento) VALUES (?, ?, ?, ?, ?)',
+            [feirante_id, nome_cliente, telefone_cliente, consumidor_id || null, forma_pagamento || null]
         );
         const pedidoId = resultadoPedido.insertId;
 
@@ -41,7 +41,6 @@ async function criarPedido(req, res) {
                 return res.status(400).json({ mensagem: 'Quantidade inválida em um dos itens.' });
             }
 
-            // Trava o preço de agora — não referencia o preco_atual do produto no futuro
             await conexao.query(
                 'INSERT INTO itens_pedido (pedido_id, produto_id, quantidade, preco_unitario) VALUES (?, ?, ?, ?)',
                 [pedidoId, item.produto_id, quantidade, produtos[0].preco_atual]
@@ -176,4 +175,41 @@ async function recusarPedido(req, res) {
     }
 }
 
-module.exports = { criarPedido, listarPedidosFeirante, aceitarPedido, recusarPedido };
+async function listarPedidosConsumidor(req, res) {
+    try {
+        const consumidor_id = req.consumidorLogado.id;
+
+        const [pedidos] = await pool.query(
+            `SELECT pe.id, pe.nome_cliente, pe.status, pe.data_pedido, pe.forma_pagamento,
+                    f.nome AS feirante_nome
+             FROM pedidos pe
+             JOIN feirantes f ON f.id = pe.feirante_id
+             WHERE pe.consumidor_id = ?
+             ORDER BY pe.data_pedido DESC`,
+            [consumidor_id]
+        );
+
+        if (pedidos.length === 0) return res.json([]);
+
+        const idsPedidos = pedidos.map(p => p.id);
+        const [itens] = await pool.query(
+            `SELECT ip.pedido_id, ip.quantidade, ip.preco_unitario, p.nome AS produto_nome, p.unidade_medida
+             FROM itens_pedido ip
+             JOIN produtos p ON p.id = ip.produto_id
+             WHERE ip.pedido_id IN (?)`,
+            [idsPedidos]
+        );
+
+        const pedidosComItens = pedidos.map(pedido => ({
+            ...pedido,
+            itens: itens.filter(item => item.pedido_id === pedido.id)
+        }));
+
+        res.json(pedidosComItens);
+    } catch (erro) {
+        console.error(erro);
+        res.status(500).json({ mensagem: 'Erro ao buscar seus pedidos.' });
+    }
+}
+
+module.exports = { criarPedido, listarPedidosFeirante, aceitarPedido, recusarPedido, listarPedidosConsumidor };

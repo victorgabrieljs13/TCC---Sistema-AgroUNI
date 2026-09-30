@@ -16,15 +16,15 @@
     --text: #17181a;
     --text-muted: #6c6c66;
 
-    --verde: #2e7d32;
-    --verde-escuro: #1f5723;
-    --verde-tint: #e7f3e8;
+    --verde: #2f9e44;
+    --verde-escuro: #1b5e33;
+    --verde-tint: #e5f4e8;
 
     --tomate: #c0402a;
     --tomate-tint: #fbeeea;
 
-    --amarelo: #a86a12;
-    --amarelo-tint: #fbf1e2;
+    --amarelo: #e8b23b;
+    --amarelo-tint: #fbf1dc;
 
     --radius-sm: 4px;
     --radius-md: 6px;
@@ -119,8 +119,18 @@ a { color: inherit; }
 }
 
 .sidebar-brand { display: flex; align-items: center; gap: var(--space-2); margin-bottom: var(--space-6); padding: 0 var(--space-2); }
-.sidebar-brand .marca { width: 32px; height: 32px; border-radius: var(--radius-sm); background: var(--verde); color: #fff; display: grid; place-items: center; font-weight: 700; font-size: 15px; font-family: var(--font-mono); }
+.sidebar-brand .marca { width: 32px; height: 32px; border-radius: var(--radius-sm); background: var(--verde); color: #fff; display: grid; place-items: center; font-weight: 700; font-size: 0; font-family: var(--font-mono); position: relative; }
 .sidebar-brand span { font-weight: 600; font-size: 15.5px; letter-spacing: -0.01em; color: var(--sidebar-text-active); }
+
+/* símbolo de broto (duas folhas + caule), usado em toda marca "A" do sistema —
+   trocar aqui atualiza login e painel interno de uma vez só */
+.sidebar-brand .marca::before, .login-marca .marca::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: currentColor;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cellipse cx='12' cy='9' rx='3.4' ry='6.2' transform='rotate(-28 12 9)'/%3E%3Cellipse cx='12' cy='9' rx='3.4' ry='6.2' transform='rotate(28 12 9)'/%3E%3Crect x='11.2' y='14' width='1.6' height='7' rx='0.8'/%3E%3C/svg%3E") no-repeat center / 60% 60%;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cellipse cx='12' cy='9' rx='3.4' ry='6.2' transform='rotate(-28 12 9)'/%3E%3Cellipse cx='12' cy='9' rx='3.4' ry='6.2' transform='rotate(28 12 9)'/%3E%3Crect x='11.2' y='14' width='1.6' height='7' rx='0.8'/%3E%3C/svg%3E") no-repeat center / 60% 60%;
+}
 
 .sidebar-nav { display: flex; flex-direction: column; gap: 1px; }
 
@@ -269,7 +279,7 @@ a { color: inherit; }
 .login-shell { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: var(--space-4); background: var(--sidebar-bg); }
 .login-card { width: 100%; max-width: 380px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: var(--space-6); box-shadow: var(--shadow-md); }
 .login-marca { display: flex; align-items: center; gap: var(--space-3); margin-bottom: var(--space-6); }
-.login-marca .marca { width: 40px; height: 40px; border-radius: var(--radius-sm); background: var(--verde); color: #fff; display: grid; place-items: center; font-weight: 700; font-size: 17px; font-family: var(--font-mono); }
+.login-marca .marca { width: 40px; height: 40px; border-radius: var(--radius-sm); background: var(--verde); color: #fff; display: grid; place-items: center; font-weight: 700; font-size: 0; font-family: var(--font-mono); position: relative; }
 .login-marca strong { display: block; font-size: 16px; }
 .login-marca span { display: block; font-size: 12.5px; color: var(--text-muted); }
 

@@ -41,17 +41,17 @@ async function buscarProdutoPorId(req, res) {
 // Cadastrar produto
 async function cadastrarProduto(req, res) {
     try {
-        const feirante_id = req.feiranteLogado.id; // vem do token, não do body
-        const { nome, categoria, unidade_medida, preco_atual, quantidade_estoque, estoque_minimo } = req.body;
+        const feirante_id = req.feiranteLogado.id;
+        const { nome, categoria, descricao, imagem_url, unidade_medida, preco_atual, quantidade_estoque, estoque_minimo } = req.body;
 
         if (!nome || !unidade_medida || preco_atual === undefined) {
             return res.status(400).json({ mensagem: 'Nome, unidade de medida e preço são obrigatórios.' });
         }
 
         const [resultado] = await pool.query(
-            `INSERT INTO produtos (feirante_id, nome, categoria, unidade_medida, preco_atual, quantidade_estoque, estoque_minimo)
-             VALUES (?, ?, ?, ?, ?, ?, ?)`,
-            [feirante_id, nome, categoria, unidade_medida, preco_atual, quantidade_estoque || 0, estoque_minimo || 0]
+            `INSERT INTO produtos (feirante_id, nome, categoria, descricao, imagem_url, unidade_medida, preco_atual, quantidade_estoque, estoque_minimo)
+             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+            [feirante_id, nome, categoria, descricao || null, imagem_url || null, unidade_medida, preco_atual, quantidade_estoque || 0, estoque_minimo || 0]
         );
 
         res.status(201).json({ mensagem: 'Produto cadastrado com sucesso!', id: resultado.insertId });
@@ -61,13 +61,13 @@ async function cadastrarProduto(req, res) {
     }
 }
 
-// Atualizar produto (COM histórico de preço automático)
+// Atualizar produto
 async function atualizarProduto(req, res) {
     const conexao = await pool.getConnection();
     try {
         const { id } = req.params;
         const feirante_id = req.feiranteLogado.id;
-        const { nome, categoria, unidade_medida, preco_atual, quantidade_estoque, estoque_minimo, status } = req.body;
+        const { nome, categoria, descricao, imagem_url, unidade_medida, preco_atual, quantidade_estoque, estoque_minimo, status } = req.body;
 
         await conexao.beginTransaction();
 
@@ -81,7 +81,6 @@ async function atualizarProduto(req, res) {
             return res.status(404).json({ mensagem: 'Produto não encontrado.' });
         }
 
-        // Confere se o produto pertence ao feirante logado
         if (produtoAtual[0].feirante_id !== feirante_id) {
             await conexao.rollback();
             return res.status(403).json({ mensagem: 'Você não tem permissão para editar esse produto.' });
@@ -91,9 +90,9 @@ async function atualizarProduto(req, res) {
         const precoNovo = parseFloat(preco_atual);
 
         await conexao.query(
-            `UPDATE produtos SET nome = ?, categoria = ?, unidade_medida = ?, preco_atual = ?, 
+            `UPDATE produtos SET nome = ?, categoria = ?, descricao = ?, imagem_url = ?, unidade_medida = ?, preco_atual = ?, 
              quantidade_estoque = ?, estoque_minimo = ?, status = ? WHERE id = ?`,
-            [nome, categoria, unidade_medida, precoNovo, quantidade_estoque, estoque_minimo, status, id]
+            [nome, categoria, descricao || null, imagem_url || null, unidade_medida, precoNovo, quantidade_estoque, estoque_minimo, status, id]
         );
 
         if (precoAnterior !== precoNovo) {

@@ -65,3 +65,21 @@ CREATE TABLE itens_pedido (
     FOREIGN KEY (pedido_id) REFERENCES pedidos(id) ON DELETE CASCADE,
     FOREIGN KEY (produto_id) REFERENCES produtos(id)
 );
+
+ALTER TABLE produtos
+    ADD COLUMN descricao TEXT NULL AFTER categoria,
+    ADD COLUMN imagem_url VARCHAR(500) NULL AFTER descricao;
+
+CREATE TABLE consumidores (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    email VARCHAR(150) NOT NULL UNIQUE,
+    senha VARCHAR(255) NOT NULL,
+    telefone VARCHAR(20) NOT NULL,
+    data_cadastro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+ALTER TABLE pedidos
+    ADD COLUMN consumidor_id INT NULL AFTER feirante_id,
+    ADD COLUMN forma_pagamento ENUM('pix','cartao','dinheiro') NULL AFTER telefone_cliente,
+    ADD CONSTRAINT fk_pedidos_consumidor FOREIGN KEY (consumidor_id) REFERENCES consumidores(id) ON DELETE SET NULL;

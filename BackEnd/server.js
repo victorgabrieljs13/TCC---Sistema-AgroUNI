@@ -31,6 +31,9 @@ app.use('/vitrine', vitrineRoutes);
 const pedidosRoutes = require('./routes/pedidosRoutes');
 app.use('/pedidos', pedidosRoutes);
 
+const consumidoresRoutes = require('./routes/consumidoresRoutes');
+app.use('/consumidores', consumidoresRoutes);
+
 const pool = require('./config/db');
 
 app.get('/teste-db', async (req, res) => {
