@@ -39,8 +39,13 @@ sobre o negócio.
 
 1. Clone o repositório:
 ```bash
+<<<<<<< HEAD
 git clone https://github.com/SEU-USUARIO/SEU-REPOSITORIO.git
 cd SEU-REPOSITORIO/BackEnd
+=======
+git clone https://github.com/victorgabrieljs13/TCC---Sistema-AgroUNI
+cd TCC---Sistema-AgroUNI/BackEnd
+>>>>>>> 84b11fc05298a9fecb152524d17af6f0073ec1f2
 ```
 
 2. Instale as dependências:
@@ -92,10 +97,18 @@ Projeto/
 
 ## Integrantes
 
+<<<<<<< HEAD
 - [Nome completo do integrante 1]
 - [Nome completo do integrante 2]
 - [Nome completo do integrante 3]
 - [Nome completo do integrante 4]
+=======
+- Eslle dos Santos Souza;
+- Trícia de Brito Matos;
+- Victor Gabriel de Jesus dos Santos;
+- Jhenyfer da Silva Sá Romão de Oliveira;
+- Anna Beatriz Anunciação Dias.
+>>>>>>> 84b11fc05298a9fecb152524d17af6f0073ec1f2
 
 ## Instituição
 
@@ -103,4 +116,8 @@ SENAI Candeias
 
 ## Professor Orientador
 
+<<<<<<< HEAD
 Adalberto Santana
+=======
+Adalberto Santana
+>>>>>>> 84b11fc05298a9fecb152524d17af6f0073ec1f2
