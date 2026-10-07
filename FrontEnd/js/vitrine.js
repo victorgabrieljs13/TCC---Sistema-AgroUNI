@@ -3,11 +3,17 @@
 // Espera que config.js já tenha definido a constante global API_URL
 // (mesmo padrão usado em produtos.js, dashboard.js etc).
 //
-// Formato real confirmado do GET /vitrine (testado via Thunder Client):
+// Formato real confirmado do GET /vitrine (testado via Thunder Client),
+// mais os campos descricao/imagem_url adicionados depois (confirma se o
+// vitrineController.js já inclui p.descricao, p.imagem_url no SELECT):
 // [{
-//   id, nome, categoria, unidade_medida, preco_atual (string),
-//   quantidade_estoque (string), feirante_id, feirante_nome, feirante_box
+//   id, nome, categoria, descricao, imagem_url, unidade_medida,
+//   preco_atual (string), quantidade_estoque (string),
+//   feirante_id, feirante_nome, feirante_box
 // }]
+//
+// Espera também que consumidor.js já tenha sido carregado antes deste
+// arquivo (define getConsumidorLogado() e fazerLogoutConsumidor()).
 // ============================================================================
 
 (function () {
@@ -51,6 +57,14 @@
   const elMensagemSucesso = document.getElementById('mensagemSucesso');
   const elFecharSucesso = document.getElementById('fecharSucesso');
 
+  const elAreaConta = document.getElementById('areaConta');
+  const elOpcoesPagamento = document.getElementById('opcoesPagamento');
+  const elPainelProcessando = document.getElementById('painelProcessando');
+  const elTituloProcessando = document.getElementById('tituloProcessando');
+  const elMensagemProcessando = document.getElementById('mensagemProcessando');
+
+  let metodoPagamentoSelecionado = null;
+
   // -------------------------------------------------------------------------
   // utilitários
   // -------------------------------------------------------------------------
@@ -64,6 +78,8 @@
       produto_id: item.produto_id ?? item.id,
       nome: item.nome,
       categoria: item.categoria,
+      descricao: item.descricao ?? null,
+      imagem_url: item.imagem_url ?? null,
       unidade_medida: item.unidade_medida,
       preco_atual: Number(item.preco_atual),
       quantidade_estoque: Number(item.quantidade_estoque),
@@ -79,6 +95,25 @@
     toast.textContent = mensagem;
     document.body.appendChild(toast);
     setTimeout(() => toast.remove(), 3200);
+  }
+
+  function renderizarAreaConta() {
+    const consumidor = typeof getConsumidorLogado === 'function' ? getConsumidorLogado() : null;
+
+    if (consumidor) {
+      const primeiroNome = consumidor.nome.split(' ')[0];
+      elAreaConta.innerHTML = `
+        <span>Olá, ${primeiroNome}</span>
+        <a href="pedidos-consumidor.html">Meus pedidos</a>
+        <button type="button" id="botaoSairConta">Sair</button>
+      `;
+      document.getElementById('botaoSairConta').addEventListener('click', fazerLogoutConsumidor);
+    } else {
+      elAreaConta.innerHTML = `
+        <a href="login-consumidor.html">Entrar</a>
+        <a href="cadastro-consumidor.html">Criar conta</a>
+      `;
+    }
   }
 
   // -------------------------------------------------------------------------
@@ -251,11 +286,20 @@
     const quantidadeAtual = jaNoCarrinho ? jaNoCarrinho.quantidade : 0;
     const estoqueBaixo = produto.quantidade_estoque <= 5;
 
+    const imagemHtml = produto.imagem_url
+      ? `<img src="${produto.imagem_url}" alt="${produto.nome}" class="vt-produto__imagem" onerror="this.remove()">`
+      : '';
+    const descricaoHtml = produto.descricao
+      ? `<p class="vt-produto__descricao">${produto.descricao}</p>`
+      : '';
+
     const cartao = document.createElement('article');
     cartao.className = 'vt-produto';
     cartao.innerHTML = `
+      ${imagemHtml}
       <p class="vt-produto__categoria">${produto.categoria ?? ''}</p>
       <h3 class="vt-produto__nome">${produto.nome}</h3>
+      ${descricaoHtml}
       <div>
         <span class="vt-produto__preco">${formatarPreco(produto.preco_atual)}</span>
         <span class="vt-produto__unidade">/${produto.unidade_medida}</span>
@@ -369,7 +413,22 @@
   elBotaoCesta.addEventListener('click', () => {
     renderizarItensCesta();
     elPainelCesta.hidden = false;
+
+    const consumidor = typeof getConsumidorLogado === 'function' ? getConsumidorLogado() : null;
+    if (consumidor) {
+      document.getElementById('inputNome').value = consumidor.nome;
+      document.getElementById('inputTelefone').value = consumidor.telefone;
+    }
+
     document.getElementById('inputNome').focus();
+  });
+
+  elOpcoesPagamento.querySelectorAll('.vt-pagamento__opcao').forEach((botao) => {
+    botao.addEventListener('click', () => {
+      elOpcoesPagamento.querySelectorAll('.vt-pagamento__opcao').forEach((b) => b.setAttribute('aria-pressed', 'false'));
+      botao.setAttribute('aria-pressed', 'true');
+      metodoPagamentoSelecionado = botao.dataset.metodo;
+    });
   });
 
   elFecharCesta.addEventListener('click', () => {
@@ -409,10 +468,50 @@
       return;
     }
 
+    if (!metodoPagamentoSelecionado) {
+      mostrarToast('Escolhe a forma de pagamento.');
+      return;
+    }
+
+    if (metodoPagamentoSelecionado === 'dinheiro') {
+      await enviarPedidoFinal(nome, telefone);
+    } else {
+      await simularPagamento(nome, telefone);
+    }
+  });
+
+  // Simulação de pagamento (Pix/cartão) — NÃO processa nada de verdade,
+  // é só uma etapa visual pra mostrar o fluxo completo. O pagamento real
+  // continua combinado na retirada, como já era.
+  async function simularPagamento(nome, telefone) {
+    elPainelCesta.hidden = true;
+    elPainelProcessando.hidden = false;
+
+    elTituloProcessando.textContent = metodoPagamentoSelecionado === 'pix'
+      ? 'Aguardando pagamento via Pix…'
+      : 'Processando cartão…';
+    elMensagemProcessando.textContent = 'Isso é só uma simulação — nada está sendo cobrado de verdade.';
+
+    await new Promise((resolve) => setTimeout(resolve, 1800));
+
+    elTituloProcessando.textContent = 'Pagamento aprovado ✓';
+    elMensagemProcessando.textContent = 'Enviando sua reserva…';
+
+    await new Promise((resolve) => setTimeout(resolve, 900));
+
+    elPainelProcessando.hidden = true;
+    await enviarPedidoFinal(nome, telefone);
+  }
+
+  async function enviarPedidoFinal(nome, telefone) {
+    const consumidor = typeof getConsumidorLogado === 'function' ? getConsumidorLogado() : null;
+
     const corpo = {
       feirante_id: carrinho.feiranteId,
       nome_cliente: nome,
       telefone_cliente: telefone,
+      forma_pagamento: metodoPagamentoSelecionado,
+      consumidor_id: consumidor ? consumidor.id : null,
       itens: Array.from(carrinho.itens.values()).map(({ produto, quantidade }) => ({
         produto_id: produto.produto_id,
         quantidade,
@@ -442,15 +541,18 @@
       carrinho.itens.clear();
       carrinho.feiranteId = null;
       carrinho.feiranteNome = null;
+      metodoPagamentoSelecionado = null;
+      elOpcoesPagamento.querySelectorAll('.vt-pagamento__opcao').forEach((b) => b.setAttribute('aria-pressed', 'false'));
       atualizarBotaoCesta();
       elFormReserva.reset();
     } catch (erro) {
+      elPainelCesta.hidden = false;
       mostrarToast(erro.message || 'Não foi possível enviar o pedido. Tenta de novo.');
     } finally {
       elBotaoEnviarPedido.disabled = false;
       elBotaoEnviarPedido.textContent = 'Enviar reserva';
     }
-  });
+  }
 
   elFecharSucesso.addEventListener('click', () => {
     elPainelSucesso.hidden = true;
@@ -461,5 +563,6 @@
   // início
   // -------------------------------------------------------------------------
 
+  renderizarAreaConta();
   carregarVitrine();
 })();

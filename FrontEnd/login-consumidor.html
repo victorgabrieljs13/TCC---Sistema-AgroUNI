@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Entrar — AgroUNI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="css/vitrine.css">
+</head>
+<body>
+
+  <div class="vt-auth-shell">
+    <div class="vt-auth-card">
+      <h1>Bem-vindo de volta</h1>
+      <p class="vt-auth-sub">Entra pra ver seus pedidos e reservar mais rápido.</p>
+
+      <form id="form-login-consumidor" class="vt-form-reserva">
+        <label for="email">Email</label>
+        <input type="email" id="email" required>
+
+        <label for="senha">Senha</label>
+        <input type="password" id="senha" required>
+
+        <button type="submit" class="vt-botao-enviar" id="btn-entrar">Entrar</button>
+
+        <div class="vt-auth-erro" id="mensagem-erro"></div>
+      </form>
+
+      <p class="vt-auth-rodape">Ainda não tem conta? <a href="cadastro-consumidor.html">Criar conta</a></p>
+      <p class="vt-auth-rodape"><a href="vitrine.html">&larr; Continuar sem conta</a></p>
+    </div>
+  </div>
+
+  <script src="js/config.js"></script>
+  <script src="js/consumidor.js"></script>
+</body>
+</html>

@@ -87,15 +87,58 @@ body {
    ========================================================================== */
 
 .vt-header {
-  padding: var(--vt-sp-7) var(--vt-sp-5) var(--vt-sp-6);
+  position: sticky;
+  top: 0;
+  z-index: 45;
+  padding: var(--vt-sp-5) var(--vt-sp-5) var(--vt-sp-6);
   text-align: center;
   animation: vt-entrada 0.5s ease-out;
+  background: rgba(228, 211, 172, 0.92);
+  border-bottom: 1px solid transparent;
+  transition: box-shadow .2s ease, border-color .2s ease;
 }
 
 @keyframes vt-entrada {
   from { opacity: 0; transform: translateY(-8px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
+.vt-header__topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 720px;
+  margin: 0 auto var(--vt-sp-3);
+}
+
+.vt-header__voltar {
+  font-size: var(--vt-fs-xs);
+  color: var(--vt-madeira-escura);
+  text-decoration: none;
+  opacity: .75;
+}
+.vt-header__voltar:hover { opacity: 1; }
+
+.vt-header__conta {
+  display: flex;
+  align-items: center;
+  gap: var(--vt-sp-3);
+}
+
+.vt-header__conta a, .vt-header__conta button {
+  font-family: var(--vt-fonte-corpo);
+  font-size: var(--vt-fs-xs);
+  font-weight: 700;
+  color: var(--vt-madeira-escura);
+  text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+.vt-header__conta a:hover, .vt-header__conta button:hover { color: var(--vt-tomate); }
+
+.vt-header__conta span { font-size: var(--vt-fs-xs); opacity: .8; }
 
 .vt-header__selo {
   display: inline-block;
@@ -298,6 +341,29 @@ body {
   clip-path: polygon(22px 0, 100% 0, 100% 100%, 0 100%, 0 22px);
   padding: var(--vt-sp-5) var(--vt-sp-4) var(--vt-sp-4);
   box-shadow: 3px 4px 0 var(--vt-sombra);
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+
+.vt-produto:hover {
+  transform: translateY(-4px);
+  box-shadow: 4px 8px 0 var(--vt-sombra);
+}
+
+.vt-produto__imagem {
+  display: block;
+  width: 100%;
+  height: 96px;
+  object-fit: cover;
+  margin-bottom: var(--vt-sp-3);
+  border: 1px solid var(--vt-kraft-deep);
+}
+
+.vt-produto__descricao {
+  font-size: var(--vt-fs-xs);
+  color: var(--vt-tinta);
+  opacity: .75;
+  line-height: 1.4;
+  margin: 0 0 var(--vt-sp-2);
 }
 
 .vt-produto::before {
@@ -650,6 +716,173 @@ body {
   border-radius: 2px;
   font-size: var(--vt-fs-sm);
   box-shadow: 0 4px 12px var(--vt-sombra);
+}
+
+/* ==========================================================================
+   FORMA DE PAGAMENTO (simulado)
+   ========================================================================== */
+
+.vt-pagamento { margin-top: var(--vt-sp-2); }
+
+.vt-pagamento label {
+  font-size: var(--vt-fs-sm);
+  font-weight: 700;
+  display: block;
+  margin-bottom: var(--vt-sp-2);
+}
+
+.vt-pagamento__opcoes {
+  display: flex;
+  gap: var(--vt-sp-2);
+  flex-wrap: wrap;
+}
+
+.vt-pagamento__opcao {
+  flex: 1;
+  min-width: 96px;
+  padding: var(--vt-sp-2);
+  border: 2px solid var(--vt-madeira);
+  background: var(--vt-papel);
+  color: var(--vt-madeira-escura);
+  font-family: var(--vt-fonte-corpo);
+  font-weight: 700;
+  font-size: var(--vt-fs-xs);
+  cursor: pointer;
+  border-radius: 2px;
+  transition: background-color .15s, color .15s, transform .15s;
+}
+
+.vt-pagamento__opcao:hover { transform: translateY(-2px); }
+
+.vt-pagamento__opcao[aria-pressed="true"] {
+  background: var(--vt-verde);
+  color: var(--vt-papel);
+  border-color: var(--vt-verde);
+}
+
+.vt-pagamento__opcao:focus-visible {
+  outline: 3px solid var(--vt-tomate);
+  outline-offset: 1px;
+}
+
+/* spinner de processamento (pagamento simulado) */
+.vt-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid var(--vt-kraft-deep);
+  border-top-color: var(--vt-verde);
+  border-radius: 50%;
+  margin: 0 auto var(--vt-sp-4);
+  animation: vt-girar 0.8s linear infinite;
+}
+
+@keyframes vt-girar {
+  to { transform: rotate(360deg); }
+}
+
+/* ==========================================================================
+   AUTENTICAÇÃO DO CONSUMIDOR (cadastro/login/meus pedidos)
+   ========================================================================== */
+
+.vt-auth-shell {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--vt-sp-5);
+}
+
+.vt-auth-card {
+  width: 100%;
+  max-width: 380px;
+  background: var(--vt-papel);
+  padding: var(--vt-sp-6) var(--vt-sp-5);
+  box-shadow: 0 10px 24px var(--vt-sombra);
+  border-radius: 2px;
+}
+
+.vt-auth-card h1 {
+  font-family: var(--vt-fonte-cartaz);
+  font-size: var(--vt-fs-xl);
+  color: var(--vt-madeira-escura);
+  margin: 0 0 var(--vt-sp-1);
+}
+
+.vt-auth-sub {
+  font-size: var(--vt-fs-sm);
+  color: var(--vt-tinta);
+  opacity: .75;
+  margin: 0 0 var(--vt-sp-5);
+}
+
+.vt-auth-erro {
+  display: none;
+  background: #fbeeea;
+  color: var(--vt-tomate-escuro);
+  padding: var(--vt-sp-3);
+  font-size: var(--vt-fs-sm);
+  margin-top: var(--vt-sp-3);
+  border-radius: 2px;
+}
+
+.vt-auth-rodape {
+  text-align: center;
+  margin-top: var(--vt-sp-4);
+  font-size: var(--vt-fs-sm);
+}
+
+.vt-auth-rodape a {
+  color: var(--vt-verde-escuro);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+/* ---------- Histórico de pedidos do consumidor ---------- */
+
+.vt-pedido-historico {
+  background: var(--vt-papel);
+  padding: var(--vt-sp-4) var(--vt-sp-5);
+  margin-bottom: var(--vt-sp-4);
+  box-shadow: 3px 4px 0 var(--vt-sombra);
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+
+.vt-pedido-historico:hover {
+  transform: translateY(-3px);
+  box-shadow: 4px 7px 0 var(--vt-sombra);
+}
+
+.vt-pedido-historico__meta {
+  font-size: var(--vt-fs-xs);
+  color: var(--vt-tinta);
+  opacity: .7;
+  margin: 0 0 var(--vt-sp-2);
+}
+
+.vt-pedido-historico__status {
+  font-family: var(--vt-fonte-corpo);
+  font-weight: 700;
+  font-size: var(--vt-fs-sm);
+  margin: 0 0 var(--vt-sp-2);
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 999px;
+}
+
+.vt-pedido-historico__status--pendente { background: #fbf1dc; color: #9c6a1a; }
+.vt-pedido-historico__status--aceito { background: #e5f4e8; color: var(--vt-verde-escuro); }
+.vt-pedido-historico__status--recusado { background: #fbeeea; color: var(--vt-tomate-escuro); }
+
+.vt-pedido-historico__itens {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--vt-sp-2);
+  font-size: var(--vt-fs-sm);
+}
+
+.vt-pedido-historico__total {
+  font-weight: 700;
+  color: var(--vt-tomate);
 }
 
 /* ==========================================================================

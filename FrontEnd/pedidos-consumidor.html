@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meus pedidos — AgroUNI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="css/vitrine.css">
+</head>
+<body>
+
+  <header class="vt-header">
+    <div class="vt-header__topo">
+      <a href="vitrine.html" class="vt-header__voltar">&larr; Vitrine</a>
+      <div class="vt-header__conta">
+        <span id="nomeConsumidor"></span>
+        <button type="button" id="botaoSair">Sair</button>
+      </div>
+    </div>
+    <p class="vt-header__selo">Sua conta</p>
+    <h1 class="vt-header__titulo">Meus pedidos</h1>
+    <p class="vt-header__sub">Acompanhe o status de tudo que você já reservou.</p>
+  </header>
+
+  <main class="vt-conteudo">
+    <div id="listaMeusPedidos"></div>
+
+    <div class="vt-estado" id="estadoVazio" hidden>
+      <p class="vt-estado__selo">Nenhum pedido ainda</p>
+      <p>Quando você reservar algo logado na sua conta, aparece aqui.</p>
+    </div>
+  </main>
+
+  <script src="js/config.js"></script>
+  <script src="js/consumidor.js"></script>
+  <script src="js/pedidos-consumidor.js"></script>
+</body>
+</html>

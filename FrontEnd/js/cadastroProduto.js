@@ -33,6 +33,8 @@ async function carregarDadosProduto() {
 
         document.getElementById('nome').value = produto.nome;
         document.getElementById('categoria').value = produto.categoria || '';
+        document.getElementById('descricao').value = produto.descricao || '';
+        document.getElementById('imagem_url').value = produto.imagem_url || '';
         document.getElementById('unidade_medida').value = produto.unidade_medida;
         document.getElementById('preco_atual').value = produto.preco_atual;
         document.getElementById('quantidade_estoque').value = produto.quantidade_estoque;
@@ -51,6 +53,8 @@ formProduto.addEventListener('submit', async function (evento) {
     const dadosProduto = {
         nome: document.getElementById('nome').value,
         categoria: document.getElementById('categoria').value,
+        descricao: document.getElementById('descricao').value,
+        imagem_url: document.getElementById('imagem_url').value,
         unidade_medida: document.getElementById('unidade_medida').value,
         preco_atual: parseFloat(document.getElementById('preco_atual').value),
         quantidade_estoque: parseFloat(document.getElementById('quantidade_estoque').value),
