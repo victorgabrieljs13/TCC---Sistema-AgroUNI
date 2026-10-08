@@ -11,12 +11,47 @@
 </head>
 <body>
 
-<header class="home-topo">
-    <div class="home-marca"><span class="selo"></span> AgroUNI</div>
+
+<header class="home-topo" id="home-header">
+ 
+    <a href="#hero" class="home-marca">
+        <span class="selo"></span> AgroUNI
+    </a>
+    
+   
+    <nav class="home-nav">
+        <ul>
+            <li><a href="#hero">Início</a></li>
+            <li><a href="vitrine.html">Vitrine</a></li>
+            <li><a href="#como-funciona">Como funciona?</a></li>
+            <li><a href="#sobre">Sobre nós</a></li>
+            <li><a href="#contato">Suporte</a></li>
+        </ul>
+    </nav>
+
     <a href="login.html" class="entrar">Já sou produtor — Entrar</a>
+    
+        <button type="button" id="btnOcultarMenu" class="btn-ocultar" title="Ocultar menu" aria-label="Ocultar menu">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="18 15 12 9 6 15"></polyline>
+            </svg>
+
+            <span>Ocultar</span>
+        </button>
+    </div>
 </header>
 
-<section class="hero">
+
+<button type="button" id="btnMostrarMenu" class="btn-mostrar-menu" title="Mostrar menu" aria-label="Mostrar menu">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="6 9 12 15 18 9"></polyline>
+    </svg>
+    <span>Menu</span>
+</button>
+</header>
+
+
+<section class="hero" id="hero">
     <div class="container">
         <span class="hero__selo">Conectando o campo ao consumidor</span>
         <h1>Mais saúde e qualidade,<br><span>direto do produtor</span></h1>
@@ -43,7 +78,8 @@
     </div>
 </section>
 
-<section class="como-funciona">
+
+<section class="como-funciona" id="como-funciona">
     <div class="container">
         <div class="secao-titulo reveal">
             <span class="eyebrow">01 · Como funciona</span>
@@ -109,7 +145,8 @@
     </div>
 </section>
 
-<section class="video">
+
+<section class="video" id="video">
     <div class="container">
         <div class="secao-titulo reveal">
             <span class="eyebrow">02 · Veja funcionando</span>
@@ -117,13 +154,6 @@
             <p>A equipe gravou um tutorial mostrando o sistema na prática.</p>
         </div>
 
-        <!--
-          Quando o vídeo estiver pronto, troca este bloco pelo embed do YouTube, por exemplo:
-          <div style="max-width:720px;margin:0 auto;aspect-ratio:16/9;border-radius:16px;overflow:hidden;">
-            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/SEU_ID_AQUI"
-              title="Como usar o AgroUNI" frameborder="0" allowfullscreen></iframe>
-          </div>
-        -->
         <div class="video-placeholder reveal">
             <div class="video-placeholder__play">
                 <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
@@ -134,7 +164,8 @@
     </div>
 </section>
 
-<section class="sobre">
+
+<section class="sobre" id="sobre">
     <div class="container">
         <div class="secao-titulo reveal">
             <span class="eyebrow">03 · A trajetória</span>
@@ -203,6 +234,21 @@
                 <strong>[Nome do integrante]</strong>
                 <span>[Função no projeto]</span>
             </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="suporte" id="contato" style="padding: 4rem 0; background-color: rgba(0,0,0,0.02);">
+    <div class="container" style="text-align: center;">
+        <div class="secao-titulo reveal">
+            <span class="eyebrow">Atendimento</span>
+            <h2>Precisa de ajuda? Fale com o suporte</h2>
+            <p>Dúvidas sobre o sistema ou problemas com reservas? Conte conosco.</p>
+        </div>
+        <div class="reveal" style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 1.5rem;">
+            <a href="mailto:suporte@agrouni.com" class="entrar" style="text-decoration: none;">Enviar E-mail</a>
+            <a href="https://wa.me/5500000000000" target="_blank" rel="noopener" class="entrar" style="background-color: #2e7d32; text-decoration: none;">WhatsApp Suporte</a>
         </div>
     </div>
 </section>
