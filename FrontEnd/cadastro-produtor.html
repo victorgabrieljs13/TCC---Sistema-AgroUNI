@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgroUNI — Cadastro do produtor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="producer-register-shell">
+    <section class="producer-register-intro">
+        <a class="register-brand" href="index.html" aria-label="Voltar para o AgroUNI">
+            <span class="register-brand__mark">A</span>
+            <span><strong>AgroUNI</strong><small>Conexão direta entre produtor e consumidor</small></span>
+        </a>
+
+        <div class="register-intro-content">
+            <p class="login-overline">CADASTRO DO PRODUTOR</p>
+            <h1>Tenha seu box<br><em>na palma da mão.</em></h1>
+            <p>Crie sua conta para cadastrar produtos, controlar o estoque e receber reservas dos consumidores em um só lugar.</p>
+            <div class="register-points">
+                <div class="register-point"><span>✓</span><strong>Cadastre seus produtos e preços.</strong></div>
+                <div class="register-point"><span>✓</span><strong>Acompanhe estoque e movimentações.</strong></div>
+                <div class="register-point"><span>✓</span><strong>Receba e responda aos pedidos.</strong></div>
+            </div>
+        </div>
+
+        <a class="register-back" href="index.html">&larr; Voltar para o site do AgroUNI</a>
+    </section>
+
+    <section class="producer-register-panel">
+        <div class="producer-register-card">
+            <div class="register-heading">
+                <p class="login-overline" style="color:var(--verde-escuro)">PRIMEIRO ACESSO</p>
+                <h2>Crie sua conta de produtor</h2>
+                <p>Preencha seus dados para começar a usar o painel do AgroUNI.</p>
+            </div>
+
+            <form id="form-cadastro-produtor" novalidate>
+                <div class="register-grid">
+                    <div class="field field--full">
+                        <label for="nome">Nome do produtor / responsável</label>
+                        <input class="input" type="text" id="nome" autocomplete="name" placeholder="Ex.: João da Silva" required maxlength="100">
+                    </div>
+                    <div class="field">
+                        <label for="cpf_cnpj">CPF ou CNPJ</label>
+                        <input class="input" type="text" id="cpf_cnpj" inputmode="numeric" placeholder="000.000.000-00" required maxlength="18">
+                    </div>
+                    <div class="field">
+                        <label for="telefone">Telefone / WhatsApp</label>
+                        <input class="input" type="tel" id="telefone" inputmode="tel" autocomplete="tel" placeholder="(71) 9 9999-9999" required maxlength="16">
+                    </div>
+                    <div class="field field--full">
+                        <label for="email">Email</label>
+                        <input class="input" type="email" id="email" autocomplete="email" placeholder="voce@exemplo.com" required maxlength="100">
+                    </div>
+                    <div class="field">
+                        <label for="box">Número do box <span style="font-weight:400;color:var(--text-muted)">(opcional)</span></label>
+                        <input class="input" type="text" id="box" placeholder="Ex.: Box 24" maxlength="20">
+                    </div>
+                    <div class="field">
+                        <label for="senha">Senha</label>
+                        <div class="password-input-wrap">
+                            <input class="input" type="password" id="senha" autocomplete="new-password" placeholder="Mínimo de 6 caracteres" required minlength="6">
+                            <button type="button" class="password-toggle" data-target="senha" aria-label="Mostrar senha">Mostrar</button>
+                        </div>
+                    </div>
+                    <div class="field field--full">
+                        <label for="confirmar-senha">Confirmar senha</label>
+                        <div class="password-input-wrap">
+                            <input class="input" type="password" id="confirmar-senha" autocomplete="new-password" placeholder="Digite a senha novamente" required minlength="6">
+                            <button type="button" class="password-toggle" data-target="confirmar-senha" aria-label="Mostrar senha">Mostrar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="register-tip">Use um email que você tenha acesso: ele também será usado para recuperar a senha.</p>
+                <button type="submit" class="btn btn-primary register-submit" id="btn-cadastrar-produtor">Criar conta de produtor</button>
+                <div class="register-error" id="mensagem-erro" role="alert"></div>
+                <div class="register-success" id="mensagem-sucesso" role="status"></div>
+            </form>
+
+            <div class="register-card-footer">
+                <span>Já possui uma conta?</span>
+                <a href="login.html">Entrar como produtor</a>
+                <a href="login-consumidor.html">Entrar como consumidor</a>
+            </div>
+        </div>
+    </section>
+</div>
+<script src="js/config.js"></script>
+<script src="js/cadastro-produtor.js"></script>
+</body>
+</html>

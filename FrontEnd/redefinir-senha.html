@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgroUNI — Nova senha</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/vitrine.css">
+</head>
+<body>
+    <main class="password-shell">
+        <section class="password-card">
+            <a class="password-brand" href="index.html">
+                <span class="password-brand__mark">A</span>
+                <span><strong>AgroUNI</strong><small>Nova senha</small></span>
+            </a>
+
+            <div class="password-icon password-icon--success" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22a10 10 0 1 0-10-10"/><path d="M22 4l-10 10-3-3"/></svg>
+            </div>
+            <p class="password-eyebrow" id="password-eyebrow">SEGURANÇA DA CONTA</p>
+            <h1>Crie uma nova senha</h1>
+            <p class="password-sub">Escolha uma senha com pelo menos 6 caracteres. Depois disso, você poderá entrar normalmente.</p>
+
+            <form id="form-redefinir-senha">
+                <input type="hidden" id="token">
+                <input type="hidden" id="tipo">
+
+                <div class="field">
+                    <label for="nova-senha">Nova senha</label>
+                    <input class="input" type="password" id="nova-senha" minlength="6" autocomplete="new-password" required>
+                </div>
+                <div class="field">
+                    <label for="confirmar-senha">Confirmar nova senha</label>
+                    <input class="input" type="password" id="confirmar-senha" minlength="6" autocomplete="new-password" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary password-submit" id="btn-redefinir">Salvar nova senha</button>
+                <div class="mensagem-erro" id="mensagem-erro"></div>
+                <div class="mensagem-sucesso" id="mensagem-sucesso"></div>
+            </form>
+
+            <div class="password-backlinks">
+                <a id="link-login" href="login.html">&larr; Ir para o login</a>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/config.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/recuperacao-senha.js"></script>
+</body>
+</html>

@@ -8,42 +8,65 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body class="login-page">
+<div class="producer-login-shell">
+    <section class="login-intro">
+        <a class="login-brand" href="index.html" aria-label="AgroUNI">
+            <span class="login-brand__mark">A</span>
+            <span><strong>AgroUNI</strong><small>Gestão inteligente para feirantes</small></span>
+        </a>
 
-<div class="login-shell">
-    <div class="login-card">
-        <div class="login-marca">
-            <div class="marca">A</div>
-            <div>
-                <strong>AgroUNI</strong>
+        <div class="login-intro__content">
+            <p class="login-overline">ÁREA DO FEIRANTE</p>
+            <h1>Seu estoque,<br><em>mais simples de cuidar.</em></h1>
+            <p>Organize produtos, acompanhe o estoque, registre movimentações e receba pedidos em um único lugar.</p>
 
-                <span>Gestão de estoque para feirantes</span>
+            <div class="login-benefits">
+                <div><span class="benefit-icon">✓</span><span><strong>Controle de estoque</strong><small>Entradas, saídas e alertas de reposição.</small></span></div>
+                <div><span class="benefit-icon">✓</span><span><strong>Produtos organizados</strong><small>Preços e informações sempre atualizados.</small></span></div>
+                <div><span class="benefit-icon">✓</span><span><strong>Pedidos em um só lugar</strong><small>Veja as reservas e responda com agilidade.</small></span></div>
             </div>
         </div>
 
-        <form id="form-login">
-            <div class="field">
-                <label for="email">Email</label>
-                <input class="input" type="email" id="email" required>
+        <a class="login-public-link" href="index.html">&larr; Voltar para o site do AgroUNI</a>
+    </section>
+
+    <section class="producer-login-panel">
+        <div class="producer-login-card">
+            <div class="login-card-heading">
+                <p class="login-overline">BEM-VINDO DE VOLTA</p>
+                <h2>Entrar na sua conta</h2>
+                <p>Use seu email e senha para acessar o painel do feirante.</p>
             </div>
-            <div class="field">
-                <label for="senha">Senha</label>
-                <input class="input" type="password" id="senha" required>
+
+            <form id="form-login">
+                <div class="field">
+                    <label for="email">Email</label>
+                    <input class="input" type="email" id="email" autocomplete="email" placeholder="voce@exemplo.com" required>
+                </div>
+                <div class="field">
+                    <div class="field-label-row"><label for="senha">Senha</label><a href="recuperar-senha.html?tipo=feirante">Esqueci a senha</a></div>
+                    <div class="password-input-wrap">
+                        <input class="input" type="password" id="senha" autocomplete="current-password" placeholder="Digite sua senha" required>
+                        <button type="button" class="password-toggle" data-target="senha" aria-label="Mostrar senha">Mostrar</button>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary login-submit" id="btn-entrar">Entrar no painel</button>
+                <div class="mensagem-erro" id="mensagem-erro"></div>
+            </form>
+
+            <div class="login-panel-footer">
+                <span>Problemas para acessar?</span>
+                <a href="recuperar-senha.html?tipo=feirante">Recupere sua senha</a>
             </div>
 
-            <button type="submit" class="btn btn-primary" id="btn-entrar" style="width:100%; justify-content:center;">Entrar</button>
-
-            <div class="mensagem-erro" id="mensagem-erro"></div>
-        </form>
-
-        <p style="text-align:center; margin-top: 20px; font-size: 13px;">
-            <a href="index.html" style="color: var(--text-muted);">&larr; Voltar pra tela inicial</a>
-        </p>
-    </div>
+            <div class="login-register-callout">
+                <span>Ainda não possui uma conta de produtor?</span>
+                <a href="cadastro-produtor.html">Criar cadastro</a>
+            </div>
+        </div>
+    </section>
 </div>
-
-<script src="js/config.js"></script>
-<script src="js/ui.js"></script>
-<script src="js/auth.js"></script>
 </body>
 </html>

@@ -19,6 +19,19 @@ const formLogin = document.getElementById('form-login');
 const mensagemErroLogin = document.getElementById('mensagem-erro');
 const btnEntrar = document.getElementById('btn-entrar');
 
+// Feedback rápido quando o usuário acabou de criar a conta.
+const parametrosLogin = new URLSearchParams(window.location.search);
+if (parametrosLogin.get('cadastro') === 'sucesso') {
+    const sucessoCadastro = document.getElementById('mensagem-erro');
+    if (sucessoCadastro) {
+        sucessoCadastro.textContent = 'Cadastro realizado! Entre com o email e a senha que você acabou de criar.';
+        sucessoCadastro.style.display = 'block';
+        sucessoCadastro.style.background = 'var(--verde-tint)';
+        sucessoCadastro.style.borderColor = '#bfe0c5';
+        sucessoCadastro.style.color = 'var(--verde-escuro)';
+    }
+}
+
 if (formLogin) {
     formLogin.addEventListener('submit', async function (evento) {
         evento.preventDefault();
@@ -56,3 +69,14 @@ if (formLogin) {
         }
     });
 }
+
+document.querySelectorAll('.password-toggle').forEach((botao) => {
+    botao.addEventListener('click', () => {
+        const alvo = document.getElementById(botao.dataset.target);
+        if (!alvo) return;
+        const exibindo = alvo.type === 'text';
+        alvo.type = exibindo ? 'password' : 'text';
+        botao.textContent = exibindo ? 'Mostrar' : 'Ocultar';
+        botao.setAttribute('aria-label', exibindo ? 'Mostrar senha' : 'Ocultar senha');
+    });
+});

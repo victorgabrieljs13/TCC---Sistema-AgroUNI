@@ -309,3 +309,279 @@ a { color: inherit; }
 
     .toast-container { left: var(--space-3); right: var(--space-3); bottom: 76px; max-width: none; }
 }
+
+/* ============================================================
+   AgroUNI — aprimoramentos de interface
+   ============================================================ */
+
+.login-page {
+    background: #11110f;
+}
+
+.producer-login-shell {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(420px, .85fr);
+}
+
+.login-intro {
+    position: relative;
+    overflow: hidden;
+    padding: 48px clamp(28px, 6vw, 88px);
+    color: #f7f7f5;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background:
+        radial-gradient(circle at 15% 18%, rgba(47,158,68,.24), transparent 28%),
+        radial-gradient(circle at 85% 80%, rgba(232,178,59,.10), transparent 24%),
+        #171714;
+}
+
+.login-intro::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+    background-size: 40px 40px;
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,.7), transparent 88%);
+    pointer-events: none;
+}
+
+.login-brand, .login-public-link, .login-intro__content { position: relative; z-index: 1; }
+
+.login-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    width: fit-content;
+    color: #fff;
+    text-decoration: none;
+}
+
+.login-brand__mark {
+    width: 42px;
+    height: 42px;
+    display: grid;
+    place-items: center;
+    border-radius: 8px;
+    background: var(--verde);
+    color: #fff;
+    font-size: 19px;
+    font-weight: 800;
+    box-shadow: 0 10px 30px rgba(47,158,68,.25);
+}
+
+.login-brand strong { display: block; font-size: 18px; letter-spacing: -.02em; }
+.login-brand small { display: block; margin-top: 1px; font-size: 12px; color: #8e8e86; }
+
+.login-intro__content { max-width: 620px; padding: 52px 0; }
+.login-overline { margin: 0 0 12px; font-size: 11px; font-weight: 700; letter-spacing: .14em; color: #8dbf96; }
+.login-intro h1 { margin: 0; font-size: clamp(42px, 5vw, 68px); line-height: .98; letter-spacing: -.045em; max-width: 720px; }
+.login-intro h1 em { color: #dfe6d9; font-style: normal; }
+.login-intro__content > p:not(.login-overline) { max-width: 570px; margin: 24px 0 0; color: #a8a89f; font-size: 16px; line-height: 1.7; }
+
+.login-benefits {
+    display: grid;
+    gap: 14px;
+    margin-top: 36px;
+    max-width: 560px;
+}
+
+.login-benefits > div { display: flex; align-items: flex-start; gap: 13px; }
+.benefit-icon { width: 25px; height: 25px; flex: 0 0 auto; display: grid; place-items: center; border-radius: 50%; border: 1px solid #3e5f46; color: #86bf91; font-size: 13px; margin-top: 2px; }
+.login-benefits strong { display: block; color: #ededE7; font-size: 13.5px; }
+.login-benefits small { display: block; margin-top: 2px; color: #8e8e86; font-size: 12.5px; }
+.login-public-link { color: #85857e; font-size: 12.5px; text-decoration: none; }
+.login-public-link:hover { color: #fff; }
+
+.producer-login-panel {
+    display: grid;
+    place-items: center;
+    padding: 30px;
+    background: var(--bg);
+}
+
+.producer-login-card {
+    width: min(100%, 470px);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: clamp(28px, 5vw, 42px);
+    box-shadow: 0 24px 70px rgba(0,0,0,.12);
+}
+
+.login-card-heading h2 { margin: 0; font-size: 27px; letter-spacing: -.03em; }
+.login-card-heading > p:last-child { margin: 8px 0 28px; color: var(--text-muted); font-size: 13.5px; }
+
+.field-label-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 6px; }
+.field-label-row label { margin: 0; }
+.field-label-row a, .consumer-password-row a { font-size: 12px; color: var(--verde-escuro); text-decoration: none; font-weight: 600; }
+.field-label-row a:hover, .consumer-password-row a:hover { text-decoration: underline; }
+
+.password-input-wrap { position: relative; }
+.password-input-wrap .input { padding-right: 72px; }
+.password-toggle { position: absolute; top: 50%; right: 8px; transform: translateY(-50%); border: 0; background: transparent; color: var(--text-muted); cursor: pointer; font: 600 11.5px var(--font); padding: 5px 7px; border-radius: 5px; }
+.password-toggle:hover { background: var(--surface-2); color: var(--text); }
+.login-submit { width: 100%; justify-content: center; min-height: 43px; margin-top: 4px; }
+.login-panel-footer { display: flex; justify-content: center; gap: 6px; flex-wrap: wrap; margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--border); font-size: 12.5px; color: var(--text-muted); }
+.login-panel-footer a { color: var(--verde-escuro); font-weight: 700; text-decoration: none; }
+
+/* Cabeçalho interno mais forte e cards com mais hierarquia */
+.app-main {
+    background:
+        radial-gradient(circle at 93% 0%, rgba(47,158,68,.05), transparent 26%),
+        var(--bg);
+}
+
+.page-head { padding-bottom: 18px; border-bottom: 1px solid var(--border); }
+.page-head h1 { font-size: clamp(24px, 3vw, 30px); letter-spacing: -.035em; }
+.card, .table-wrap, .stat-card { transition: border-color .15s, transform .15s, box-shadow .15s; }
+.card:hover, .stat-card:hover { border-color: color-mix(in srgb, var(--verde) 28%, var(--border)); }
+
+.sidebar {
+    background: linear-gradient(180deg, #151512 0%, #1a1a17 100%);
+}
+
+.sidebar-brand { margin-bottom: 14px; }
+.sidebar-brand::after {
+    content: 'PAINEL DO FEIRANTE';
+    display: block;
+    position: absolute;
+}
+.sidebar-brand { position: relative; }
+
+.sidebar-nav { gap: 5px; }
+.nav-item { padding-top: 11px; padding-bottom: 11px; border-left-width: 2px; }
+.nav-item svg { opacity: .8; }
+.nav-item.active svg, .nav-item:hover svg { opacity: 1; }
+.sidebar-user {
+    padding: 9px 8px;
+    border: 1px solid var(--sidebar-border);
+    border-radius: 7px;
+    background: rgba(255,255,255,.02);
+}
+.sidebar-user span { max-width: 150px; }
+
+@media (min-width: 881px) {
+    .sidebar-brand::after {
+        position: absolute;
+        left: 40px;
+        top: 31px;
+        font: 700 8px var(--font);
+        letter-spacing: .11em;
+        color: #707068;
+    }
+    .sidebar-brand span { margin-bottom: 4px; }
+}
+
+@media (max-width: 980px) {
+    .producer-login-shell { grid-template-columns: 1fr; }
+    .login-intro { min-height: 390px; }
+    .login-intro__content { padding: 48px 0 36px; }
+    .login-intro h1 { font-size: 48px; }
+    .producer-login-panel { padding: 22px; }
+}
+
+@media (max-width: 560px) {
+    .login-intro { min-height: 330px; padding: 28px 22px; }
+    .login-intro__content { padding: 38px 0 24px; }
+    .login-intro h1 { font-size: 39px; }
+    .login-intro__content > p:not(.login-overline), .login-benefits { display: none; }
+    .producer-login-panel { padding: 12px; }
+    .producer-login-card { padding: 24px 18px; border-radius: 9px; }
+}
+
+/* Recuperação de senha */
+.password-shell { min-height: 100vh; display: grid; place-items: center; padding: 28px 18px; background: radial-gradient(circle at 20% 10%, rgba(47,158,68,.12), transparent 24%), var(--bg); }
+.password-card { width: min(100%, 470px); background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 30px; box-shadow: 0 20px 60px rgba(10,10,8,.10); }
+.password-brand { display: inline-flex; align-items: center; gap: 11px; text-decoration: none; color: var(--text); margin-bottom: 26px; }
+.password-brand__mark { width: 37px; height: 37px; border-radius: 8px; display: grid; place-items: center; background: var(--verde); color: #fff; font-weight: 800; }
+.password-brand strong { display: block; font-size: 16px; }
+.password-brand small { display: block; font-size: 11px; color: var(--text-muted); }
+.password-icon { width: 46px; height: 46px; display: grid; place-items: center; border-radius: 50%; background: var(--verde-tint); color: var(--verde-escuro); margin-bottom: 18px; }
+.password-icon svg { width: 23px; height: 23px; }
+.password-icon--success { background: var(--verde-tint); }
+.password-card h1 { margin: 0; font-size: 28px; letter-spacing: -.03em; }
+.password-sub { margin: 9px 0 25px; color: var(--text-muted); font-size: 13.5px; }
+.password-submit { width: 100%; justify-content: center; min-height: 43px; }
+.password-backlinks { margin-top: 22px; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.password-backlinks a { color: var(--verde-escuro); font-size: 12.5px; font-weight: 700; text-decoration: none; }
+.password-backlinks a:hover { text-decoration: underline; }
+
+.consumer-password-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 6px; }
+.consumer-password-row label { margin: 0; font-weight: 600; font-size: 13px; }
+
+/* Microdetalhes do painel */
+.page-head > div:first-child::before {
+    content: 'AGROUNI';
+    display: block;
+    font: 700 9px var(--font);
+    letter-spacing: .13em;
+    color: var(--verde);
+    margin-bottom: 7px;
+}
+
+.card > h3 { font-weight: 700; }
+.table-wrap .table th:first-child, .table-wrap .table td:first-child { padding-left: 18px; }
+
+@media (max-width: 880px) {
+    .page-head { padding-bottom: 14px; }
+    .page-head > div:first-child::before { margin-bottom: 5px; }
+}
+
+
+.login-register-callout {
+    margin-top: 14px; padding: 12px 14px; border: 1px solid #d9eadc;
+    border-radius: 8px; background: var(--verde-tint); display:flex; align-items:center;
+    justify-content:space-between; gap:12px; flex-wrap:wrap; font-size:12px; color:var(--text-muted);
+}
+.login-register-callout a { color:var(--verde-escuro); font-weight:700; text-decoration:none; }
+.login-register-callout a:hover { text-decoration:underline; }
+
+/* Cadastro de produtor */
+.producer-register-shell { min-height: 100vh; display:grid; grid-template-columns:minmax(320px, .8fr) minmax(520px, 1.2fr); background:var(--bg); }
+.producer-register-intro { background:var(--sidebar-bg); color:#fff; padding:34px clamp(26px, 5vw, 72px); display:flex; flex-direction:column; justify-content:space-between; }
+.register-brand { display:inline-flex; align-items:center; gap:11px; color:#fff; text-decoration:none; }
+.register-brand__mark { width:42px; height:42px; border-radius:8px; display:grid; place-items:center; background:var(--verde); color:#fff; font-weight:800; }
+.register-brand strong { display:block; font-size:18px; }
+.register-brand small { display:block; margin-top:1px; color:#91918a; font-size:12px; }
+.register-intro-content { max-width:560px; padding:50px 0; }
+.register-intro-content h1 { margin:0; max-width:620px; font-size:clamp(38px, 4.5vw, 60px); line-height:1; letter-spacing:-.045em; }
+.register-intro-content h1 em { color:#a8d1ae; font-style:normal; }
+.register-intro-content > p:not(.login-overline) { margin:22px 0 0; max-width:520px; color:#a8a89f; font-size:15px; line-height:1.7; }
+.register-points { display:grid; gap:12px; margin-top:30px; }
+.register-point { display:flex; gap:10px; align-items:flex-start; color:#d8d8d1; font-size:13px; }
+.register-point span:first-child { width:20px; height:20px; flex:0 0 auto; border-radius:50%; border:1px solid #416649; display:grid; place-items:center; color:#8bc295; font-size:11px; }
+.register-back { color:#85857e; font-size:12.5px; text-decoration:none; }
+.register-back:hover { color:#fff; }
+.producer-register-panel { display:grid; place-items:center; padding:32px; background:var(--bg); }
+.producer-register-card { width:min(100%, 680px); background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:clamp(26px, 5vw, 42px); box-shadow:0 24px 70px rgba(0,0,0,.12); }
+.register-heading h2 { margin:0; font-size:28px; letter-spacing:-.03em; }
+.register-heading > p:last-child { margin:8px 0 26px; color:var(--text-muted); font-size:13.5px; }
+.register-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+.register-grid .field { margin-bottom:0; }
+.register-grid .field--full { grid-column:1 / -1; }
+.register-tip { margin:-2px 0 18px; color:var(--text-muted); font-size:11.5px; }
+.register-submit { width:100%; justify-content:center; min-height:44px; margin-top:6px; }
+.register-success { margin-top:12px; padding:11px 13px; border-radius:7px; border:1px solid #bfe0c5; background:#eef8f0; color:#1b5e33; font-size:12.5px; display:none; }
+.register-error { margin-top:12px; padding:11px 13px; border-radius:7px; border:1px solid #efc2b8; background:#fdf2ef; color:#9b3020; font-size:12.5px; display:none; }
+.register-card-footer { margin-top:22px; padding-top:17px; border-top:1px solid var(--border); display:flex; justify-content:space-between; gap:14px; flex-wrap:wrap; color:var(--text-muted); font-size:12.5px; }
+.register-card-footer a { color:var(--verde-escuro); font-weight:700; text-decoration:none; }
+.register-card-footer a:hover { text-decoration:underline; }
+
+@media (max-width: 980px) {
+    .producer-register-shell { grid-template-columns:1fr; }
+    .producer-register-intro { min-height:360px; }
+    .register-intro-content { padding:44px 0 32px; }
+}
+@media (max-width: 640px) {
+    .producer-register-intro { min-height:300px; padding:24px 20px; }
+    .register-intro-content { padding:34px 0 22px; }
+    .register-intro-content h1 { font-size:38px; }
+    .register-intro-content > p:not(.login-overline), .register-points { display:none; }
+    .producer-register-panel { padding:12px; }
+    .producer-register-card { padding:24px 18px; border-radius:9px; }
+    .register-grid { grid-template-columns:1fr; }
+    .register-grid .field--full { grid-column:auto; }
+}

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgroUNI — Recuperar senha</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/vitrine.css">
+</head>
+<body>
+    <main class="password-shell">
+        <section class="password-card">
+            <a class="password-brand" href="index.html">
+                <span class="password-brand__mark">A</span>
+                <span><strong>AgroUNI</strong><small>Recuperação de acesso</small></span>
+            </a>
+
+            <div class="password-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.778-7.778z"/><path d="M15 7l2 2"/><path d="M13 9l2 2"/><path d="M16 4l4 4"/></svg>
+            </div>
+            <p class="password-eyebrow" id="password-eyebrow">ACESSO DO FEIRANTE</p>
+            <h1>Esqueceu sua senha?</h1>
+            <p class="password-sub">Informe o email da sua conta. Vamos enviar um link seguro para criar uma nova senha.</p>
+
+            <form id="form-recuperar-senha">
+                <div class="field">
+                    <label for="email">Email da conta</label>
+                    <input class="input" type="email" id="email" autocomplete="email" placeholder="voce@exemplo.com" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary password-submit" id="btn-recuperar">Enviar link de recuperação</button>
+                <div class="mensagem-erro" id="mensagem-erro"></div>
+                <div class="mensagem-sucesso" id="mensagem-sucesso"></div>
+            </form>
+
+            <div class="password-backlinks">
+                <a id="link-login" href="login.html">&larr; Voltar para o login</a>
+                <a id="link-trocar-perfil" href="login-consumidor.html">Entrar como consumidor</a>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/config.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/recuperacao-senha.js"></script>
+</body>
+</html>

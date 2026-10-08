@@ -29,9 +29,26 @@
         </ul>
     </nav>
 
-    <!-- Área de Ações: Login + Botão Ocultar Menu -->
+    <!-- Área de Ações: Entrada por perfil + Botão Ocultar Menu -->
     <div class="home-topo__acoes">
-        <a href="login.html" class="entrar">Já sou produtor — Entrar</a>
+        <div class="entrar-menu" id="menuEntrar">
+            <button type="button" class="entrar entrar--botao" id="btnEntrarMenu" aria-expanded="false" aria-haspopup="true">
+                Entrar
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="entrar-menu__dropdown" id="dropdownEntrar" role="menu">
+                <div class="entrar-menu__titulo">Acessar minha conta</div>
+                <a href="login-consumidor.html" class="entrar-opcao" role="menuitem">
+                    <span class="entrar-opcao__icone entrar-opcao__icone--consumidor">🛒</span>
+                    <span><strong>Consumidor</strong><small>Entrar para ver pedidos e reservas</small></span>
+                </a>
+                <a href="login.html" class="entrar-opcao" role="menuitem">
+                    <span class="entrar-opcao__icone entrar-opcao__icone--produtor">🌱</span>
+                    <span><strong>Produtor</strong><small>Entrar no painel de gestão</small></span>
+                </a>
+                <div class="entrar-menu__rodape">Ainda não é produtor? <a href="cadastro-produtor.html">Criar conta</a></div>
+            </div>
+        </div>
         
         <button type="button" id="btnOcultarMenu" class="btn-ocultar" title="Ocultar menu" aria-label="Ocultar menu">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -56,7 +73,7 @@
     <div class="container">
         <span class="hero__selo">Conectando o campo ao consumidor</span>
         <h1>Mais saúde e qualidade,<br><span>direto do produtor</span></h1>
-        <p>O AgroUNI conecta os produtores da central de abastecimento a quem busca alimentos frescos e saudáveis, sem intermediário. Escolha como você quer entrar:</p>
+        <p>O AgroUNI conecta os produtores da central de abastecimento a quem busca alimentos frescos e saudáveis, sem intermediário. Escolha como você quer comprar, entrar ou começar a vender:</p>
 
         <div class="hero__escolha">
             <a href="vitrine.html" class="escolha-card escolha-card--consumidor">
@@ -67,14 +84,15 @@
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
                 </span>
             </a>
-            <a href="login.html" class="escolha-card escolha-card--produtor">
+            <div class="escolha-card escolha-card--produtor">
                 <span class="escolha-card__eyebrow">Tenho uma banca</span>
                 <h2>Sou produtor</h2>
                 <p>Gerencie seus produtos, estoque e pedidos em um painel só seu.</p>
-                <span class="escolha-card__cta">Entrar no painel
+                <a href="login.html" class="escolha-card__cta">Entrar no painel
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
-                </span>
-            </a>
+                </a>
+                <span class="escolha-card__secondary">Ainda não tem conta? <a href="cadastro-produtor.html">Cadastre-se como produtor</a></span>
+            </div>
         </div>
     </div>
 </section>

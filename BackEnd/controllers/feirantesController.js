@@ -37,17 +37,30 @@ async function buscarFeirantePorId(req, res) {
 // Cadastrar novo feirante
 async function cadastrarFeirante(req, res) {
     try {
-        const { nome, cpf_cnpj, telefone, email, senha, box } = req.body;
+        const nome = String(req.body.nome || '').trim();
+        const cpf_cnpj = String(req.body.cpf_cnpj || '').replace(/\D/g, '');
+        const telefone = String(req.body.telefone || '').replace(/\D/g, '');
+        const email = String(req.body.email || '').trim().toLowerCase();
+        const senha = String(req.body.senha || '');
+        const box = req.body.box ? String(req.body.box).trim() : null;
 
         if (!nome || !cpf_cnpj || !email || !senha) {
             return res.status(400).json({ mensagem: 'Nome, CPF/CNPJ, email e senha são obrigatórios.' });
+        }
+
+        if (![11, 14].includes(cpf_cnpj.length)) {
+            return res.status(400).json({ mensagem: 'CPF/CNPJ inválido. Informe 11 ou 14 dígitos.' });
+        }
+
+        if (senha.length < 6) {
+            return res.status(400).json({ mensagem: 'A senha deve ter pelo menos 6 caracteres.' });
         }
 
         const senhaHash = await bcrypt.hash(senha, 10);
 
         const [resultado] = await pool.query(
             'INSERT INTO feirantes (nome, cpf_cnpj, telefone, email, senha, box) VALUES (?, ?, ?, ?, ?, ?)',
-            [nome, cpf_cnpj, telefone, email, senhaHash, box]
+            [nome, cpf_cnpj, telefone || null, email, senhaHash, box]
         );
 
         res.status(201).json({ mensagem: 'Feirante cadastrado com sucesso!', id: resultado.insertId });

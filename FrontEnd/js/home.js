@@ -49,3 +49,28 @@ if (headerMenu && btnOcultar && btnMostrar) {
         btnMostrar.classList.remove('btn-mostrar-menu--visivel');
     });
 }
+
+
+// Menu de entrada por perfil (consumidor ou produtor)
+const menuEntrar = document.getElementById('menuEntrar');
+const btnEntrarMenu = document.getElementById('btnEntrarMenu');
+const dropdownEntrar = document.getElementById('dropdownEntrar');
+
+if (menuEntrar && btnEntrarMenu && dropdownEntrar) {
+    const fecharMenuEntrar = () => {
+        menuEntrar.classList.remove('entrar-menu--aberto');
+        btnEntrarMenu.setAttribute('aria-expanded', 'false');
+    };
+
+    btnEntrarMenu.addEventListener('click', (evento) => {
+        evento.stopPropagation();
+        const aberto = menuEntrar.classList.toggle('entrar-menu--aberto');
+        btnEntrarMenu.setAttribute('aria-expanded', String(aberto));
+    });
+
+    dropdownEntrar.addEventListener('click', (evento) => evento.stopPropagation());
+    document.addEventListener('click', fecharMenuEntrar);
+    document.addEventListener('keydown', (evento) => {
+        if (evento.key === 'Escape') fecharMenuEntrar();
+    });
+}
