@@ -4,64 +4,95 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vitrine AgroUNI — Direto da Central de Abastecimento</title>
+  <meta name="description" content="Explore produtos frescos direto dos produtores e feirantes da central de abastecimento de Candeias e região.">
+  
+  <!-- Fontes Oficiais do AgroUNI -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;700&family=Open+Sans:wght@400;500;600&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+  
   <link rel="stylesheet" href="css/vitrine.css">
 </head>
 <body>
 
+  <!-- CABEÇALHO DA VITRINE -->
   <header class="vt-header">
     <div class="vt-header__topo">
-      <a href="index.html" class="vt-header__voltar">&larr; AgroUNI</a>
+      
+      <!-- Agrupamento da Logo + Botão Voltar -->
+      <div class="vt-header__marcas">
+        <a href="index.html" class="vt-header__logo-link" title="Ir para a página inicial">
+          <img src="img/logo.png" alt="Logo AgroUNI" class="vt-header__logo-img">
+        </a>
+
+        <a href="index.html" class="vt-header__voltar">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+          <span>Voltar ao Início</span>
+        </a>
+      </div>
+
       <div class="vt-header__conta" id="areaConta"></div>
     </div>
-    <p class="vt-header__selo">Central de Abastecimento</p>
-    <h1 class="vt-header__titulo">Vitrine AgroUNI</h1>
-    <p class="vt-header__sub">Direto da roça pra sua mesa. Escolhe os produtos, reserva com o produtor e combina a retirada.</p>
+    
+    <div class="vt-header__conteudo">
+      <span class="vt-header__selo">Central de Abastecimento de Candeias</span>
+      <h1 class="vt-header__titulo">Vitrine AgroUNI</h1>
+      <p class="vt-header__sub">Direto do campo para a sua mesa. Escolha os alimentos frescos, monte sua reserva e combine a retirada direto com o produtor.</p>
+    </div>
   </header>
 
-  <div class="vt-busca">
-    <input
-      type="search"
-      id="campoBusca"
-      class="vt-busca__input"
-      placeholder="Procurar produto…"
-      autocomplete="off"
-      aria-label="Procurar produto"
-    >
-    <div id="filtrosCategoria" class="vt-filtros" role="group" aria-label="Filtrar por categoria"></div>
-  </div>
+  <!-- BARRA DE BUSCA E FILTROS -->
+  <section class="vt-busca-container">
+    <div class="vt-busca">
+      <div class="vt-busca__wrapper">
+        <svg class="vt-busca__icone" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input
+          type="search"
+          id="campoBusca"
+          class="vt-busca__input"
+          placeholder="Procurar banana, tomate, alface, queijo..."
+          autocomplete="off"
+          aria-label="Procurar produto"
+        >
+      </div>
+      <div id="filtrosCategoria" class="vt-filtros" role="group" aria-label="Filtrar por categoria"></div>
+    </div>
+  </section>
 
+  <!-- CONTEÚDO PRINCIPAL DE PRODUTOS -->
   <main id="conteudoVitrine" class="vt-conteudo" aria-live="polite">
     <div id="estadoCarregando" class="vt-estado">
-      <p class="vt-estado__selo">Abrindo a feira…</p>
-      <p>Isso pode levar alguns segundos na primeira visita do dia.</p>
+      <div class="vt-spinner" aria-hidden="true"></div>
+      <p class="vt-estado__selo">Carregando a feira...</p>
+      <p class="vt-estado__subtext">Buscando os produtos mais frescos das bancas locais.</p>
     </div>
   </main>
 
+  <!-- BOTAO FLUTUANTE DA CESTA -->
   <button id="botaoCesta" class="vt-cesta-flutuante" hidden aria-haspopup="dialog">
     <span class="vt-cesta-flutuante__icone" aria-hidden="true">🧺</span>
     <span class="vt-cesta-flutuante__texto">
-      <strong id="cestaQtd">0</strong> item(ns) · <span id="cestaTotal">R$ 0,00</span>
+      Minha Cesta (<strong id="cestaQtd">0</strong>) · <span id="cestaTotal">R$ 0,00</span>
     </span>
   </button>
 
+  <!-- DRAWER DA CESTA DE RESERVAS -->
   <div id="painelCesta" class="vt-cesta-painel" hidden role="dialog" aria-modal="true" aria-labelledby="tituloCesta">
     <div class="vt-cesta-painel__cartao">
-      <button id="fecharCesta" class="vt-cesta-painel__fechar" aria-label="Fechar reserva">×</button>
-      <h2 id="tituloCesta">Sua reserva</h2>
+      <button id="fecharCesta" class="vt-cesta-painel__fechar" aria-label="Fechar reserva">&times;</button>
+      <h2 id="tituloCesta">Sua Reserva</h2>
       <p class="vt-cesta-painel__banca" id="cestaBancaNome"></p>
 
       <ul id="cestaItens" class="vt-cesta-itens"></ul>
 
       <div class="vt-cesta-painel__total">
-        <span>Total</span>
+        <span>Total da Reserva:</span>
         <strong id="cestaPainelTotal">R$ 0,00</strong>
       </div>
 
       <form id="formReserva" class="vt-form-reserva">
         <div class="vt-pagamento">
-          <label>Forma de pagamento</label>
+          <label>Forma de pagamento sugerida</label>
           <div class="vt-pagamento__opcoes" id="opcoesPagamento">
             <button type="button" class="vt-pagamento__opcao" data-metodo="pix" aria-pressed="false">Pix</button>
             <button type="button" class="vt-pagamento__opcao" data-metodo="cartao" aria-pressed="false">Cartão</button>
@@ -69,31 +100,38 @@
           </div>
         </div>
 
-        <label for="inputNome">Seu nome</label>
-        <input type="text" id="inputNome" name="nome" required placeholder="Como o produtor vai te chamar">
+        <div class="vt-campo-grupo">
+          <label for="inputNome">Seu nome</label>
+          <input type="text" id="inputNome" name="nome" required placeholder="Ex: Maria Silva">
+        </div>
 
-        <label for="inputTelefone">Seu telefone (WhatsApp)</label>
-        <input type="tel" id="inputTelefone" name="telefone" required placeholder="(71) 9 9999-9999">
+        <div class="vt-campo-grupo">
+          <label for="inputTelefone">Seu telefone (WhatsApp)</label>
+          <input type="tel" id="inputTelefone" name="telefone" required placeholder="(71) 9 9999-9999">
+        </div>
 
-        <button type="submit" class="vt-botao-enviar" id="botaoEnviarPedido">Enviar reserva</button>
+        <button type="submit" class="vt-botao-enviar" id="botaoEnviarPedido">Enviar pedido de reserva</button>
       </form>
     </div>
   </div>
 
+  <!-- MODAL DE PROCESSAMENTO -->
   <div id="painelProcessando" class="vt-sucesso" hidden role="dialog" aria-modal="true" aria-labelledby="tituloProcessando">
     <div class="vt-sucesso__cartao">
       <div class="vt-spinner" aria-hidden="true"></div>
-      <h2 id="tituloProcessando">Processando pagamento…</h2>
-      <p id="mensagemProcessando">Aguarde um instante.</p>
+      <h2 id="tituloProcessando">Processando reserva…</h2>
+      <p id="mensagemProcessando">Enviando suas informações para o produtor.</p>
     </div>
   </div>
 
+  <!-- MODAL DE CONFIRMAÇÃO COM SUCESSO -->
   <div id="painelSucesso" class="vt-sucesso" hidden role="dialog" aria-modal="true" aria-labelledby="tituloSucesso">
     <div class="vt-sucesso__cartao">
-      <p class="vt-sucesso__selo">Reservado ✓</p>
+      <div class="vt-sucesso__icone">✓</div>
+      <p class="vt-sucesso__selo">Reserva Confirmada</p>
       <h2 id="tituloSucesso">Pedido enviado!</h2>
       <p id="mensagemSucesso"></p>
-      <button id="fecharSucesso" class="vt-botao-enviar">Voltar pra vitrine</button>
+      <button id="fecharSucesso" class="vt-botao-enviar">Voltar para a vitrine</button>
     </div>
   </div>
 
