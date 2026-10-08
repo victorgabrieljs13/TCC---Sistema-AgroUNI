@@ -119,7 +119,7 @@
         botao.textContent = 'Salvando…';
 
         try {
-            const resposta = await fetch(`${API_URL}${endpointBase}/reset-password`, {
+            const resposta = await fetch(`${window.location.origin}${endpointBase}/reset-password`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ token, novaSenha })
