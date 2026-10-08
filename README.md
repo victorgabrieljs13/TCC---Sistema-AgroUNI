@@ -39,14 +39,9 @@ sobre o negócio.
 
 1. Clone o repositório:
 ```bash
-<<<<<<< HEAD
-git clone https://github.com/SEU-USUARIO/SEU-REPOSITORIO.git
-cd SEU-REPOSITORIO/BackEnd
-=======
+
 git clone https://github.com/victorgabrieljs13/TCC---Sistema-AgroUNI
 cd TCC---Sistema-AgroUNI/BackEnd
->>>>>>> 84b11fc05298a9fecb152524d17af6f0073ec1f2
-```
 
 2. Instale as dependências:
 ```bash
