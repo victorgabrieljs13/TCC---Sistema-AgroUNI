@@ -74,47 +74,9 @@ body {
 }
 
 /* ==========================================================================
-   CABEÇALHO MODERNO
+   CABEÇALHO MODERNO & LOGOMARCA
    ========================================================================== */
-/* ============================================================
-   ESTILOS DA LOGOMARCA NO CABEÇALHO DA VITRINE
-   ============================================================ */
 
-/* Container que alinha a Logomarca e o Botão Voltar lado a lado */
-.vt-header__marcas {
-  display: flex;
-  align-items: center;
-  gap: var(--vt-sp-3); /* Espaçamento de 12px entre a logo e o botão */
-}
-
-/* Link que envolve a imagem da logo */
-.vt-header__logo-link {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  transition: transform 0.2s ease, opacity 0.2s ease;
-}
-
-/* Efeito ao passar o mouse por cima da logo */
-.vt-header__logo-link:hover {
-  transform: scale(1.05); /* Aumenta levemente a logo em 5% */
-  opacity: 0.9;
-}
-
-/* Estilo da imagem da Logomarca */
-.vt-header__logo-img {
-  height: 38px;          /* Altura ideal para o cabeçalho */
-  width: auto;           /* Mantém a proporção correta da imagem */
-  object-fit: contain;
-  display: block;
-}
-
-/* Ajuste responsivo para telas pequenas (telemóveis) */
-@media (max-width: 480px) {
-  .vt-header__logo-img {
-    height: 30px;        /* Reduz ligeiramente o tamanho em telas menores */
-  }
-}
 .vt-header {
   background: linear-gradient(135deg, var(--vt-verde-escuro) 0%, #0f2b17 100%);
   color: var(--vt-surface);
@@ -129,6 +91,32 @@ body {
   justify-content: space-between;
   max-width: 1100px;
   margin: 0 auto var(--vt-sp-5);
+}
+
+/* Container de alinhamento da Logo + Botão Voltar */
+.vt-header__marcas {
+  display: flex;
+  align-items: center;
+  gap: var(--vt-sp-3);
+}
+
+.vt-header__logo-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.vt-header__logo-link:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+
+.vt-header__logo-img {
+  height: 38px;
+  width: auto;
+  object-fit: contain;
+  display: block;
 }
 
 .vt-header__voltar {
@@ -831,4 +819,5 @@ body {
   .vt-header__titulo { font-size: var(--vt-fs-xl); }
   .vt-banca__grade { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
   .vt-cesta-painel__cartao { width: 100%; }
+  .vt-header__logo-img { height: 30px; }
 }
