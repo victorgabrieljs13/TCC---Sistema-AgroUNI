@@ -13,12 +13,12 @@
 
 
 <header class="home-topo" id="home-header">
- 
+    <!-- Logo Clicável -->
     <a href="#hero" class="home-marca">
         <span class="selo"></span> AgroUNI
     </a>
     
-   
+    <!-- Menu de Navegação Semântico -->
     <nav class="home-nav">
         <ul>
             <li><a href="#hero">Início</a></li>
@@ -29,26 +29,27 @@
         </ul>
     </nav>
 
-    <a href="login.html" class="entrar">Já sou produtor — Entrar</a>
-    
+    <!-- Área de Ações: Login + Botão Ocultar Menu -->
+    <div class="home-topo__acoes">
+        <a href="login.html" class="entrar">Já sou produtor — Entrar</a>
+        
         <button type="button" id="btnOcultarMenu" class="btn-ocultar" title="Ocultar menu" aria-label="Ocultar menu">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <polyline points="18 15 12 9 6 15"></polyline>
             </svg>
-
             <span>Ocultar</span>
         </button>
     </div>
 </header>
 
-
+<!-- Botão Flutuante para Reexibir o Menu -->
 <button type="button" id="btnMostrarMenu" class="btn-mostrar-menu" title="Mostrar menu" aria-label="Mostrar menu">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <polyline points="6 9 12 15 18 9"></polyline>
     </svg>
     <span>Menu</span>
 </button>
-</header>
+
 
 
 <section class="hero" id="hero">
@@ -79,6 +80,34 @@
 </section>
 
 
+<section class="video-promo" id="promo">
+    <div class="container">
+        <div class="secao-titulo reveal">
+            <span class="eyebrow">AgroUNI em Ação</span>
+            
+            <!-- Frase de Impacto em Destaque -->
+            <h2 class="slogan-impacto">"Se o campo não planta, a cidade não janta!"</h2>
+            
+            <p class="video-chamada">
+                Você consumidor, feirante ou produtor de <strong>Candeias e região</strong>: a tecnologia chegou para transformar o abastecimento local! Criamos este espaço para conectar o campo direto à sua mesa ou ao seu box, sem intermediários.
+                <br><br>
+                Assista ao nosso vídeo comercial abaixo ou acesse o nosso <a href="#como-funciona" class="link-tutorial">tutorial passo a passo de como funciona</a>.
+            </p>
+        </div>
+
+        <!-- Player do Vídeo Publicitário -->
+        <div class="video-placeholder reveal">
+            <div class="video-placeholder__play">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+            <strong>Vídeo Comercial AgroUNI</strong>
+            <span>Conheça como a plataforma aproxima produtores e consumidores em Candeias.</span>
+        </div>
+    </div>
+</section>
+
+
+
 <section class="como-funciona" id="como-funciona">
     <div class="container">
         <div class="secao-titulo reveal">
@@ -87,11 +116,22 @@
             <p>Veja o caminho de quem compra e de quem vende.</p>
         </div>
 
+        <!-- Player do Vídeo TUTORIAL -->
+        <div class="video-placeholder video-placeholder--tutorial reveal">
+            <div class="video-placeholder__play">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+            <strong>Assista ao Vídeo Tutorial Completo</strong>
+            <span>Aprenda a navegar, fazer pedidos ou cadastrar seus produtos na prática.</span>
+        </div>
+
+        <!-- Abas para Alternar os Passos -->
         <div class="abas reveal">
             <button class="aba-btn" role="tab" aria-selected="true" data-aba="consumidor">Sou consumidor</button>
             <button class="aba-btn" role="tab" aria-selected="false" data-aba="produtor">Sou produtor</button>
         </div>
 
+        <!-- Passos do Consumidor -->
         <div class="passos ativo reveal" id="passos-consumidor">
             <div class="passo">
                 <div class="passo__numero">01</div>
@@ -115,6 +155,7 @@
             </div>
         </div>
 
+        <!-- Passos do Produtor -->
         <div class="passos" id="passos-produtor">
             <div class="passo">
                 <div class="passo__numero">01</div>
@@ -146,29 +187,11 @@
 </section>
 
 
-<section class="video" id="video">
-    <div class="container">
-        <div class="secao-titulo reveal">
-            <span class="eyebrow">02 · Veja funcionando</span>
-            <h2>Um vídeo rápido explica melhor</h2>
-            <p>A equipe gravou um tutorial mostrando o sistema na prática.</p>
-        </div>
-
-        <div class="video-placeholder reveal">
-            <div class="video-placeholder__play">
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-            </div>
-            <strong>Vídeo em breve</strong>
-            <span>A equipe está gravando o tutorial completo de como usar o AgroUNI.</span>
-        </div>
-    </div>
-</section>
-
 
 <section class="sobre" id="sobre">
     <div class="container">
         <div class="secao-titulo reveal">
-            <span class="eyebrow">03 · A trajetória</span>
+            <span class="eyebrow">02 · A trajetória</span>
             <h2>Como o AgroUNI nasceu</h2>
             <p>Um projeto de TCC que virou uma plataforma de verdade.</p>
         </div>
@@ -218,7 +241,6 @@
                 <div class="integrante-card__avatar">·</div>
                 <strong>Victor Gabriel de Jesus</strong>
                 <span>Desenvolvedor Full Stack <br> Analista de Dados</span>
-                </span>
             </div>
             <div class="integrante-card">
                 <div class="integrante-card__avatar">·</div>
@@ -245,22 +267,25 @@
 </section>
 
 
-<section class="suporte" id="contato" style="padding: 4rem 0; background-color: rgba(0,0,0,0.02);">
-    <div class="container" style="text-align: center;">
+
+<section class="suporte" id="contato">
+    <div class="container">
         <div class="secao-titulo reveal">
             <span class="eyebrow">Atendimento</span>
             <h2>Precisa de ajuda? Fale com o suporte</h2>
             <p>Dúvidas sobre o sistema ou problemas com reservas? Conte conosco.</p>
         </div>
-        <div class="reveal" style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 1.5rem;">
-            <a href="mailto:suporte@agrouni.com" class="entrar" style="text-decoration: none;">Enviar E-mail</a>
-            <a href="https://wa.me/5500000000000" target="_blank" rel="noopener" class="entrar" style="background-color: #2e7d32; text-decoration: none;">WhatsApp Suporte</a>
+        <div class="suporte-botoes reveal">
+            <a href="mailto:agrouni.tec@gmail.com" class="suporte-btn suporte-btn--secundario">Enviar E-mail</a>
+            <a href="https://wa.me/5500000000000" target="_blank" rel="noopener" class="suporte-btn">WhatsApp Suporte</a>
         </div>
     </div>
 </section>
 
+
+    
 <footer class="home-rodape">
-    <p>&copy; <span id="2026"></span> AgroUNI. Todos os direitos reservados.</p>
+    <p>&copy; 2026 AgroUNI. Todos os direitos reservados.</p>
     <a href="https://github.com/victorgabrieljs13/TCC---Sistema-AgroUNI" target="_blank" rel="noopener">Ver no GitHub</a>
 </footer>
 

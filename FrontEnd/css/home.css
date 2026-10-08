@@ -471,3 +471,44 @@ section { padding: var(--space-8) 0; }
     visibility: visible;
     transform: translateY(0);
 }
+/* ============================================================
+   ESTILOS DOS VÍDEOS PUBLICITÁRIO E TUTORIAL
+   ============================================================ */
+
+/* Seção de Vídeo Publicitário (Início) */
+.video-promo {
+    background: var(--bg);
+    padding: var(--space-8) 0;
+}
+
+/* Destaque para a Frase de Impacto */
+.slogan-impacto {
+    font-size: clamp(22px, 3.5vw, 32px) !important;
+    font-weight: 800 !important;
+    color: var(--verde-escuro) !important;
+    font-style: italic;
+    margin-top: var(--space-2) !important;
+    margin-bottom: var(--space-3) !important;
+    text-shadow: 0 2px 10px rgba(47, 158, 68, 0.1);
+}
+
+/* Espaçamento exclusivo do Vídeo Tutorial dentro do #como-funciona */
+.video-placeholder--tutorial {
+    margin-bottom: var(--space-7);
+    border: 1px solid var(--border);
+}
+
+/* Efeito Hover no Link que leva ao Tutorial */
+.link-tutorial {
+    color: var(--verde-escuro);
+    font-weight: 700;
+    text-decoration: underline;
+    text-decoration-color: var(--dourado);
+    text-underline-offset: 4px;
+    transition: color 0.2s ease, text-decoration-color 0.2s ease;
+}
+
+.link-tutorial:hover {
+    color: var(--verde);
+    text-decoration-color: var(--verde);
+}
