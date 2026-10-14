@@ -1,0 +1,21 @@
+/* Botão de alternar tema (claro/escuro) — usado em todas as telas */
+html[data-theme="dark"] { color-scheme: dark; }
+html[data-theme="light"] { color-scheme: light; }
+
+.tema-btn {
+    width: 40px; height: 40px; flex: 0 0 auto;
+    display: inline-grid; place-items: center; padding: 0; cursor: pointer;
+    border-radius: 999px;
+    background: var(--surface, var(--vt-surface, #fff));
+    border: 1px solid var(--border, var(--vt-border, #e5e5e5));
+    color: var(--text, var(--vt-text, #222));
+    transition: transform .15s ease, border-color .15s ease;
+}
+.tema-btn:hover { transform: translateY(-1px); border-color: var(--verde, var(--vt-verde, #2f9e44)); }
+.tema-btn:focus-visible { outline: 2px solid var(--verde, var(--vt-verde, #2f9e44)); outline-offset: 2px; }
+.tema-btn svg { width: 18px; height: 18px; }
+.tema-btn .ic-sol { display: none; }
+html[data-theme="dark"] .tema-btn .ic-sol { display: block; }
+html[data-theme="dark"] .tema-btn .ic-lua { display: none; }
+
+.tema-btn--flutuante { position: fixed; top: 16px; right: 16px; z-index: 200; box-shadow: 0 4px 14px rgba(0, 0, 0, .12); }

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgroUNI — Pedidos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/tema.css">
+    <script src="js/tema.js"></script>
+</head>
+<body>
+
+<div class="app">
+    <aside class="sidebar">
+        <div class="sidebar-brand"><div class="marca">A</div><span>AgroUNI</span></div>
+        <nav class="sidebar-nav">
+            <a href="produtos.html" class="nav-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8l-9-5-9 5 9 5 9-5z"/><path d="M3 8v8l9 5 9-5V8"/><path d="M12 13v8"/></svg>
+                <span>Produtos</span>
+            </a>
+            <a href="pedidos.html" class="nav-item active">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="M9 12h6"/><path d="M9 16h6"/></svg>
+                <span>Pedidos</span>
+            </a>
+            <a href="movimentacao.html" class="nav-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3v14"/><path d="M3 13l4 4 4-4"/><path d="M17 21V7"/><path d="M21 11l-4-4-4 4"/></svg>
+                <span>Movimentar</span>
+            </a>
+            <a href="dashboard.html" class="nav-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10"/><path d="M12 20V4"/><path d="M20 20v-7"/></svg>
+                <span>Dashboard</span>
+            </a>
+        </nav>
+        <div class="sidebar-footer">
+            <label class="theme-switch">Modo escuro
+                <span class="switch"><input type="checkbox" class="theme-toggle"><span class="track"></span></span>
+            </label>
+            <div class="sidebar-user">
+                <span id="nome-feirante"></span>
+                <button id="btn-logout" title="Sair" aria-label="Sair">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg>
+                </button>
+            </div>
+        </div>
+    </aside>
+
+    <main class="app-main">
+        <div class="page-head">
+            <div>
+                <h1>Pedidos</h1>
+                <p class="page-sub">Reservas feitas pelos clientes na vitrine pública.</p>
+            </div>
+        </div>
+
+        <div class="filtro-tabs" id="filtro-tabs">
+            <button type="button" class="btn btn-secondary active" data-filtro="pendente">Pendentes</button>
+            <button type="button" class="btn btn-secondary" data-filtro="aceito">Aceitos</button>
+            <button type="button" class="btn btn-secondary" data-filtro="recusado">Recusados</button>
+            <button type="button" class="btn btn-secondary" data-filtro="todos">Todos</button>
+        </div>
+
+        <div id="lista-pedidos">
+            <div class="card pedido-card skeleton-row">
+                <span class="skeleton skeleton-line"></span>
+            </div>
+            <div class="card pedido-card skeleton-row">
+                <span class="skeleton skeleton-line"></span>
+            </div>
+        </div>
+
+        <div class="empty-state" id="estado-vazio" style="display:none;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/></svg>
+            <p>Nenhum pedido por aqui ainda.</p>
+        </div>
+    </main>
+</div>
+
+<script src="js/config.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/pedidos.js"></script>
+</body>
+</html>

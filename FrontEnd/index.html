@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgroUNI — Direto da central de abastecimento</title>
+    <meta name="description" content="AgroUNI conecta produtores da central de abastecimento a quem busca alimentos frescos e saudáveis, sem intermediário.">
+    
+    <!-- Fontes Oficiais do AgroUNI -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;700&family=Open+Sans:wght@400;500;600&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/tema.css">
+    <script src="js/tema.js"></script>
+</head>
+<body>
+
+<!-- ============================================================
+     CABEÇALHO FIXO COM MENU E DROPDOWN
+     ============================================================ -->
+<header class="home-topo" id="home-header">
+    <a href="#hero" class="home-marca">
+      <img src="img/PNG/2.png" alt="Ícone AgroUNI" class="home-marca__icone"> <span class="home-marca__texto">AgroUNI</span>
+    </a>
+    
+    <nav class="home-nav" id="homeNav" aria-label="Menu principal">
+        <ul>
+            <li><a href="#hero">Início</a></li>
+            <li><a href="vitrine.html">Vitrine</a></li>
+            <li><a href="#como-funciona">Como funciona?</a></li>
+            <li><a href="#sobre">Sobre nós</a></li>
+            <li><a href="#contato">Suporte</a></li>
+        </ul>
+    </nav>
+
+    <div class="home-topo__acoes">
+        <button type="button" class="tema-btn" data-tema-toggle aria-label="Alternar modo claro e escuro"><svg class="ic-lua" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><svg class="ic-sol" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
+        <div class="entrar-menu" id="menuEntrar">
+            <button type="button" class="entrar entrar--botao" id="btnEntrarMenu" aria-expanded="false" aria-haspopup="true">
+                Entrar
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="entrar-menu__dropdown" id="dropdownEntrar" role="menu">
+                <div class="entrar-menu__titulo">Acessar minha conta</div>
+                <a href="login-consumidor.html" class="entrar-opcao" role="menuitem">
+                    <span class="entrar-opcao__icone entrar-opcao__icone--consumidor">🛒</span>
+                    <span><strong>Consumidor</strong><small>Entrar para ver pedidos e reservas</small></span>
+                </a>
+                <a href="login.html" class="entrar-opcao" role="menuitem">
+                    <span class="entrar-opcao__icone entrar-opcao__icone--produtor">🌱</span>
+                    <span><strong>Produtor</strong><small>Entrar no painel de gestão</small></span>
+                </a>
+                <div class="entrar-menu__rodape">Ainda não é produtor? <a href="cadastro-produtor.html">Criar conta</a></div>
+            </div>
+        </div>
+        <div class="entrar-menu entrar-menu--cadastrar" id="menuCadastrar">
+            <button type="button" class="entrar entrar--botao entrar--cadastrar" aria-expanded="false" aria-haspopup="true">
+                Cadastrar
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="entrar-menu__dropdown" role="menu">
+                <div class="entrar-menu__titulo">Criar minha conta</div>
+                <a href="cadastro-consumidor.html" class="entrar-opcao" role="menuitem">
+                    <span class="entrar-opcao__icone entrar-opcao__icone--consumidor">🛒</span>
+                    <span><strong>Sou consumidor</strong><small>Reservar produtos e acompanhar pedidos</small></span>
+                </a>
+                <a href="cadastro-produtor.html" class="entrar-opcao" role="menuitem">
+                    <span class="entrar-opcao__icone entrar-opcao__icone--produtor">🌱</span>
+                    <span><strong>Sou produtor</strong><small>Cadastrar minha banca e controlar o estoque</small></span>
+                </a>
+                <div class="entrar-menu__rodape">Já tem conta? <a href="login.html">Entrar como produtor</a></div>
+            </div>
+        </div>
+
+        
+        <button type="button" id="btnOcultarMenu" class="btn-ocultar" title="Ocultar menu" aria-label="Ocultar menu">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="18 15 12 9 6 15"></polyline>
+            </svg>
+            <span>Ocultar</span>
+        </button>
+        <button type="button" class="home-burger" id="btnMenuHome" aria-expanded="false" aria-controls="homeNav" aria-label="Abrir menu">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+
+    </div>
+</header>
+
+<button type="button" id="btnMostrarMenu" class="btn-mostrar-menu" title="Mostrar menu" aria-label="Mostrar menu">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="6 9 12 15 18 9"></polyline>
+    </svg>
+    <span>Menu</span>
+</button>
+
+
+<!-- ============================================================
+     SEÇÃO HERO (TEXTO À ESQUERDA + IMAGEM/CARD À DIREITA)
+     ============================================================ -->
+<section class="hero" id="hero">
+    <div class="container">
+        <div class="grid-lado-a-lado">
+            
+            <!-- Coluna 1: Texto e Cartões de Entrada (Esquerda) -->
+            <div class="hero__conteudo">
+                <span class="hero__selo">Sua plataforma de vendas e controle de estoque!</span>
+                <h1>Mais saúde e qualidade,<br><span>direto do produtor</span></h1>
+                <p class="texto-justificado">O AgroUNI conecta os produtores da central de abastecimento a quem busca alimentos frescos e saudáveis, sem intermediário. Escolha como você quer comprar, entrar ou começar a vender:</p>
+
+                <div class="hero__escolha">
+                    <a href="vitrine.html" class="escolha-card escolha-card--consumidor">
+                        <span class="escolha-card__eyebrow">Quero comprar</span>
+                        <h2>Sou consumidor</h2>
+                        <p class="texto-justificado">Navegue pelas bancas, monte sua reserva e combine a retirada com o produtor.</p>
+                        <span class="escolha-card__cta">Ver a vitrine
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
+                        </span>
+                    </a>
+                    
+                    <div class="escolha-card escolha-card--produtor">
+                        <span class="escolha-card__eyebrow">Tenho uma banca</span>
+                        <h2>Sou produtor</h2>
+                        <p class="texto-justificado">Gerencie seus produtos, estoque e pedidos em um painel só seu.</p>
+                        <a href="login.html" class="escolha-card__cta">Entrar no painel
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
+                        </a>
+                        <span class="escolha-card__secondary">Ainda não tem conta? <a href="cadastro-produtor.html">Cadastre-se como produtor</a></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Coluna 2: Mídia Visual / Banner Ilustrativo (Direita) -->
+            <div class="hero__midia">
+                <div class="card-visual-hero">
+                    <div class="card-visual-hero__badge">Alimentos 100% Frescos</div>
+                    <img src="img/PNG/1.png" alt="Logomarca AgroUNI" class="card-visual-hero__img">
+                    <h3>Abastecimento Inteligente</h3>
+                    <p class="texto-justificado">Conectando o campo de Candeias e região diretamente aos feirantes e consumidores locais com tecnologia simples e acessível.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- ============================================================
+     SEÇÃO VÍDEO PUBLICITÁRIO (TEXTO À ESQUERDA + VÍDEO À DIREITA)
+     ============================================================ -->
+<section class="video-promo" id="promo">
+    <div class="container">
+        <div class="grid-lado-a-lado">
+            
+            <!-- Coluna 1: Texto Publicitário (Esquerda) -->
+            <div class="video-promo__texto reveal">
+                <h2 class="slogan-impacto">"Conectando o campo ao consumidor"</h2>
+                
+                <p class="video-chamada texto-justificado">
+                    Você consumidor, feirante ou produtor de <strong>Candeias e região</strong>: a tecnologia chegou para transformar o abastecimento local! Criamos este espaço para conectar o campo direto à sua mesa ou ao seu box, sem intermediários.
+                    <br><br>
+                    Assista ao nosso vídeo comercial ao lado ou acesse o nosso <a href="#como-funciona" class="link-tutorial">tutorial passo a passo de como funciona</a>.
+                </p>
+            </div>
+
+            <!-- Coluna 2: Player do Vídeo Comercial (Direita) -->
+            <div class="video-placeholder reveal">
+                <div class="video-placeholder__play">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+                <strong>Vídeo Comercial AgroUNI</strong>
+                <span>Conheça como a plataforma aproxima produtores e consumidores em Candeias.</span>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- ============================================================
+     SEÇÃO COMO FUNCIONA (ESTRUTURA VERTICAL - EXCEÇÃO SOLICITADA)
+     ============================================================ -->
+<section class="como-funciona" id="como-funciona">
+    <div class="container">
+        <div class="secao-titulo reveal">
+            <span class="eyebrow">01 · Como funciona</span>
+            <h2>Simples pros dois lados</h2>
+            <p class="texto-justificado">Veja o caminho de quem compra e de quem vende na nossa central de abastecimento.</p>
+        </div>
+
+        <!-- Player do Vídeo TUTORIAL (Largura Total Centralizada) -->
+        <div class="video-placeholder video-placeholder--tutorial reveal">
+            <div class="video-placeholder__play">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+            <strong>Assista ao Vídeo Tutorial Completo</strong>
+            <span>Aprenda a navegar, fazer pedidos ou cadastrar seus produtos na prática.</span>
+        </div>
+
+        <!-- Abas para Alternar os Passos -->
+        <div class="abas reveal">
+            <button class="aba-btn" role="tab" aria-selected="true" data-aba="consumidor">Sou consumidor</button>
+            <button class="aba-btn" role="tab" aria-selected="false" data-aba="produtor">Sou produtor</button>
+        </div>
+
+        <!-- Passos do Consumidor -->
+        <div class="passos ativo reveal" id="passos-consumidor">
+            <div class="passo">
+                <div class="passo__numero">01</div>
+                <h3>Escolha os produtos</h3>
+                <p class="texto-justificado">Navegue pela vitrine e monte sua reserva com os produtos da banca que quiser.</p>
+            </div>
+            <div class="passo">
+                <div class="passo__numero">02</div>
+                <h3>Informe seus dados</h3>
+                <p class="texto-justificado">Só nome e telefone — ou entre com sua conta e pule essa parte.</p>
+            </div>
+            <div class="passo">
+                <div class="passo__numero">03</div>
+                <h3>Aguarde a confirmação</h3>
+                <p class="texto-justificado">O produtor analisa seu pedido e aceita ou recusa em tempo real.</p>
+            </div>
+            <div class="passo">
+                <div class="passo__numero">04</div>
+                <h3>Retire na banca</h3>
+                <p class="texto-justificado">Combine com o produtor e busque seus produtos fresquinhos no box.</p>
+            </div>
+        </div>
+
+        <!-- Passos do Produtor -->
+        <div class="passos" id="passos-produtor">
+            <div class="passo">
+                <div class="passo__numero">01</div>
+                <h3>Faça login</h3>
+                <p class="texto-justificado">Acesso seguro — só você vê e edita os seus próprios produtos.</p>
+            </div>
+            <div class="passo">
+                <div class="passo__numero">02</div>
+                <h3>Cadastre seus produtos</h3>
+                <p class="texto-justificado">Preço, estoque, categoria, descrição e imagem — tudo sob seu controle.</p>
+            </div>
+            <div class="passo">
+                <div class="passo__numero">03</div>
+                <h3>Receba pedidos</h3>
+                <p class="texto-justificado">Veja em tempo real as reservas feitas na vitrine pública.</p>
+            </div>
+            <div class="passo">
+                <div class="passo__numero">04</div>
+                <h3>Aceite ou recuse</h3>
+                <p class="texto-justificado">Um clique já debita o estoque automaticamente — sem lançar duas vezes.</p>
+            </div>
+            <div class="passo">
+                <div class="passo__numero">05</div>
+                <h3>Acompanhe no dashboard</h3>
+                <p class="texto-justificado">Gráficos de estoque e variação de preço, sempre à mão no celular.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ============================================================
+     SEÇÃO SOBRE NÓS E TRAJETÓRIA
+     ============================================================ -->
+<section class="sobre" id="sobre">
+    <div class="container">
+        <div class="secao-titulo reveal">
+            <span class="eyebrow">02 · A trajetória</span>
+            <h2>Como o AgroUNI nasceu</h2>
+            <p class="texto-justificado">Um projeto de TCC desenvolvido por alunos do SENAI Candeias que virou uma plataforma de verdade.</p>
+        </div>
+
+        <div class="linha-tempo reveal">
+            <div class="marco">
+                <h3>O problema</h3>
+                <p class="texto-justificado">Produtores da central de abastecimento controlavam estoque no caderno ou de memória — sem saber quando repor, nem histórico de preço.</p>
+            </div>
+            <div class="marco">
+                <h3>Primeira versão</h3>
+                <p class="texto-justificado">Sistema de gestão de estoque com login seguro (JWT), cadastro de produtos e alerta de estoque baixo.</p>
+            </div>
+            <div class="marco">
+                <h3>Painel profissional</h3>
+                <p class="texto-justificado">Dashboard com gráficos, redesenho completo da interface e experiência pensada pro produtor usar no celular, no box.</p>
+            </div>
+            <div class="marco">
+                <h3>Vitrine e pedidos</h3>
+                <p class="texto-justificado">O maior salto: uma vitrine pública onde qualquer pessoa reserva produtos direto com o produtor, sem precisar de conta.</p>
+            </div>
+            <div class="marco">
+                <h3>Hoje</h3>
+                <p class="texto-justificado">Uma plataforma completa de dois lados — o consumidor compra, o produtor vende — pronta pra apresentar.</p>
+            </div>
+        </div>
+
+        <div class="recursos reveal">
+            <span class="recurso-tag">Node.js</span>
+            <span class="recurso-tag">Express</span>
+            <span class="recurso-tag">MySQL</span>
+            <span class="recurso-tag">JWT</span>
+            <span class="recurso-tag">bcrypt</span>
+            <span class="recurso-tag">Chart.js</span>
+            <span class="recurso-tag">Render</span>
+            <span class="recurso-tag">Git / GitHub</span>
+        </div>
+
+        <div class="secao-titulo reveal">
+            <span class="eyebrow">Quem construiu</span>
+            <h2>A equipe</h2>
+            <p>Alunos do Técnico em Informática para Internet — SENAI Candeias.</p>
+        </div>
+
+        <div class="equipe-grid reveal">
+            <div class="integrante-card">
+                <div class="integrante-card__avatar">·</div>
+                <strong>Victor Gabriel de Jesus</strong>
+                <span>Desenvolvedor Full Stack <br> Analista de Dados</span>
+            </div>
+            <div class="integrante-card">
+                <div class="integrante-card__avatar">·</div>
+                <strong>Anna Beatriz Dias</strong>
+                <span>Desenvolvedora Full Stack <br> Analista de Sistemas</span>
+            </div>
+            <div class="integrante-card">
+                <div class="integrante-card__avatar">·</div>
+                <strong>Jhenyfer Oliveira</strong>
+                <span>Desenvolvedora Full Stack <br> Analista de Dados</span>
+            </div>
+            <div class="integrante-card">
+                <div class="integrante-card__avatar">·</div>
+                <strong>Trícia Brito</strong>
+                <span>Analista Designer <br> Analista de Suporte</span>
+            </div>
+            <div class="integrante-card">
+                <div class="integrante-card__avatar">·</div>
+                <strong>Eslle Souza</strong>
+                <span>Analista Designer <br> Analista de Suporte</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ============================================================
+     SEÇÃO SUPORTE
+     ============================================================ -->
+<section class="suporte" id="contato">
+    <div class="container">
+        <div class="secao-titulo reveal">
+            <span class="eyebrow">Atendimento</span>
+            <h2>Precisa de ajuda? Fale com o suporte</h2>
+            <p class="texto-justificado">Dúvidas sobre o sistema ou problemas com reservas? Nossa equipe está pronta para ajudar.</p>
+        </div>
+        <div class="suporte-botoes reveal">
+            <a href="mailto:agrouni.tec@gmail.com" class="suporte-btn suporte-btn--secundario">Enviar E-mail</a>
+            <a href="https://wa.me/5500000000000" target="_blank" rel="noopener" class="suporte-btn">WhatsApp Suporte</a>
+        </div>
+    </div>
+</section>
+
+<footer class="home-rodape">
+    <p>&copy; 2026 AgroUNI. Todos os direitos reservados.</p>
+    <a href="https://github.com/victorgabrieljs13/TCC---Sistema-AgroUNI" target="_blank" rel="noopener">Ver no GitHub</a>
+</footer>
+
+<script src="js/home.js"></script>
+</body>
+</html>
