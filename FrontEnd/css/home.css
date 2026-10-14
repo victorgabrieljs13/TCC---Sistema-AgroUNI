@@ -568,8 +568,12 @@ section { padding: var(--space-8) 0; }
 }
 .integrante-card:hover { transform: translateY(-4px); border-color: var(--dourado); box-shadow: 0 16px 32px -8px var(--glow-dourado); }
 .integrante-card__avatar {
-    width: 52px; height: 52px; border-radius: 50%; background: var(--gradiente-dourado); color: #fff;
-    display: grid; place-items: center; margin: 0 auto var(--space-3); font-family: var(--font-display); font-weight: 700; font-size: 18px;
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 12px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: transparent;
 }
 .integrante-card strong { display: block; font-family: var(--font-display); font-size: 13.5px; margin-bottom: 2px; }
 .integrante-card span { font-size: 12px; color: var(--text-muted); }
@@ -756,7 +760,6 @@ section { padding: 104px 0; }
 .integrante-card { padding: 32px 16px; }
 .integrante-card strong { margin-bottom: 6px; line-height: 1.35; }
 .integrante-card span { line-height: 1.55; display: block; }
-.integrante-card__avatar { color: #1c1f19; }
 .suporte-botoes { gap: 16px; margin-top: 40px; }
 .home-rodape { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 24px; padding: 40px var(--space-5); }
 .home-rodape p { margin: 0; }
