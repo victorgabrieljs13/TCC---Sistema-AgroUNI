@@ -660,8 +660,8 @@ section { padding: var(--space-8) 0; }
     .hero::before, .hero::after { display: none; }
 }
 .home-marca__icone {
-    width: 32px;
-    height: 32px;
+    width: 46px;
+    height: 46px;
     object-fit: contain;
 }
 
@@ -715,7 +715,14 @@ section { padding: var(--space-8) 0; }
     flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;
     gap: var(--space-3); padding: 56px 40px;
 }
-.card-visual-hero__img { height: 96px; margin: var(--space-3) auto var(--space-2); }
+.card-visual-hero__img {
+    height: 160px;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+    margin: var(--space-3) auto var(--space-2);
+    display: block;
+}
 .card-visual-hero h3 { margin: 0; font-size: 20px; }
 .card-visual-hero p { max-width: 36ch; margin: 0; line-height: 1.7; text-align: center; }
 .card-visual-hero__badge { color: #1c1f19; }
@@ -803,7 +810,13 @@ html[data-theme="dark"] .btn-mostrar-menu:hover { color: #fff; }
 
 section[id] { scroll-margin-top: 72px; }
 
-html[data-theme="dark"] .card-visual-hero__img { height: auto; max-height: 88px; padding: 14px 24px; background: #faf8f2; border-radius: 14px; }
+html[data-theme="dark"] .card-visual-hero__img {
+    height: auto;
+    max-height: 180px;
+    padding: 10px;
+    background: #00000000;
+    border-radius: 14px;
+}
 
 /* ============================================================
    MENU EM UMA LINHA (desktop) com divisórias entre os links
