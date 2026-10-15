@@ -274,14 +274,22 @@
             <p class="texto-justificado">Veja o caminho de quem compra e de quem vende na nossa central de abastecimento.</p>
         </div>
 
-        <!-- Player do Vídeo TUTORIAL (Largura Total Centralizada) -->
-        <div class="video-placeholder video-placeholder--tutorial reveal">
-            <div class="video-placeholder__play">
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-            </div>
-            <strong>Assista ao Vídeo Tutorial Completo</strong>
-            <span>Aprenda a navegar, fazer pedidos ou cadastrar seus produtos na prática.</span>
-        </div>
+       
+<!-- Player do Vídeo TUTORIAL -->
+<div class="video-placeholder video-placeholder--tutorial video-tutorial reveal">
+    <video
+        class="video-tutorial__player"
+        controls
+        preload="metadata"
+        playsinline
+        aria-label="Vídeo tutorial completo do AgroUNI">
+
+        <source src="videos/tutorial.mp4" type="video/mp4">
+
+        Seu navegador não suporta a reprodução de vídeos.
+    </video>
+</div>
+
 
         <!-- Abas para Alternar os Passos -->
         <div class="abas reveal">
