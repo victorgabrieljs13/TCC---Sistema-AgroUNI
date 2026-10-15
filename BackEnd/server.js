@@ -9,7 +9,12 @@ app.use(cors());
 app.use(express.json());
 
 // Serve os arquivos do frontend (HTML, CSS, JS)
-app.use(express.static(path.join(__dirname, '..', 'FrontEnd')));
+
+app.use(
+    '/FrontEnd',
+    express.static(path.join(__dirname, '..', 'FrontEnd'))
+);
+
 
 // ... suas rotas continuam aqui embaixo (feirantes, produtos, movimentacoes, auth) ...
 
