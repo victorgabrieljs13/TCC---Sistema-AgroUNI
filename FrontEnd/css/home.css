@@ -498,7 +498,7 @@ section { padding: var(--space-8) 0; }
 
 .video-placeholder__play {
     width: 56px; 
-    height: 56px; 
+    height: auto; 
     border-radius: 50%; 
     background: var(--gradiente-verde);
     display: grid; 
@@ -567,13 +567,25 @@ section { padding: var(--space-8) 0; }
     transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
 }
 .integrante-card:hover { transform: translateY(-4px); border-color: var(--dourado); box-shadow: 0 16px 32px -8px var(--glow-dourado); }
+/* Moldura circular da foto */
 .integrante-card__avatar {
-    width: 80px;
-    height: 80px;
+    width: 90px;
+    height: 90px;
+    flex: 0 0 90px;
     margin: 0 auto 12px;
     border-radius: 50%;
     overflow: hidden;
     background: transparent;
+}
+
+/* A imagem precisa preencher a moldura */
+.integrante-card__avatar img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 50%;
 }
 .integrante-card strong { display: block; font-family: var(--font-display); font-size: 13.5px; margin-bottom: 2px; }
 .integrante-card span { font-size: 12px; color: var(--text-muted); }
@@ -876,4 +888,66 @@ html[data-theme="dark"] .card-visual-hero__img {
     .home-marca__texto { display: none; }
     .home-topo__acoes .entrar--botao { padding: 8px 14px; font-size: 13px; }
     .entrar-menu__dropdown, .home-topo__acoes .entrar-menu--cadastrar .entrar-menu__dropdown { width: min(310px, calc(100vw - 24px)); }
+}
+
+/* Fotos circulares da equipe */
+.integrante-card__avatar {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 12px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: transparent;
+}
+
+.integrante-card__avatar img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 50%;
+}
+
+/* Cartões mais compactos */
+.integrante-card {
+    padding: 18px 12px;
+}
+
+/* Textos dos integrantes */
+.integrante-card strong {
+    display: block;
+    margin-bottom: 6px;
+    line-height: 1.35;
+}
+
+.integrante-card span {
+    display: block;
+    line-height: 1.5;
+} 
+
+/* Container do vídeo comercial AgroUNI */
+.video-comercial {
+    width: 100%;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none;
+    aspect-ratio: 16 / 9;
+    padding: 0 !important;
+    margin: 0;
+    overflow: hidden;
+    display: block;
+    background: #171714;
+    border-radius: var(--radius-lg);
+    box-sizing: border-box;
+}
+
+/* Vídeo dentro do container */
+.video-comercial video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border: 0;
+    border-radius: inherit;
 }
