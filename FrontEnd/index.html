@@ -21,9 +21,15 @@
      CABEÇALHO FIXO COM MENU E DROPDOWN
      ============================================================ -->
 <header class="home-topo" id="home-header">
-    <a href="#hero" class="home-marca">
-      <img src="img/PNG/2.png" alt="Ícone AgroUNI" class="home-marca__icone"> <span class="home-marca__texto">AgroUNI</span>
-    </a>
+    
+<a href="#hero" class="home-marca" aria-label="AgroUNI — voltar ao início">
+    <img
+        src="img/PNG/1.png"
+        alt="AgroUNI"
+        class="home-marca__icone"
+    >
+</a>
+
     
     <nav class="home-nav" id="homeNav" aria-label="Menu principal">
         <ul>
@@ -132,14 +138,87 @@
             </div>
 
             <!-- Coluna 2: Mídia Visual / Banner Ilustrativo (Direita) -->
-            <div class="hero__midia">
-                <div class="card-visual-hero">
-                    <div class="card-visual-hero__badge">Alimentos 100% Frescos</div>
-                    <img src="img/PNG/1.png" alt="Logomarca AgroUNI" class="card-visual-hero__img">
-                    <h3>Abastecimento Inteligente</h3>
-                    <p class="texto-justificado">Conectando o campo de Candeias e região diretamente aos feirantes e consumidores locais com tecnologia simples e acessível.</p>
-                </div>
-            </div>
+            
+<!-- Coluna 2: Carrossel de imagens do AgroUNI -->
+<div class="hero__midia">
+    <div
+        class="carrossel-hero"
+        data-carrossel
+        role="region"
+        aria-label="Galeria de imagens do AgroUNI"
+        tabindex="0"
+    >
+        <div class="carrossel-hero__slides">
+
+            <figure class="carrossel-hero__slide is-active"
+                    data-slide-item aria-hidden="false">
+                <img src="img/feira/feira1.jpg"
+                     alt="Produtos frescos da agricultura local">
+            </figure>
+
+            <figure class="carrossel-hero__slide"
+                    data-slide-item aria-hidden="true">
+                <img src="img/feira/feira2.jpg"
+                     alt="Frutas e verduras disponíveis na feira">
+            </figure>
+
+            <figure class="carrossel-hero__slide"
+                    data-slide-item aria-hidden="true">
+                <img src="img/feira/feira3.jpg"
+                     alt="Produtores e comerciantes da central de abastecimento">
+            </figure>
+
+            <figure class="carrossel-hero__slide"
+                    data-slide-item aria-hidden="true">
+                <img src="img/feira/feira4.jpg"
+                     alt="Alimentos frescos prontos para comercialização">
+            </figure>
+
+        </div>
+
+        <button
+            class="carrossel-hero__controle carrossel-hero__controle--anterior"
+            type="button"
+            data-carrossel-anterior
+            aria-label="Mostrar imagem anterior"
+        >
+            <svg viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round"
+                 aria-hidden="true">
+                <path d="m15 18-6-6 6-6"/>
+            </svg>
+        </button>
+
+        <button
+            class="carrossel-hero__controle carrossel-hero__controle--proximo"
+            type="button"
+            data-carrossel-proximo
+            aria-label="Mostrar próxima imagem"
+        >
+            <svg viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round"
+                 aria-hidden="true">
+                <path d="m9 18 6-6-6-6"/>
+            </svg>
+        </button>
+
+        <div class="carrossel-hero__indicadores"
+             role="group" aria-label="Selecionar imagem">
+            <button type="button" class="is-active"
+                    data-carrossel-ir="0" aria-label="Imagem 1"
+                    aria-pressed="true"></button>
+            <button type="button" data-carrossel-ir="1"
+                    aria-label="Imagem 2" aria-pressed="false"></button>
+            <button type="button" data-carrossel-ir="2"
+                    aria-label="Imagem 3" aria-pressed="false"></button>
+            <button type="button" data-carrossel-ir="3"
+                    aria-label="Imagem 4" aria-pressed="false"></button>
+        </div>
+    </div>
+</div>
+
 
         </div>
     </div>
@@ -370,5 +449,69 @@
 </footer>
 
 <script src="js/home.js"></script>
+
+<script>
+(() => {
+    const carrossel = document.querySelector('[data-carrossel]');
+    if (!carrossel) return;
+
+    const slides = [...carrossel.querySelectorAll('[data-slide-item]')];
+    const indicadores = [...carrossel.querySelectorAll('[data-carrossel-ir]')];
+
+    const anterior = carrossel.querySelector('[data-carrossel-anterior]');
+    const proximo = carrossel.querySelector('[data-carrossel-proximo]');
+
+    let indiceAtual = 0;
+
+    function mostrarSlide(indice) {
+        indiceAtual = (indice + slides.length) % slides.length;
+
+        slides.forEach((slide, i) => {
+            const ativo = i === indiceAtual;
+            slide.classList.toggle('is-active', ativo);
+            slide.setAttribute('aria-hidden', String(!ativo));
+        });
+
+        indicadores.forEach((botao, i) => {
+            const ativo = i === indiceAtual;
+            botao.classList.toggle('is-active', ativo);
+            botao.setAttribute('aria-pressed', String(ativo));
+        });
+    }
+
+    anterior.addEventListener('click', () => {
+        mostrarSlide(indiceAtual - 1);
+    });
+
+    proximo.addEventListener('click', () => {
+        mostrarSlide(indiceAtual + 1);
+    });
+
+    indicadores.forEach((botao) => {
+        botao.addEventListener('click', () => {
+            mostrarSlide(Number(botao.dataset.carrosselIr));
+        });
+    });
+
+    carrossel.addEventListener('keydown', (evento) => {
+        if (evento.key === 'ArrowLeft') {
+            mostrarSlide(indiceAtual - 1);
+        }
+
+        if (evento.key === 'ArrowRight') {
+            mostrarSlide(indiceAtual + 1);
+        }
+    });
+
+    // Troca automaticamente a imagem a cada 5 segundos
+    setInterval(() => {
+        mostrarSlide(indiceAtual + 1);
+    }, 4000);
+
+})();
+</script>
+</body>
+</html>
+
 </body>
 </html>

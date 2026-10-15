@@ -951,3 +951,193 @@ html[data-theme="dark"] .card-visual-hero__img {
     border: 0;
     border-radius: inherit;
 }
+
+
+/* LOGOMARCA COMPLETA NO CABEÇALHO */
+.home-marca {
+    gap: 0;
+    width: fit-content;
+    flex-shrink: 0;
+}
+
+.home-marca__icone {
+    display: block;
+    width: 175px;
+    height: 60px;
+    object-fit: contain;
+    object-position: left center;
+}
+
+/* CARROSSEL DA PÁGINA INICIAL */
+.hero__midia {
+    display: flex;
+    min-width: 0;
+    align-self: stretch;
+}
+
+.carrossel-hero {
+    position: relative;
+    isolation: isolate;
+    flex: 1;
+    width: 100%;
+    min-width: 0;
+    min-height: 540px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background: var(--creme);
+    box-shadow: var(--sombra-elevada);
+}
+
+.carrossel-hero__slides {
+    position: absolute;
+    inset: 0;
+}
+
+
+/* Transição suave entre as imagens */
+.carrossel-hero__slide {
+    position: absolute;
+    inset: 0;
+    margin: 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(1.035);
+    transition:
+        opacity 1.2s ease-in-out,
+        transform 5s ease-out,
+        visibility 0s linear 1.2s;
+    will-change: opacity, transform;
+}
+
+.carrossel-hero__slide.is-active {
+    z-index: 1;
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+    transition:
+        opacity 1.2s ease-in-out,
+        transform 5s ease-out,
+        visibility 0s;
+}
+
+.carrossel-hero__slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.carrossel-hero__controle {
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    display: grid;
+    width: 44px;
+    height: 44px;
+    place-items: center;
+    padding: 0;
+    border: 1px solid rgba(255, 255, 255, .72);
+    border-radius: 50%;
+    color: var(--text);
+    background: rgba(255, 255, 255, .88);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, .14);
+    cursor: pointer;
+    transform: translateY(-50%);
+    transition: background .18s ease, transform .18s ease;
+    backdrop-filter: blur(8px);
+}
+
+.carrossel-hero__controle svg {
+    width: 21px;
+    height: 21px;
+}
+
+.carrossel-hero__controle:hover {
+    background: #fff;
+    transform: translateY(-50%) scale(1.05);
+}
+
+.carrossel-hero__controle:focus-visible,
+.carrossel-hero__indicadores button:focus-visible {
+    outline: 3px solid var(--verde);
+    outline-offset: 3px;
+}
+
+.carrossel-hero__controle--anterior {
+    left: 16px;
+}
+
+.carrossel-hero__controle--proximo {
+    right: 16px;
+}
+
+.carrossel-hero__indicadores {
+    position: absolute;
+    z-index: 2;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 9px;
+    padding: 28px 16px 18px;
+    background: linear-gradient(transparent, rgba(0, 0, 0, .38));
+}
+
+.carrossel-hero__indicadores button {
+    width: 9px;
+    height: 9px;
+    padding: 0;
+    border: 1px solid #fff;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, .62);
+    cursor: pointer;
+    transition: width .2s ease, background .2s ease;
+}
+
+.carrossel-hero__indicadores button.is-active {
+    width: 25px;
+    background: #fff;
+}
+
+@media (max-width: 868px) {
+    .carrossel-hero {
+        min-height: 420px;
+    }
+}
+
+@media (max-width: 640px) {
+    .home-marca__icone {
+        width: 120px;
+        height: 45px;
+    }
+
+    .carrossel-hero {
+        min-height: 340px;
+        border-radius: 14px;
+    }
+
+    .carrossel-hero__controle {
+        width: 38px;
+        height: 38px;
+    }
+
+    .carrossel-hero__controle--anterior {
+        left: 10px;
+    }
+
+    .carrossel-hero__controle--proximo {
+        right: 10px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .carrossel-hero__slide,
+    .carrossel-hero__controle,
+    .carrossel-hero__indicadores button {
+        transition: none;
+    }
+}
