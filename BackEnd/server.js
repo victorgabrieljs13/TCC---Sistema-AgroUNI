@@ -10,10 +10,11 @@ app.use(express.json());
 
 // Serve os arquivos do frontend (HTML, CSS, JS)
 
-app.use(
-    '/FrontEnd',
-    express.static(path.join(__dirname, '..', 'FrontEnd'))
-);
+// Serve o frontend na raiz do site
+app.use(express.static(path.join(__dirname, '..', 'FrontEnd')));
+
+// Mantém os caminhos de imagens que começam com /FrontEnd/
+app.use('/FrontEnd', express.static(path.join(__dirname, '..', 'FrontEnd')));
 
 
 // ... suas rotas continuam aqui embaixo (feirantes, produtos, movimentacoes, auth) ...
